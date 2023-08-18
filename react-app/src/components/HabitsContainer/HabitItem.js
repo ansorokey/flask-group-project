@@ -1,9 +1,9 @@
 // Will eventually take individual habits as an argument
-function HabitItem(){
+function HabitItem({habit}){
     return <div>
         <button>+</button>
-        <div>Habit goes here</div>
-        <button>+</button>
+        <span>{habit.title}</span>
+        <button>-</button>
     </div>
 }
 

@@ -1,5 +1,5 @@
 // need to import a reactState
-import HabitItem from "./HabitItem.js"
+import HabitList from "./HabitList.js"
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import "./habits.css"
@@ -8,6 +8,7 @@ function HabitsCtn() {
     const sessionUser = useSelector((state) => state.session.user);
     const [habitTitle, setHabitTitle] = useState('');
     const [habits, setHabits] = useState([]);
+    const [filteredHabits, setFilteredHabits] = useState(habits);
 
   function handleSubmit(e){
     //create the habit from form value
@@ -19,12 +20,18 @@ function HabitsCtn() {
     //reset form value
     // Dont allow the submission to go through yet
     e.preventDefault();
-    const data = {
+    const newHabit = {
         title: habitTitle,
         user_id: sessionUser.id
     }
 
-    alert(habitTitle)
+    setHabits(prev => {
+        const newVal = [newHabit, ...prev]
+        console.log(newVal)
+        return newVal;
+    });
+    // setFilteredHabits(habits)
+    setHabitTitle("");
   }
 
   function setSortActive(e){
@@ -47,7 +54,7 @@ function HabitsCtn() {
     </form>
 
     <h2>habits_list-ctn</h2>
-    <HabitItem />
+    <HabitList habits={habits} />
   </div>
 }
 export default HabitsCtn;
