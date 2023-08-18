@@ -7,7 +7,7 @@ Create Date: 2023-08-18 06:36:53.260548
 """
 from alembic import op
 import sqlalchemy as sa
-# import the func from sqlalchemy.sql
+from sqlalchemy.sql import func
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -29,10 +29,9 @@ def upgrade():
     sa.Column('notes', sa.String(255)),
     sa.Column('difficulty', sa.Integer(), default=2),
     sa.Column('frequency', sa.Integer, default=1),
-    sa.Column('createdAt', sa.DateTime),
-    sa.Column('updatedAt', sa.DateTime)
+    sa.Column('createdAt', sa.DateTime, server_default=func.now()),
+    sa.Column('updatedAt', sa.DateTime, onupdate=func.now())
     )
-# I think I also need a datetime stamp here?
 
 
 def downgrade():
