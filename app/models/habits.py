@@ -1,5 +1,5 @@
 # db is defined in db.py, import from local directory
-from .db import db, environment, SCHEMA, User
+from .db import db, environment, SCHEMA
 
 class Habit(db.Model):
     __tablename__ = 'habits'
