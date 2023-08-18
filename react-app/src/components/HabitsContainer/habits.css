@@ -1,0 +1,8 @@
+/* Habits container */
+.habit_filter_by:hover {
+    cursor: pointer;
+}
+
+.habit_filter_by.active {
+    text-decoration: underline;
+}
