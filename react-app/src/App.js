@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Dashboard from "./components/Dashboard"
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route>
+            return <h1> You've gone beyond the bounds! Page not found </h1>
           </Route>
         </Switch>
       )}
