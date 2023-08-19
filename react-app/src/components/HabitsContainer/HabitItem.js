@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useModal } from '../../context/Modal';
+import OpenModalButton from "../OpenModalButton";
+import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
 
 // Will eventually take individual habits as an argument
 function HabitItem({habit}){
@@ -8,8 +11,15 @@ function HabitItem({habit}){
     const [posCount, setPosCount] = useState(0)
     const [negCount, setNegCount] = useState(0)
 
+    const { setModalContent } = useModal();
+
     const optionsMenu = <div className="habits-options-menu">
-        <div>Edit</div>
+        <OpenModalButton
+            buttonText="Edit"
+
+            modalComponent={<EditHabitForm />}
+        />
+        {/* <span onClick={() => setModalContent(<EditHabitForm />)}>Edit</span> */}
         <hr/>
         <div>To top</div>
         <hr/>

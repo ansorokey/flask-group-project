@@ -1,7 +1,35 @@
 from flask import Blueprint
+from app.models import db, Habit
 
-habit_bp = Blueprint('habits',  __name__, prefix='habits')
+habit_routes = Blueprint('habits',  __name__)
 
-@habit_bp.route('/habits')
-def get_habits():
-    return 'This is where habits will go.'
+# @habit_routes.route('/', methods=['GET'])
+# def test_route():
+#     return { 'message': 'hello'}
+
+# GET all habits
+@habit_routes.route('/<userId>', methods=['GET'])
+def get_habits(userId):
+    habits = Habit.query.all()
+    for h in habits:
+        print(h)
+    # return habits
+    return { 'message': 'hello'}
+
+# CREATE a new habit
+@habit_routes.route('/', methods=['POST'])
+def post_habit():
+    # gather form data
+    # create a new habit
+    # add new habit db.session
+    # commit new habit to db.session
+    # newUser =
+    return 'post to habits'
+
+# UPDATE a habit by id
+@habit_routes.route('/<int:id>', methods=['PUT'])
+def put_habit(id):
+    # query habit by id
+    # change values of habit
+    # commit to db.session
+    return 'update habit by id'

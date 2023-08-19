@@ -1,8 +1,9 @@
 // need to import a reactState
 import HabitList from "./HabitList.js"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import "./habits.css"
+import { getUserHabits } from "../../store/habits.js"
 
 function HabitsCtn() {
     const sessionUser = useSelector((state) => state.session.user);
@@ -11,6 +12,14 @@ function HabitsCtn() {
     const [filteredHabits, setFilteredHabits] = useState(habits);
     const [filterBy, setFilterBy] = useState('All');
 
+    const dispatch = useDispatch();
+
+    // fetch habits and store them
+    useEffect(async () => {
+      dispatch(getUserHabits(sessionUser?.id))
+    }, [dispatch]);
+
+    // Modify filtered habits every time habits/filter changes
     useEffect(() => {
       setFilteredHabits(() => {
         switch (filterBy) {
