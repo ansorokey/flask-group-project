@@ -13,21 +13,16 @@ function HabitsCtn() {
 
     const [habitTitle, setHabitTitle] = useState('');
     const [habits, setHabits] = useState([]);
-
-    // const [filteredHabits, setFilteredHabits] = useState(habits);
-    const [filterBy, setFilterBy] = useState('All');
-    const [loaded, setLoaded] = useState(false);
+    const [filterBy, setFilterBy] = useState('All')
     const dispatch = useDispatch();
 
     // fetch habits and store them on page load
     useEffect(() => {
-      console.log('fetching habits')
       async function initialLoad() {
         await dispatch(getUserHabits(sessionUser?.id))
       }
-      if(!loaded) {
-        initialLoad();
-      }
+
+      initialLoad();
     }, [dispatch]);
 
     // Modify filtered habits every time filter changes
@@ -44,7 +39,7 @@ function HabitsCtn() {
           default:
             return habitsArr;
       }});
-      // setLoaded(true);
+    // habitState is the key to getting it to load upon refresh
     }, [filterBy, habitState]);
 
   function handleSubmit(e){
