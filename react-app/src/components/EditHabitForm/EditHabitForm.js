@@ -1,6 +1,12 @@
 function EditHabitForm(){
     return <div>
-
+        <div>
+            <h1>Edit Habit</h1>
+            <span>
+                <button>Cancel</button>
+                <button>Save</button>
+            </span>
+        </div>
         <form className="edit-habit-form">
             <div className="edit-form-top">
                 <label>Title</label>
@@ -48,6 +54,8 @@ function EditHabitForm(){
                     <option>Weekly</option>
                     <option>Monthly</option>
                 </select>
+
+                <div></div>
             </div>
 
         </form>

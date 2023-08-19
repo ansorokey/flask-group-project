@@ -32,7 +32,9 @@ function HabitsCtn() {
     const newHabit = {
         title: habitTitle,
         user_id: sessionUser.id,
-        strength: 'Weak'
+        strength: 'Weak',
+        posCount: 0,
+        negCount: 0
     }
 
     setHabits(prev => {

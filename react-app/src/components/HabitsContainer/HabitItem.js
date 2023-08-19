@@ -5,6 +5,8 @@ function HabitItem({habit}){
     const [showOptionsIcon, setShowOptionsIcon] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const [posCount, setPosCount] = useState(0)
+    const [negCount, setNegCount] = useState(0)
 
     const optionsMenu = <div className="habits-options-menu">
         <div>Edit</div>
@@ -33,11 +35,19 @@ function HabitItem({habit}){
     }
 
     return <div className="habit-item" onMouseEnter={showOptionsMenuIconOnHover} onMouseLeave={hideOptionsOnExit}>
-        <button>+</button>
-        <span>{habit.title}</span>
-        {showOptionsIcon && <button onClick={displayOrHideMenu}>options</button>}
-        <button>-</button>
-        {showOptions && optionsMenu}
+        <span><button onClick={() => setPosCount(prev => prev + 1)}>+</button></span>
+
+        <span>
+            <div>{habit.title}</div>
+            {showOptionsIcon && <button onClick={displayOrHideMenu}>options</button>}
+            {showOptions && optionsMenu}
+            {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
+            <span>Counter</span>
+            <span>{posCount} | {negCount}</span>
+        </span>
+
+        <span><button onClick={() => setNegCount(prev => prev - 1)}>-</button></span>
+
     </div>
 }
 

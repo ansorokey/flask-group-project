@@ -9,10 +9,10 @@
 
 /* Habit Item */
 .habit-item {
-    /* display: flex;
-    justify-content: space-between; */
-    height: 2em;
-    width: 200px;
+    display: flex;
+    /* justify-content: space-between; */
+    height: fit-content;
+    /* width: 200px; */
     border: 1px solid black;
     position: relative;
 }
