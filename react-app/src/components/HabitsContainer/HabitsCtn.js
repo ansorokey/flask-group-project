@@ -9,10 +9,10 @@ function HabitsCtn() {
   // Use info from store
     const sessionUser = useSelector((state) => state.session.user);
     const habitState = useSelector((state) => state.habits);
-    let habitsArr = Object.values(habitState);
+    const habitsArr = Object.values(habitState);
 
     const [habitTitle, setHabitTitle] = useState('');
-    const [habits, setHabits] = useState(habitsArr);
+    const [habits, setHabits] = useState([]);
 
     // const [filteredHabits, setFilteredHabits] = useState(habits);
     const [filterBy, setFilterBy] = useState('All');
@@ -32,27 +32,20 @@ function HabitsCtn() {
 
     // Modify filtered habits every time filter changes
     useEffect(() => {
-      setHabits(habitsArr);
-      console.log(filterBy);
-      console.log(habitsArr);
-      console.log(habits);
 
-        // switch (filterBy) {
-        //   case 'All':
-        //     habitsArr = Object.values(habitState);
-        //     break;
-        //   case 'Weak':
-        //     habitsArr = Object.values(habitState).filter(h => h.strength == 'Weak');
-        //     break;
-        //   case 'Strong':
-        //     habitsArr = Object.values(habitState).filter(h => h.strength == 'Strong');
-        //     break;
-        //   default:
-        //     return habitsArr;
-        //     break;
-      // };
+      setHabits(() => {
+        switch (filterBy) {
+          case 'All':
+            return habitsArr;
+          case 'Weak':
+            return habitsArr.filter(h => h.strength == 'Weak');
+          case 'Strong':
+            return habitsArr.filter(h => h.strength == 'Strong');
+          default:
+            return habitsArr;
+      }});
       // setLoaded(true);
-    }, [filterBy]);
+    }, [filterBy, habitState]);
 
   function handleSubmit(e){
     e.preventDefault();
@@ -77,7 +70,6 @@ function HabitsCtn() {
     document.querySelectorAll(".habit_filter_by").forEach( sp => sp.className = "habit_filter_by")
     e.target.className += ' active'
     setFilterBy(e.target.id)
-    console.log(habits)
   }
 
   // THE COMPONENT --------------------------------------------------------------------------------------------------------------
@@ -97,10 +89,7 @@ function HabitsCtn() {
         onChange={e => setHabitTitle(e.target.value)}/>
     </form>
 
-    <h2>habits_list-ctn</h2>
     <HabitList habits={habits} />
-    {/* Below works, not sure why */}
-    {/* <HabitList habits={Object.values(fetchedHabits)} /> */}
   </div>
 }
 export default HabitsCtn;
