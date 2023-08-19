@@ -24,7 +24,7 @@ def seed_test_habits():
 # sql.alchemy does not have a built in destruction function
 # need to make a raw query
 # postgres (production) uses a different command
-def undo_users():
+def undo_test_habits():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.habits RESTART IDENTITY CASCADE;")
     else:
