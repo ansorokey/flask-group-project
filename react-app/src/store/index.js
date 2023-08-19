@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+
+// Default exports allow us to name the reducers here
 import session from './session'
+import habits from "./habits"
 
 const rootReducer = combineReducers({
   session,
+  habits
 });
 
 

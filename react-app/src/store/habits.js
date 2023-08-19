@@ -1,10 +1,11 @@
 const GET_HABITS = 'habits/GET_HABITS'
 
-// function getHabits() {
-//     return {
-//         type: GET_HABITS
-//     }
-// }
+function addHabitsToReducer(fetchedHabits) {
+    return {
+        type: GET_HABITS,
+        fetchedHabits
+    }
+}
 
 export function getUserHabits(userId) {
     return async (dispatch) => {
@@ -12,7 +13,20 @@ export function getUserHabits(userId) {
 
         if(response.ok){
             const data = await response.json();
-            console.log(data);
+            dispatch(addHabitsToReducer(data))
         }
     }
 }
+
+function reducer(state={}, action) {
+    switch(action.type) {
+        case GET_HABITS:
+            const newState = {}
+            action.fetchedHabits.forEach(h => newState[h.id] = h)
+            return newState;
+        default:
+            return state;
+    }
+}
+
+export default reducer;

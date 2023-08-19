@@ -30,10 +30,10 @@ def upgrade():
     sa.Column('difficulty', sa.Integer(), default=2),
     sa.Column('frequency', sa.Integer, default=1),
     sa.Column('strength', sa.String, default='Neutral'),
-    sa.Column('posCount', sa.Integer, default=0),
-    sa.Column('negCount', sa.Integer, default=0),
-    sa.Column('createdAt', sa.DateTime, default=functions.now()),
-    sa.Column('updatedAt', sa.DateTime, default=functions.now())
+    sa.Column('pos_count', sa.Integer, default=0),
+    sa.Column('neg_count', sa.Integer, default=0),
+    sa.Column('created_at', sa.DateTime, default=functions.now()),
+    sa.Column('updated_at', sa.DateTime, default=functions.now())
     )
 
 

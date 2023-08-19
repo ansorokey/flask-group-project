@@ -18,13 +18,23 @@ class Habit(db.Model):
     difficulty = db.Column(db.Integer, default=2)
     frequency = db.Column(db.Integer, default=1)
     strength = db.Column(db.String, default='Neutral')
-    posCount = db.Column(db.Integer, default=0)
-    negCount = db.Column(db.Integer, default=0)
-    createdAt = db.Column(db.DateTime, default=functions.now())
-    updatedAt = db.Column(db.DateTime, default=functions.now())
+    pos_count = db.Column(db.Integer, default=0)
+    neg_count = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=functions.now())
+    updated_at = db.Column(db.DateTime, default=functions.now())
 
     def to_JSON(self):
         return {
-            'id': self.id
+            'id': self.id,
+            'userId': self.user_id,
+            'title': self.title,
+            'notes': self.notes,
+            'difficulty': self.difficulty,
+            'frequency': self.frequency,
+            'strength': self.strength,
+            'posCount': self.pos_count,
+            'newgCount': self.neg_count,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
     # tags a habit can have multiple tags, make it a relationship
