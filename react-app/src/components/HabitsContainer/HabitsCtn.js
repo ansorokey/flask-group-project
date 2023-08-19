@@ -6,9 +6,13 @@ import "./habits.css"
 import { getUserHabits } from "../../store/habits.js"
 
 function HabitsCtn() {
+  // Use info from store
     const sessionUser = useSelector((state) => state.session.user);
+    const fetchedHabits = useSelector((state) => state.habits);
+
     const [habitTitle, setHabitTitle] = useState('');
-    const [habits, setHabits] = useState([]);
+    // convert object to array for later pushing and filtering
+    const [habits, setHabits] = useState(Object.values(fetchedHabits));
     const [filteredHabits, setFilteredHabits] = useState(habits);
     const [filterBy, setFilterBy] = useState('All');
 
