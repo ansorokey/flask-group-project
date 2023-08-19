@@ -22,4 +22,9 @@ class Habit(db.Model):
     negCount = db.Column(db.Integer, default=0)
     createdAt = db.Column(db.DateTime, default=functions.now())
     updatedAt = db.Column(db.DateTime, default=functions.now())
+
+    def to_JSON(self):
+        return {
+            'id': self.id
+        }
     # tags a habit can have multiple tags, make it a relationship

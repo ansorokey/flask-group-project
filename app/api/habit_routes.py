@@ -10,11 +10,9 @@ habit_routes = Blueprint('habits',  __name__)
 # GET all habits
 @habit_routes.route('/<userId>', methods=['GET'])
 def get_habits(userId):
-    habits = Habit.query.all()
-    for h in habits:
-        print(h)
-    # return habits
-    return { 'message': 'hello'}
+    habitsQ = Habit.query.all()
+    habits_response = [h.to_JSON() for h in habitsQ]
+    return habits_response
 
 # CREATE a new habit
 @habit_routes.route('/', methods=['POST'])
