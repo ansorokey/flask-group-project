@@ -25,7 +25,7 @@ function EditHabitForm(){
                 </div>
             </div>
 
-            <div classname='edit-form-bottom'>
+            <div className='edit-form-bottom'>
                 <div>
                     <div>
                         <button>+</button>

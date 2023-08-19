@@ -13,7 +13,7 @@ export function getUserHabits(userId) {
 
         if(response.ok){
             const data = await response.json();
-            dispatch(addHabitsToReducer(data))
+            dispatch(addHabitsToReducer(data));
         }
     }
 }

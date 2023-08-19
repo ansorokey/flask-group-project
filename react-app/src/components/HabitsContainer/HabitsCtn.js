@@ -8,36 +8,51 @@ import { getUserHabits } from "../../store/habits.js"
 function HabitsCtn() {
   // Use info from store
     const sessionUser = useSelector((state) => state.session.user);
-    const fetchedHabits = useSelector((state) => state.habits);
+    const habitState = useSelector((state) => state.habits);
+    let habitsArr = Object.values(habitState);
 
     const [habitTitle, setHabitTitle] = useState('');
-    // convert object to array for later pushing and filtering
-    const [habits, setHabits] = useState(Object.values(fetchedHabits));
-    const [filteredHabits, setFilteredHabits] = useState(habits);
-    const [filterBy, setFilterBy] = useState('All');
+    const [habits, setHabits] = useState(habitsArr);
 
+    // const [filteredHabits, setFilteredHabits] = useState(habits);
+    const [filterBy, setFilterBy] = useState('All');
+    const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
-    // fetch habits and store them
-    useEffect(async () => {
-      dispatch(getUserHabits(sessionUser?.id))
+    // fetch habits and store them on page load
+    useEffect(() => {
+      console.log('fetching habits')
+      async function initialLoad() {
+        await dispatch(getUserHabits(sessionUser?.id))
+      }
+      if(!loaded) {
+        initialLoad();
+      }
     }, [dispatch]);
 
-    // Modify filtered habits every time habits/filter changes
+    // Modify filtered habits every time filter changes
     useEffect(() => {
-      setFilteredHabits(() => {
-        switch (filterBy) {
-          case 'All':
-            return habits;
-          case 'Weak':
-            return habits.filter(h => h.strength == 'Weak');
-          case 'Strong':
-            return habits.filter(h => h.strength == 'Strong');
-          default:
-            return habits;
-        }
-      });
-    }, [habits, filterBy]);
+      setHabits(habitsArr);
+      console.log(filterBy);
+      console.log(habitsArr);
+      console.log(habits);
+
+        // switch (filterBy) {
+        //   case 'All':
+        //     habitsArr = Object.values(habitState);
+        //     break;
+        //   case 'Weak':
+        //     habitsArr = Object.values(habitState).filter(h => h.strength == 'Weak');
+        //     break;
+        //   case 'Strong':
+        //     habitsArr = Object.values(habitState).filter(h => h.strength == 'Strong');
+        //     break;
+        //   default:
+        //     return habitsArr;
+        //     break;
+      // };
+      // setLoaded(true);
+    }, [filterBy]);
 
   function handleSubmit(e){
     e.preventDefault();
@@ -62,10 +77,11 @@ function HabitsCtn() {
     document.querySelectorAll(".habit_filter_by").forEach( sp => sp.className = "habit_filter_by")
     e.target.className += ' active'
     setFilterBy(e.target.id)
-    console.log(e.target.id)
+    console.log(habits)
   }
 
-  return <div>
+  // THE COMPONENT --------------------------------------------------------------------------------------------------------------
+  return  <div>
     <span>
       <h2>Habits</h2>
       <span id="All" className="habit_filter_by active" onClick={setSortActive}>All</span>
@@ -82,7 +98,9 @@ function HabitsCtn() {
     </form>
 
     <h2>habits_list-ctn</h2>
-    <HabitList habits={filteredHabits} />
+    <HabitList habits={habits} />
+    {/* Below works, not sure why */}
+    {/* <HabitList habits={Object.values(fetchedHabits)} /> */}
   </div>
 }
 export default HabitsCtn;
