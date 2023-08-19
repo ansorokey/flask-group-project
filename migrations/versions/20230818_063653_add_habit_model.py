@@ -29,6 +29,7 @@ def upgrade():
     sa.Column('notes', sa.String(255)),
     sa.Column('difficulty', sa.Integer(), default=2),
     sa.Column('frequency', sa.Integer, default=1),
+    sa.Column('strength', sa.String, default='Neutral'),
     sa.Column('createdAt', sa.DateTime, default=functions.now()),
     sa.Column('updatedAt', sa.DateTime, default=functions.now())
     )
