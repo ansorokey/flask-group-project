@@ -18,6 +18,8 @@ class Habit(db.Model):
     difficulty = db.Column(db.Integer, default=2)
     frequency = db.Column(db.Integer, default=1)
     strength = db.Column(db.String, default='Neutral')
+    posCount = db.Column(db.Integer, default=0)
+    negCount = db.Column(db.Integer, default=0)
     createdAt = db.Column(db.DateTime, default=functions.now())
     updatedAt = db.Column(db.DateTime, default=functions.now())
     # tags a habit can have multiple tags, make it a relationship
