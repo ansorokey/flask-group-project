@@ -6,3 +6,21 @@
 .habit_filter_by.active {
     text-decoration: underline;
 }
+
+/* Habit Item */
+.habit-item {
+    /* display: flex;
+    justify-content: space-between; */
+    height: 2em;
+    width: 200px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.habits-options-menu {
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 1px;
+    position: absolute;
+    z-index: 10;
+}
