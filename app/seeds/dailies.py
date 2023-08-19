@@ -8,14 +8,25 @@ def seed_dailies():
         user_Id=1,
         title = "Sweep Floors",
         description = "Sweep in kitchen, dining room, and living room",
-        repeats_frame='daily',
-        repeats_frequency=1
+        repeats_frame=1,
+        repeats_frequency=1,
+
         )
     dishes = Daily(
-
+        user_Id=1,
+        title = "Do Dishes",
+        repeats_frame=1,
+        repeats_frequency=1,
     )
 
-    sheets = Daily()
+    sheets = Daily(
+        user_Id=1,
+        title = "Change Bedsheets",
+        description = "Change the sheets in all bedrooms",
+        repeats_frame=1,
+        repeats_frequency=7,
+        repeats_on='Sunday'
+    )
 
 
     db.session.add(sweep)

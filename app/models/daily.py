@@ -53,7 +53,8 @@ class Daily(db.Model):
         'repeats_frequency' : self.repeats_frequency,
         'repeats_on' : self.repeats_on,
         'streak' : self.streak,
-        'completed' : self.completed
+        'completed' : self.completed,
+        'due_date' : self.due_date
         }
 
     def increaseStreak(self):
