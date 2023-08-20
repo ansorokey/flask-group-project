@@ -10,11 +10,22 @@
 /* Habit Item */
 .habit-item {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     height: fit-content;
     /* width: 200px; */
     border: 1px solid black;
     position: relative;
+}
+
+.habit-item-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.habit-item-counts {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .habits-options-menu {
@@ -24,4 +35,12 @@
     position: absolute;
     z-index: 10;
     background-color: white;
+}
+
+.habit-item-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: grey;
 }

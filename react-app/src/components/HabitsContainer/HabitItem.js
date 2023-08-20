@@ -53,18 +53,17 @@ function HabitItem({habit}){
     }
 
     return <div className="habit-item" onMouseEnter={showOptionsMenuIconOnHover} onMouseLeave={hideOptionsOnExit}>
-        <span><button onClick={incHabit}>+</button></span>
+        <div className="habit-item-button" onClick={incHabit}><i class="fa-regular fa-plus"></i></div>
 
-        <span>
+        <div className="habit-item-content">
             <div>{habit.title}</div>
             {showOptionsIcon && <button onClick={displayOrHideMenu}>options</button>}
             {showOptions && optionsMenu}
             {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
-            <span>Counter</span>
-            <span>{habit.posCount} | {habit.negCount}</span>
-        </span>
+            <div className="habit-item-counts">Counter: {habit.posCount} | {habit.negCount}</div>
+        </div>
 
-        <span><button onClick={decHabit}>-</button></span>
+        <div><button className="habit-item-button" onClick={decHabit}>-</button></div>
 
     </div>
 }
