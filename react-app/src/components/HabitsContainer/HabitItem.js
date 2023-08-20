@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useModal } from '../../context/Modal';
+// import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
 import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
 
@@ -11,7 +11,7 @@ function HabitItem({habit}){
     const [posCount, setPosCount] = useState(0)
     const [negCount, setNegCount] = useState(0)
 
-    const { setModalContent } = useModal();
+    // const { setModalContent } = useModal();
 
     const optionsMenu = <div className="habits-options-menu">
         <OpenModalButton

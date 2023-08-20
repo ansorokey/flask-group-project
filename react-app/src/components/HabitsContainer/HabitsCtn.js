@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { getUserHabits } from "../../store/habits.js"
+import { getUserHabits, createUserHabit } from "../../store/habits.js"
 
 // COMPONENT Import
 import HabitList from "./HabitList.js"
@@ -19,9 +19,11 @@ function HabitsCtn() {
     const dispatch = useDispatch();
 
     // fetch habits and store them on page load
+    // useEffect prefers to run a defined async function
+    // rather than an async anonymous
     useEffect(() => {
       async function initialLoad() {
-        await dispatch(getUserHabits())
+        dispatch(getUserHabits())
       }
 
       initialLoad();
@@ -35,9 +37,9 @@ function HabitsCtn() {
           case 'All':
             return habitsArr;
           case 'Weak':
-            return habitsArr.filter(h => h.strength == 'Weak');
+            return habitsArr.filter(h => h.strength === 'Weak');
           case 'Strong':
-            return habitsArr.filter(h => h.strength == 'Strong');
+            return habitsArr.filter(h => h.strength === 'Strong');
           default:
             return habitsArr;
       }});
@@ -47,18 +49,21 @@ function HabitsCtn() {
   function handleSubmit(e){
     e.preventDefault();
 
+    // Validate fields
+    if(!habitTitle.length) return;
+
     const newHabit = {
         title: habitTitle,
-        user_id: sessionUser.id,
-        strength: 'Weak',
-        posCount: 0,
-        negCount: 0
+        user_id: sessionUser.id
     }
 
-    setHabits(prev => {
-        const newVal = [newHabit, ...prev]
-        return newVal;
-    });
+    // post habit
+    dispatch(createUserHabit(newHabit));
+
+    // setHabits(prev => {
+    //     const newVal = [newHabit, ...prev]
+    //     return newVal;
+    // });
 
     setHabitTitle("");
   }
