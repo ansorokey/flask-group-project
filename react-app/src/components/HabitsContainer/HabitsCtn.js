@@ -1,12 +1,14 @@
-// need to import a reactState
-import HabitList from "./HabitList.js"
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import "./habits.css"
 import { getUserHabits } from "../../store/habits.js"
 
+// COMPONENT Import
+import HabitList from "./HabitList.js"
+
+// CSS Import
+import "./habits.css"
+
 function HabitsCtn() {
-  // Use info from store
     const sessionUser = useSelector((state) => state.session.user);
     const habitState = useSelector((state) => state.habits);
     const habitsArr = Object.values(habitState);

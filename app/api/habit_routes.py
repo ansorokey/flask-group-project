@@ -17,7 +17,6 @@ def put_habit(id):
 def get_habits():
     habits_query = Habit.query.filter(Habit.user_id == current_user.id).all()
     habits_to_dict = [h.to_dict() for h in habits_query]
-    print(habits_query)
     return habits_to_dict
 
 
