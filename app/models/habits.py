@@ -23,7 +23,10 @@ class Habit(db.Model):
     created_at = db.Column(db.DateTime, default=functions.now())
     updated_at = db.Column(db.DateTime, default=functions.now())
 
-    def to_JSON(self):
+    def to_dict(self):
+        """
+        Transform python object into a JSON readable dictionary with JS style keys
+        """
         return {
             'id': self.id,
             'userId': self.user_id,
