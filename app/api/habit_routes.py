@@ -1,5 +1,6 @@
 from flask import Blueprint
 from app.models import db, Habit
+from flask_login import current_user, login_required
 
 habit_routes = Blueprint('habits',  __name__)
 
@@ -8,8 +9,8 @@ habit_routes = Blueprint('habits',  __name__)
 #     return { 'message': 'hello'}
 
 # GET all habits
-@habit_routes.route('/<userId>', methods=['GET'])
-def get_habits(userId):
+@habit_routes.route('/', methods=['GET'])
+def get_habits():
     habitsQ = Habit.query.all()
     habits_response = [h.to_JSON() for h in habitsQ]
     return habits_response

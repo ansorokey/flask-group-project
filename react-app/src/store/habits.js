@@ -7,9 +7,9 @@ function addHabitsToReducer(fetchedHabits) {
     }
 }
 
-export function getUserHabits(userId) {
+export function getUserHabits() {
     return async (dispatch) => {
-        const response = await fetch(`/api/habits/${userId}`);
+        const response = await fetch(`/api/habits`);
 
         if(response.ok){
             const data = await response.json();
