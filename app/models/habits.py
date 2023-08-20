@@ -36,7 +36,7 @@ class Habit(db.Model):
             'frequency': self.frequency,
             'strength': self.strength,
             'posCount': self.pos_count,
-            'newgCount': self.neg_count,
+            'negCount': self.neg_count,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }

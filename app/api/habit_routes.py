@@ -6,12 +6,17 @@ from app.forms import HabitForm
 habit_routes = Blueprint('habits',  __name__)
 
 # UPDATE a habit by id
-@habit_routes.route('/<id>', methods=['PUT'])
+@habit_routes.route('/<int:id>', methods=['PUT'])
 def put_habit(id):
-    # query habit by id
-    # change values of habit
-    # commit to db.session
-    return 'update habit by id'
+    updatedHabit = Habit.query.filter(Habit.id == id).first()
+    body = request.get_json()
+    if 'pos_count' in body:
+        updatedHabit.pos_count = body['pos_count']
+    if 'neg_count' in body:
+        updatedHabit.neg_count = body['neg_count']
+    db.session.add(updatedHabit)
+    db.session.commit()
+    return updatedHabit.to_dict()
 
 # GET all habits
 @habit_routes.route('/', methods=['GET'])

@@ -77,10 +77,6 @@ function HabitsCtn() {
   // THE COMPONENT --------------------------------------------------------------------------------------------------------------
   return  <div>
     <span>
-      <button onClick={async () => {
-        await fetch('/api/habits/TEST');
-        await fetch('/api/habits/');
-        }}>TEST BUTTON</button>
       <h2>Habits</h2>
       <span id="All" className="habit_filter_by active" onClick={setSortActive}>All</span>
       <span id="Weak" className="habit_filter_by" onClick={setSortActive}>Weak</span>
