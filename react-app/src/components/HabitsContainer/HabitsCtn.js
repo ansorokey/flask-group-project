@@ -60,11 +60,6 @@ function HabitsCtn() {
     // post habit
     dispatch(createUserHabit(newHabit));
 
-    // setHabits(prev => {
-    //     const newVal = [newHabit, ...prev]
-    //     return newVal;
-    // });
-
     setHabitTitle("");
   }
 

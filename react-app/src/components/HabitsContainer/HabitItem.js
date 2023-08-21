@@ -1,9 +1,12 @@
 import { useState } from "react";
-// import { useModal } from '../../context/Modal';
-import OpenModalButton from "../OpenModalButton";
-import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
+import { useModal } from '../../context/Modal';
 import { useDispatch } from "react-redux";
 import { updateHabit } from "../../store/habits";
+
+// Component Imports
+// import OpenModalButton from "../OpenModalButton";
+import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
+import DeleteHabitModal from "../DeleteHabitModal/DeleteHabitModal";
 
 // Will eventually take individual habits as an argument
 function HabitItem({habit}){
@@ -12,20 +15,24 @@ function HabitItem({habit}){
     const [showOptions, setShowOptions] = useState(false);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-    // const { setModalContent } = useModal();
+    const { setModalContent } = useModal();
 
-    const optionsMenu = <div className="habits-options-menu">
-        <OpenModalButton
+    const optionsMenu = <div className="habits-options-menu"
+                             onClick={displayOrHideMenu}
+    >
+        {/* clicking any menu button should close the menu too */}
+        {/* The other way to open the modal */}
+        {/* <OpenModalButton
             buttonText="Edit"
             modalComponent={<EditHabitForm />}
-        />
-        {/* <span onClick={() => setModalContent(<EditHabitForm />)}>Edit</span> */}
+        /> */}
+        <span onClick={() => setModalContent(<EditHabitForm />)}>Edit</span>
         <hr/>
         <div>To top</div>
         <hr/>
         <div>To bottom</div>
         <hr/>
-        <div>Delete</div>
+        <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>Delete</div>
     </div>
 
     // display options icon when hovering over habit item
@@ -40,8 +47,10 @@ function HabitItem({habit}){
 
     // displays habit item options menu, or closes if already open
     function displayOrHideMenu() {
+        console.log('previously', menuIsOpen, showOptions)
         setMenuIsOpen(prev => !prev);
         setShowOptions(prev => !prev);
+        console.log('after', menuIsOpen, showOptions)
     }
 
     function incHabit() {
@@ -52,9 +61,25 @@ function HabitItem({habit}){
         dispatch(updateHabit(habit.id, {'neg_count': habit.negCount + 1}))
     }
 
-    return <div className="habit-item" onMouseEnter={showOptionsMenuIconOnHover} onMouseLeave={hideOptionsOnExit}>
+    return <div className="habit-item"
+                draggable="true"
+                onMouseEnter={showOptionsMenuIconOnHover}
+                onMouseLeave={hideOptionsOnExit}
+                onDragStart={(e) => {
+                    // e.preventDefault();
+                    e.target.className += ' draggable';
+                }}
+                onDragEnd={e => {
+                    e.target.className = "habit-item";
+                }}
+            >
         <div>
-            <button className="habit-item-button" onClick={incHabit}>+</button>
+            <button
+                className="habit-item-button"
+                onClick={incHabit}
+            >
+                +
+            </button>
         </div>
 
         <div className="habit-item-content">

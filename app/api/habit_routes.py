@@ -5,18 +5,27 @@ from app.forms import HabitForm
 
 habit_routes = Blueprint('habits',  __name__)
 
+# DELETE a habit by id
+@habit_routes.route('/<int:id>', methods=['DELETE'])
+def del_habit(id):
+    deleted_habit = Habit.query.filter(Habit.id == id).first()
+    db.session.delete(deleted_habit)
+    db.session.commit()
+    return {'message': 'success'}
+
+
 # UPDATE a habit by id
 @habit_routes.route('/<int:id>', methods=['PUT'])
 def put_habit(id):
-    updatedHabit = Habit.query.filter(Habit.id == id).first()
+    updated_habit = Habit.query.filter(Habit.id == id).first()
     body = request.get_json()
     if 'pos_count' in body:
-        updatedHabit.pos_count = body['pos_count']
+        updated_habit.pos_count = body['pos_count']
     if 'neg_count' in body:
-        updatedHabit.neg_count = body['neg_count']
-    db.session.add(updatedHabit)
+        updated_habit.neg_count = body['neg_count']
+    db.session.add(updated_habit)
     db.session.commit()
-    return updatedHabit.to_dict()
+    return updated_habit.to_dict()
 
 # GET all habits
 @habit_routes.route('/', methods=['GET'])

@@ -1,6 +1,7 @@
 const GET_HABITS = 'habits/GET_HABITS'
 const CREATE_HABIT = 'habits/CREATE_HABIT';
 const UPDATE_HABIT = 'habits/UPDATE_HABIT';
+const DELETE_HABIT = 'habits/DELETE_HABIT';
 
 function addHabitsToReducer(fetchedHabits) {
     return {
@@ -20,6 +21,13 @@ function makeChange(habit) {
     return {
         type: UPDATE_HABIT,
         habit: habit
+    }
+}
+
+function removeHabit(habitId) {
+    return {
+        type: DELETE_HABIT,
+        habitId
     }
 }
 
@@ -64,6 +72,16 @@ export function updateHabit(habitId, data) {
     }
 }
 
+export function deleteHabit(habitId) {
+    return async function(dispatch) {
+        const response = await fetch(`/api/habits/${habitId}`, {
+            method: 'DELETE'
+        });
+
+        if(response.ok) dispatch(removeHabit(habitId));
+    }
+}
+
 function reducer(state={}, action) {
     let newState = {};
 
@@ -71,13 +89,23 @@ function reducer(state={}, action) {
         case GET_HABITS:
             action.fetchedHabits.forEach(h => newState[h.id] = h);
             return newState;
+
         case CREATE_HABIT:
             newState = {...state}
             newState[action.habit.id] = action.habit;
             return newState;
+
         case UPDATE_HABIT:
             newState = {...state}
             newState[action.habit.id] = action.habit
+            return newState;
+
+        case DELETE_HABIT:
+            for(let id in state) {
+                if(id != action.habitId) newState[id] = state[id];
+            }
+            return newState;
+
         default:
             return state;
     }
