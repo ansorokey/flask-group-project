@@ -1,10 +1,48 @@
 /* Habits container */
+.habit-ctn {
+    background-color: darkgray;
+}
+
 .habit_filter_by:hover {
     cursor: pointer;
 }
 
 .habit_filter_by.active {
     text-decoration: underline;
+}
+
+.habit-title-and-sort {
+    display: flex;
+    justify-content: space-between;
+}
+
+.habit-sorts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Habit Quick Add */
+.habit-quick-add {
+    width: 100%;
+}
+
+.habit-quick-add > * {
+    width: 98%;
+}
+
+/* Habit List */
+.habit-list {
+    min-height: 250px;
+}
+
+.habit-list-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 /* Habit Item */
@@ -14,13 +52,13 @@
     height: fit-content;
     /* width: 200px; */
     border: 1px solid black;
-    position: relative;
 }
 
 .habit-item-content {
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .habit-item-counts {
@@ -28,14 +66,6 @@
     justify-content: flex-end;
 }
 
-.habits-options-menu {
-    width: 100px;
-    border: 1px solid black;
-    border-radius: 1px;
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-}
 
 .habit-item-button {
     display: flex;
@@ -43,4 +73,21 @@
     align-items: center;
     height: 100%;
     background-color: grey;
+}
+
+.habit-item-title-and-options {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.habits-options-menu {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 1px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    background-color: white;
 }
