@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 function EditHabitForm(){
+    const [, set] = useState('');
+
     return <div>
         <div>
             <span>Edit Habit</span>
