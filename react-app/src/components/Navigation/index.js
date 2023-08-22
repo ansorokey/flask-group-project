@@ -11,7 +11,7 @@ function Navigation({ isLoaded }){
 		<div className='nav-bar'>
 			<div>Menu</div>
 
-			<NavLink exact to="/" className="nav-home">Home</NavLink>
+			<NavLink exact to="/" className="nav-home">LevelUp!</NavLink>
 
 			{isLoaded && <ProfileButton user={sessionUser} />}
 		</div>
