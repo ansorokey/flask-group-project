@@ -26,7 +26,7 @@ function HabitItem({habit}){
             buttonText="Edit"
             modalComponent={<EditHabitForm />}
         /> */}
-        <span onClick={() => setModalContent(<EditHabitForm />)}>Edit</span>
+        <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>Edit</div>
         <hr/>
         <div>To top</div>
         <hr/>

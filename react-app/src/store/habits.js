@@ -102,7 +102,7 @@ function reducer(state={}, action) {
 
         case DELETE_HABIT:
             for(let id in state) {
-                if(id != action.habitId) newState[id] = state[id];
+                if(id !== action.habitId) newState[id] = state[id];
             }
             return newState;
 

@@ -33,15 +33,16 @@ function HabitsCtn() {
     useEffect(() => {
 
       setHabits(() => {
+        const filtersortHabits = Object.values(habitState);
         switch (filterBy) {
           case 'All':
-            return habitsArr.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           case 'Weak':
-            return habitsArr.filter(h => h.strength === 'Weak').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.filter(h => h.strength === 'Weak').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           case 'Strong':
-            return habitsArr.filter(h => h.strength === 'Strong').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.filter(h => h.strength === 'Strong').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           default:
-            return habitsArr.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }});
     // habitState is the key to getting it to load upon refresh
     }, [filterBy, habitState]);

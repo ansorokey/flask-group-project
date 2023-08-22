@@ -17,13 +17,32 @@ def del_habit(id):
 # UPDATE a habit by id
 @habit_routes.route('/<int:id>', methods=['PUT'])
 def put_habit(id):
+    """
+    Update the values of a specific habit.
+    """
     updated_habit = Habit.query.filter(Habit.id == id).first()
     body = request.get_json()
+    """
+    Originally wanted to dynamically iterate though the key values of the request body, but the model instance is not subscribtable.
+    Meaning, we cannot access an instance's properties using index.
+    Unable to use Habit['notes'] = body['notes']
+    Instead, chosing to be explicit
+    """
+    if 'title' in body:
+        updated_habit.title = body['title']
     if 'pos_count' in body:
         updated_habit.pos_count = body['pos_count']
     if 'neg_count' in body:
         updated_habit.neg_count = body['neg_count']
-    db.session.add(updated_habit)
+    if 'notes' in body['notes']:
+        updated_habit.notes = body['notes'];
+    if 'difficulty' in body:
+        updated_habit.difficulty = body['difficulty']
+    if 'frequency' in body:
+        updated_habit.frequency = body['frequency']
+
+
+
     db.session.commit()
     return updated_habit.to_dict()
 
