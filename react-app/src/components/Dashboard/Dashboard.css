@@ -20,6 +20,9 @@
 }
 
 .task-grid {
+    padding: 16px 12px 0 12px;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    column-gap: 12px;
+    /* grid-template-columns: repeat(auto-fill, minmax(215px, 700px)); */
+    grid-template-columns: repeat(4, 1fr);
 }

@@ -77,6 +77,7 @@
     flex-direction: column;
     width: 100%;
     position: relative;
+    padding: 8px 12px 0;
 }
 
 .habit-item-counts {
@@ -119,4 +120,8 @@
     top: 100%;
     z-index: 10;
     background-color: white;
+}
+
+.icon-forward{
+    height: 20px;
 }

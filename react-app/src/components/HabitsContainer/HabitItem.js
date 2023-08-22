@@ -26,13 +26,25 @@ function HabitItem({habit}){
             buttonText="Edit"
             modalComponent={<EditHabitForm />}
         /> */}
-        <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>Edit</div>
+        <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>
+            <i className="fa-solid fa-pen"></i>
+            Edit
+        </div>
         <hr/>
-        <div>To top</div>
+        <div>
+            <i className="fa-solid fa-arrow-up"></i>
+            To top
+        </div>
         <hr/>
-        <div>To bottom</div>
+        <div>
+            <i className="fa-solid fa-arrow-down"></i>
+            To bottom
+        </div>
         <hr/>
-        <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>Delete</div>
+        <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>
+            <i className="fa-solid fa-trash-can"></i>
+            Delete
+        </div>
     </div>
 
     // display options icon when hovering over habit item
@@ -68,23 +80,27 @@ function HabitItem({habit}){
                 onMouseLeave={hideOptionsOnExit}
             >
 
+        {/* Incrememnt Button */}
         <div>
             <button
                 className="habit-item-button plus"
                 onClick={incHabit}
             >
-                +
+                <i className="fa-solid fa-plus"></i>
             </button>
         </div>
 
+        {/* Habit Content */}
         <div className="habit-item-content">
             <div className="habit-item-title-and-options">
                 {habit.title}
-            {showOptionsIcon && <button onClick={displayOrHideMenu}>...</button>}
-            {showOptions && optionsMenu}
+                {showOptionsIcon && <button onClick={displayOrHideMenu}>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>}
+                {showOptions && optionsMenu}
             </div>
             {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
-            <div className="habit-item-counts">Counter: {habit.posCount} | {habit.negCount}</div>
+            <div className="habit-item-counts"><i className="fa-solid fa-forward icon-forward"></i> {habit.posCount} | -{habit.negCount}</div>
         </div>
 
         {/* Decrement button */}
@@ -93,7 +109,7 @@ function HabitItem({habit}){
                 className="habit-item-button minus"
                 onClick={decHabit}
             >
-                -
+                <i className="fa-solid fa-minus"></i>
             </button>
         </div>
 
