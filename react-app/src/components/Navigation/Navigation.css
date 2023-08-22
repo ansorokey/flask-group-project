@@ -22,3 +22,27 @@
   font-family: 'Press Start 2P', cursive;
   color: #FFFFFF;
 }
+
+.nav-links-ctn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-links {
+  padding: 0 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  height: 51px;
+}
+
+.nav-links:hover {
+  background-color: #6133B4;
+}
+
+.nav-links.active {
+  border-bottom: 5px solid #4E2990;
+}
