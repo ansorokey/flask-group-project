@@ -70,7 +70,7 @@ function HabitItem({habit}){
 
         <div>
             <button
-                className="habit-item-button"
+                className="habit-item-button plus"
                 onClick={incHabit}
             >
                 +
@@ -90,7 +90,7 @@ function HabitItem({habit}){
         {/* Decrement button */}
         <div>
             <button
-                className="habit-item-button"
+                className="habit-item-button minus"
                 onClick={decHabit}
             >
                 -

@@ -11,7 +11,6 @@ import "./habits.css"
 function HabitsCtn() {
     const sessionUser = useSelector((state) => state.session.user);
     const habitState = useSelector((state) => state.habits);
-    const habitsArr = Object.values(habitState);
 
     const [habitTitle, setHabitTitle] = useState('');
     const [habits, setHabits] = useState([]);
