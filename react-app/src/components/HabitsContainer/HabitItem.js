@@ -61,18 +61,13 @@ function HabitItem({habit}){
         dispatch(updateHabit(habit.id, {'neg_count': habit.negCount + 1}))
     }
 
+    // THE COMPONENT ----------------------------------------------------------
     return <div className="habit-item"
                 draggable="true"
                 onMouseEnter={showOptionsMenuIconOnHover}
                 onMouseLeave={hideOptionsOnExit}
-                onDragStart={(e) => {
-                    // e.preventDefault();
-                    e.target.className += ' draggable';
-                }}
-                onDragEnd={e => {
-                    e.target.className = "habit-item";
-                }}
             >
+
         <div>
             <button
                 className="habit-item-button"
@@ -92,7 +87,15 @@ function HabitItem({habit}){
             <div className="habit-item-counts">Counter: {habit.posCount} | {habit.negCount}</div>
         </div>
 
-        <div><button className="habit-item-button" onClick={decHabit}>-</button></div>
+        {/* Decrement button */}
+        <div>
+            <button
+                className="habit-item-button"
+                onClick={decHabit}
+            >
+                -
+            </button>
+        </div>
 
     </div>
 }

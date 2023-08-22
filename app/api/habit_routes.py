@@ -28,20 +28,21 @@ def put_habit(id):
     Unable to use Habit['notes'] = body['notes']
     Instead, chosing to be explicit
     """
+    for k in body:
+        print(body[k])
+
     if 'title' in body:
         updated_habit.title = body['title']
     if 'pos_count' in body:
         updated_habit.pos_count = body['pos_count']
     if 'neg_count' in body:
         updated_habit.neg_count = body['neg_count']
-    if 'notes' in body['notes']:
-        updated_habit.notes = body['notes'];
+    if 'notes' in body:
+        updated_habit.notes = body['notes']
     if 'difficulty' in body:
         updated_habit.difficulty = body['difficulty']
     if 'frequency' in body:
         updated_habit.frequency = body['frequency']
-
-
 
     db.session.commit()
     return updated_habit.to_dict()

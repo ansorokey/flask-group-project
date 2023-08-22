@@ -26,7 +26,7 @@ def upgrade():
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('user_id', sa.Integer, sa.ForeignKey('users.id'), nullable=False),
     sa.Column('title', sa.String(255), nullable=False),
-    sa.Column('notes', sa.String(255)),
+    sa.Column('notes', sa.String(255), default=''),
     sa.Column('difficulty', sa.Integer(), default=2),
     sa.Column('frequency', sa.Integer, default=1),
     sa.Column('strength', sa.String, default='Neutral'),

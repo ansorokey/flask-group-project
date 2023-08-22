@@ -28,6 +28,8 @@ function EditHabitForm({habit}){
             frequency
         }
 
+        console.log(data);
+
         dispatch(updateHabit(habit.id, data));
     }
 

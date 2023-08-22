@@ -14,7 +14,7 @@ class Habit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    notes = db.Column(db.String(255))
+    notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
     frequency = db.Column(db.Integer, default=1)
     strength = db.Column(db.String, default='Neutral')
