@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import db, Habit
 from flask_login import current_user, login_required
 from app.forms import HabitForm
+from sqlalchemy.sql import functions
 
 habit_routes = Blueprint('habits',  __name__)
 
@@ -43,6 +44,8 @@ def put_habit(id):
         updated_habit.difficulty = body['difficulty']
     if 'frequency' in body:
         updated_habit.frequency = body['frequency']
+
+    updated_habit.updated_at = functions.now()
 
     db.session.commit()
     return updated_habit.to_dict()

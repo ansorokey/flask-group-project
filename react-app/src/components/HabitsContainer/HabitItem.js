@@ -17,15 +17,7 @@ function HabitItem({habit}){
 
     const { setModalContent } = useModal();
 
-    const optionsMenu = <div className="habits-options-menu"
-                             onClick={displayOrHideMenu}
-    >
-        {/* clicking any menu button should close the menu too */}
-        {/* The other way to open the modal */}
-        {/* <OpenModalButton
-            buttonText="Edit"
-            modalComponent={<EditHabitForm />}
-        /> */}
+    const optionsMenu = <div className="habits-options-menu" onClick={displayOrHideMenu}>
         <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>
             <i className="fa-solid fa-pen"></i>
             Edit
@@ -94,7 +86,7 @@ function HabitItem({habit}){
         <div className="habit-item-content">
             <div className="habit-item-title-and-options">
                 {habit.title}
-                {showOptionsIcon && <button onClick={displayOrHideMenu}>
+                {showOptionsIcon && <button className="habit-options-btn" title="options" onClick={displayOrHideMenu}>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>}
                 {showOptions && optionsMenu}

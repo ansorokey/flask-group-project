@@ -72,11 +72,11 @@ function HabitsCtn() {
   // THE COMPONENT --------------------------------------------------------------------------------------------------------------
   return  <div className="habit-ctn">
     <div className="habit-title-and-sort">
-      <h2>Habits</h2>
+      <h2 className="task-header">Habits</h2>
       <div className="habit-sorts">
-        <span id="All" className="habit_filter_by active" onClick={setSortActive}>All</span>
-        <span id="Weak" className="habit_filter_by" onClick={setSortActive}>Weak</span>
-        <span id="Strong" className="habit_filter_by" onClick={setSortActive}>Strong</span>
+        <div id="All" className="habit_filter_by active" onClick={setSortActive}>All</div>
+        <div id="Weak" className="habit_filter_by" onClick={setSortActive}>Weak</div>
+        <div id="Strong" className="habit_filter_by" onClick={setSortActive}>Strong</div>
       </div>
     </div>
 

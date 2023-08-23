@@ -1,0 +1,93 @@
+/* .habit-edit-ctn {
+    padding: 24px;
+    background-color: black;
+} */
+
+/* Title and buttons */
+.habit-title-and-btns {
+    background-color: #9E4000;
+    color: #FFAB73;
+    box-sizing: border-box;
+    width: 400px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.habit-edit {
+    padding: 8px 12px;
+}
+
+.habit-edit.cancel {
+    background-color: transparent;
+    border: none;
+    color: #FFAB73;
+}
+
+.habit-edit.save {
+    background-color: #181A1b;
+    border: none;
+    color: #FFAB73;
+}
+
+/* Top of form */
+.edit-form-top {
+    background-color: #9E4000;
+    padding: 0 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.edit-form-top-input {
+    background-color: #5b2d0e;
+    width: 100%;
+    color: white;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.habit-edit-input-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.habit-edit-input-ctn > label {
+    font-size: 20px;
+}
+
+/* Bottom of form */
+.edit-habit-plus-and-minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.habit-btn-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pos-neg-habit-btn {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+}
+
+/* Delete Habit Button */
+.edit-habit-del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-habit-del-btn {
+    color: red;
+}

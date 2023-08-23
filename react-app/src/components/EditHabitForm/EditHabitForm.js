@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { updateHabit } from "../../store/habits";
+import './EditHabitForm.css';
 
 function EditHabitForm({habit}){
     const { closeModal } = useModal();
@@ -34,37 +35,45 @@ function EditHabitForm({habit}){
     }
 
 
-    return <div>
-        <div>
-            <span>Edit Habit</span>
+    return <div className="habit-edit-ctn">
+        <div className="habit-title-and-btns">
+            <div>Edit Habit</div>
 
-            <span>
+            <div>
                 <button
+                    className="habit-edit cancel"
                     onClick={closeModal}
                 >
                     Cancel
                 </button>
 
-                <button onClick={(e) => {
-                    handleSubmit(e);
-                    closeModal()
-                }}>Save</button>
-            </span>
+                <button
+                    onClick={(e) => {
+                        handleSubmit(e);
+                        closeModal();
+                    }}
+                    className="habit-edit save"
+                >Save</button>
+            </div>
+
         </div>
+
+
 
         <form className="edit-habit-form" onSubmit={handleSubmit}>
             <div className="edit-form-top">
-                <div>
+                <div className="habit-edit-input-ctn">
                     <label>Title</label>
-                    <input type="text"
+                    <input className="edit-form-top-input"
+                        type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
 
-                <div>
+                <div className="habit-edit-input-ctn">
                     <label>Notes</label>
-                    <textarea
+                    <textarea className="edit-form-top-input"
                         placeholder="Add Notes"
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
@@ -73,13 +82,17 @@ function EditHabitForm({habit}){
             </div>
 
             <div className='edit-form-bottom'>
-                <div>
-                    <div>
-                        <button>+</button>
+                <div className="edit-habit-plus-and-minus">
+                    <div className="habit-btn-ctn">
+                        <button className="pos-neg-habit-btn">
+                            <i className="fa-solid fa-plus"></i>
+                        </button>
                         <div>Positive</div>
                     </div>
-                    <div>
-                        <button>-</button>
+                    <div className="habit-btn-ctn">
+                        <button className="pos-neg-habit-btn">
+                            <i className="fa-solid fa-minus"></i>
+                        </button>
                         <div>Negative</div>
                     </div>
                 </div>
@@ -117,7 +130,12 @@ function EditHabitForm({habit}){
             </div>
 
         </form>
-        <button>Delete This Habit</button>
+        <div className="edit-habit-del">
+            <button className="edit-habit-del-btn">
+                <i className="fa-solid fa-trash-can"></i>
+                Delete This Habit
+            </button>
+        </div>
     </div>
 }
 
