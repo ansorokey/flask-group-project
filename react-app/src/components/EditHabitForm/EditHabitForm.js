@@ -13,6 +13,8 @@ function EditHabitForm({habit}){
     const [notes, setNotes] = useState(habit.notes);
     const [difficulty, setDifficulty] = useState(habit.difficulty);
     const [frequency, setFrequency] = useState(habit.frequency);
+    const [pos, setPos] = useState(true);
+    const [neg, setNeg] = useState(true);
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -83,21 +85,27 @@ function EditHabitForm({habit}){
 
             <div className='edit-form-bottom'>
                 <div className="edit-habit-plus-and-minus">
-                    <div className="habit-btn-ctn">
-                        <button className="pos-neg-habit-btn">
+                    <div className='habit-btn-ctn'>
+                        <button
+                            className={`pos-neg-habit-btn ${pos ? 'selected' : null}`}
+                            onClick={() => setPos(!pos)}
+                        >
                             <i className="fa-solid fa-plus"></i>
                         </button>
                         <div>Positive</div>
                     </div>
                     <div className="habit-btn-ctn">
-                        <button className="pos-neg-habit-btn">
+                        <button
+                            className={`pos-neg-habit-btn ${neg ? 'selected' : null}`}
+                            onClick={() => setNeg(!neg)}
+                        >
                             <i className="fa-solid fa-minus"></i>
                         </button>
                         <div>Negative</div>
                     </div>
                 </div>
 
-                <div>
+                <div className="edit-habit-select-ctn">
                     <label>Difficulty</label>
                     <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
                         <option value="1">Trivial</option>
@@ -107,7 +115,7 @@ function EditHabitForm({habit}){
                     </select>
                 </div>
 
-                <div>
+                <div className="edit-habit-select-ctn">
                     <label>Tags</label>
                     <select>
                         <option>Need</option>
@@ -117,7 +125,7 @@ function EditHabitForm({habit}){
                     </select>
                 </div>
 
-                <div>
+                <div className="edit-habit-select-ctn">
                     <label>Reset Counter</label>
                     <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
                         <option value="Daily">Daily</option>
