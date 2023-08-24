@@ -128,9 +128,9 @@ function EditHabitForm({habit}){
                 <div className="edit-habit-select-ctn">
                     <label>Reset Counter</label>
                     <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
-                        <option value="Daily">Daily</option>
-                        <option value="Weekly">Weekly</option>
-                        <option value="Monthly">Monthly</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
                     </select>
                 </div>
 

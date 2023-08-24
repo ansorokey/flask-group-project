@@ -7,7 +7,7 @@ Create Date: 2023-08-18 06:36:53.260548
 """
 from alembic import op
 import sqlalchemy as sa
-# from sqlalchemy.sql import functions
+from sqlalchemy.sql import functions
 from datetime import datetime, date, timedelta
 
 import os
@@ -29,13 +29,13 @@ def upgrade():
     sa.Column('title', sa.String(255), nullable=False),
     sa.Column('notes', sa.String(255), default=''),
     sa.Column('difficulty', sa.Integer(), default=2),
-    sa.Column('frequency', sa.Integer, default=1),
+    sa.Column('frequency', sa.String, default='daily'),
     sa.Column('date_to_reset', sa.String, default=date.today()+timedelta(days=1)),
     sa.Column('strength', sa.String, default='Neutral'),
     sa.Column('pos_count', sa.Integer, default=0),
     sa.Column('neg_count', sa.Integer, default=0),
-    sa.Column('created_at', sa.DateTime, default=datetime.now()),
-    sa.Column('updated_at', sa.DateTime, default=datetime.now())
+    sa.Column('created_at', sa.DateTime, default=functions.now()),
+    sa.Column('updated_at', sa.DateTime, default=functions.now())
     )
 
 

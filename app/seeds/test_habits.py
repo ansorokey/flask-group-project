@@ -7,7 +7,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_test_habits():
     walk_dog = Habit(user_id=4, title='walk Luna')
-    mow_lawn = Habit(user_id=4, title='Mow the lawn', notes='Do it while the sun is up and grass is dry', difficulty=3, frequency=2)
+    mow_lawn = Habit(user_id=4, title='Mow the lawn', notes='Do it while the sun is up and grass is dry', difficulty=3, frequency='weekly')
 
     db.session.add(walk_dog)
     db.session.add(mow_lawn)
