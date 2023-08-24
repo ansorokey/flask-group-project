@@ -1,6 +1,7 @@
 # db is defined in db.py, import from local directory
 from .db import db, environment, SCHEMA
-from sqlalchemy.sql import functions
+# from sqlalchemy.sql import functions
+from datetime import date, timedelta, datetime
 # use this to set the timestamps
 # https://stackoverflow.com/questions/13370317/sqlalchemy-default-datetime
 
@@ -17,11 +18,12 @@ class Habit(db.Model):
     notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
     frequency = db.Column(db.Integer, default=1)
+    date_to_reset = db.Column(db.String, default=date.today()+timedelta(days=1))
     strength = db.Column(db.String, default='Neutral')
     pos_count = db.Column(db.Integer, default=0)
     neg_count = db.Column(db.Integer, default=0)
-    created_at = db.Column(db.DateTime, default=functions.now())
-    updated_at = db.Column(db.DateTime, default=functions.now())
+    created_at = db.Column(db.DateTime, default=datetime.now())
+    updated_at = db.Column(db.DateTime, default=datetime.now())
 
     def to_dict(self):
         """
