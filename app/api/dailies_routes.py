@@ -11,16 +11,18 @@ def all_dailies():
     """
     dailys = Daily.query.all()
     formattedDailies = [d.to_dict() for d in dailys]
-    
+
     return formattedDailies
 
 @daily_bp.route('/<id>', methods=['GET'])
-def one_daily():
+def one_daily(id):
     """
     Query for a single daily by id and return the daily as a dictionary.
     Edit a daily dictionary
     """
-    return 'THIS WILL SHOW A SINGLE DAILIES INFORMATION'
+
+    daily = Daily.query.filter(Daily.id == id).first().to_dict()
+    return  daily
 
 @daily_bp.route('/', methods=['POST'])
 def new_daily():
