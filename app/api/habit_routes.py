@@ -3,6 +3,7 @@ from app.models import db, Habit
 from flask_login import current_user, login_required
 from app.forms import HabitForm
 from sqlalchemy.sql import functions
+from datetime import datetime, date, timedelta
 
 habit_routes = Blueprint('habits',  __name__)
 
@@ -45,7 +46,7 @@ def put_habit(id):
     if 'frequency' in body:
         updated_habit.frequency = body['frequency']
 
-    updated_habit.updated_at = functions.now()
+    updated_habit.updated_at = datetime.now()
 
     db.session.commit()
     return updated_habit.to_dict()
@@ -54,6 +55,9 @@ def put_habit(id):
 @habit_routes.route('/', methods=['GET'])
 def get_habits():
     habits_query = Habit.query.filter(Habit.user_id == current_user.id).all()
+    reset_today = date.today()
+    for h in habits_query:
+        print(str(reset_today) == str(h.date_to_reset))
     habits_to_dict = [h.to_dict() for h in habits_query]
     return habits_to_dict
 
