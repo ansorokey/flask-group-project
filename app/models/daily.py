@@ -49,9 +49,9 @@ class Daily(db.Model):
         'user_Id': self.user_Id,
         'title': self.title,
         'description': self.description,
-        'repeats_frame' : self.repeats_frame,
+        'repeats_frame' : self.repeats_frame.value if self.repeats_frame else None,
         'repeats_frequency' : self.repeats_frequency,
-        'repeats_on' : self.repeats_on,
+        'repeats_on' : self.repeats_on.value if self.repeats_on else None,
         'streak' : self.streak,
         'completed' : self.completed,
         'due_date' : self.due_date
@@ -71,5 +71,6 @@ class Daily(db.Model):
 
     def changeDueDate(self):
         self.completed = False
+
         # add functionality that will update duedate by adding frame*frequency to current due date if due date is older than todays date
         pass
