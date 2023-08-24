@@ -55,9 +55,13 @@ def put_habit(id):
 @habit_routes.route('/', methods=['GET'])
 def get_habits():
     habits_query = Habit.query.filter(Habit.user_id == current_user.id).all()
-    reset_today = date.today()
+    reset_today = date.today() + timedelta(days=1)
     for h in habits_query:
-        print(str(reset_today) == str(h.date_to_reset))
+        if str(reset_today) >= str(h.date_to_reset):
+            h.date_to_reset = reset_today + timedelta(days=1)
+            h.neg_count = 0
+            h.pos_count = 0
+    db.session.commit()
     habits_to_dict = [h.to_dict() for h in habits_query]
     return habits_to_dict
 
