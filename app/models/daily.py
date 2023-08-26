@@ -9,13 +9,14 @@ class repeatOptions(Enum):
     yearly = 365
 
 class daysOfWeek(Enum):
-     sunday = 'su'
-     monday = 'mo'
-     tuesday = 'tu'
-     wednesday = 'we'
-     thursday = 'th'
-     friday = 'fr'
-     saturday = 'sa'
+    sunday = 'su'
+    monday = 'mo'
+    tuesday = 'tu'
+    wednesday = 'we'
+    thursday = 'th'
+    friday = 'fr'
+    saturday = 'sa'
+
 class difficulty(Enum):
     trivial = 1
     easy = 2
