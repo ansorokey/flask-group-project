@@ -1,5 +1,6 @@
 from app.models import db, Daily, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import date
 
 
 # Adds a demo user, you can add other users here if you want
@@ -8,24 +9,41 @@ def seed_dailies():
         user_id=1,
         title = "Sweep Floors",
         description = "Sweep in kitchen, dining room, and living room",
+        strength= 'easy',
         repeats_frame='daily',
         repeats_frequency=1,
+        streak=5,
+        completed=True,
+        due_date=date(2023,8,25),
+        created_at = date(2023,6,15),
+        updated_at = date(2023,6,15)
 
         )
     dishes = Daily(
         user_id=1,
         title = "Do Dishes",
+        strength= 'easy',
         repeats_frame='daily',
         repeats_frequency=1,
+        streak=5,
+        completed=False,
+        due_date=date(2023,8,25),
+        created_at = date(2023,6,15),
+        updated_at = date(2023,6,15)
     )
 
     sheets = Daily(
         user_id=1,
         title = "Change Bedsheets",
         description = "Change the sheets in all bedrooms",
-        repeats_frame= 'weekly',
-        repeats_frequency= 1,
-        repeats_on='su'
+        strength= 'easy',
+        repeats_frame='weekly',
+        repeats_frequency=1,
+        streak=0,
+        completed=False,
+        due_date=date(2023,8,28),
+        created_at = date(2023,6,15),
+        updated_at = date(2023,6,15)
     )
 
 
