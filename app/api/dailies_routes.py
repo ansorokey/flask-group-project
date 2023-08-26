@@ -70,7 +70,7 @@ def new_daily():
 
 @daily_bp.route('/<id>', methods=['PUT'])
 @login_required
-def update_daily():
+def update_daily(id):
     """
     Update a Daily from id
     """
@@ -78,8 +78,11 @@ def update_daily():
 
 @daily_bp.route('/<id>',methods=['DELETE'] )
 @login_required
-def delete_daily():
+def delete_daily(id):
     """
     Delete a daily from an id
     """
-    return 'This is the endpoint to delete a daily based on an id'
+    daily = Daily.query.filter(Daily.id == id).first()
+    db.session.delete(daily)
+    db.session.commit()
+    return {'message': 'Daily deleted successfully!'}
