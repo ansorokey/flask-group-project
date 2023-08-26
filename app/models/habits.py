@@ -17,9 +17,9 @@ class Habit(db.Model):
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
-    frequency = db.Column(db.String, default='daily')
+    frequency = db.Column(db.Enum("daily", "weekly", "monthly"), default='daily')
     date_to_reset = db.Column(db.String, default=date.today()+timedelta(days=1))
-    strength = db.Column(db.String, default='Neutral')
+    strength = db.Column(db.Enum('Neutral', 'Weak', 'Strong'), default='Neutral')
     pos_count = db.Column(db.Integer, default=0)
     neg_count = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=functions.now())
@@ -47,13 +47,44 @@ class Habit(db.Model):
         self.pos_count = 0
         self.neg_count = 0
 
+    def new_reset_date(self, freq):
+        current_date = date.today()
+
+        if freq == 'daily':
+            self.date_to_reset = current_date + timedelta(days=1)
+
+        if freq == 'weekly':
+            days_since_mon = current_date.weekday()
+            start_of_week = current_date - timedelta(days=days_since_mon)
+            self.date_to_reset = start_of_week + timedelta(days=7)
+
+        if freq == 'monthly':
+            next_month = current_date.month + 1
+            next_year = current_date.year
+            if next_month > 12:
+                next_month = 1
+                next_year += 1
+            self.date_to_reset = date(next_year, next_month, 1)
+
     def check_dates(self, current_date):
         if self.frequency == 'daily':
             if str(current_date) >= str(self.date_to_reset):
                 self.reset_counts()
-                self.date_to_reset = current_date + timedelta(days=1)
+                self.new_reset_date('daily')
+
         elif self.frequency == 'weekly':
-            pass
+            days_since_mon = current_date.weekday()
+            start_of_week = current_date - timedelta(days=days_since_mon)
+            if str(start_of_week) >= str(self.date_to_reset):
+                self.reset_counts()
+                self.new_reset_date('weekly')
+
         elif self.frequency == 'monthly':
-            pass
+            start_of_month = date(current_date.year, current_date.month, 1)
+            if str(start_of_month) >= str(self.date_to_reset):
+                self.reset_counts()
+                self.new_reset_date('monthly')
+
+    # def check_strength(self):
+    #     if self.pos_count <
     # tags a habit can have multiple tags, make it a relationship

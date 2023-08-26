@@ -46,6 +46,13 @@ def put_habit(id):
     if 'frequency' in body:
         updated_habit.frequency = body['frequency']
 
+        if body['frequency'] == 'daily':
+            updated_habit.new_reset_date('daily')
+        if body['frequency'] == 'weekly':
+            updated_habit.new_reset_date('weekly')
+        if body['frequency'] == 'monthly':
+            updated_habit.new_reset_date('monthly')
+
     updated_habit.updated_at = functions.now()
 
     db.session.commit()
@@ -55,7 +62,7 @@ def put_habit(id):
 @habit_routes.route('/', methods=['GET'])
 def get_habits():
     habits_query = Habit.query.filter(Habit.user_id == current_user.id).all()
-    current_date = date.today() + timedelta(days=1)
+    current_date = date.today()
     for h in habits_query:
         h.check_dates(current_date)
     db.session.commit()
