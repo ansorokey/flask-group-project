@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_dailies():
     sweep = Daily(
-        user_Id=1,
+        user_id=1,
         title = "Sweep Floors",
         description = "Sweep in kitchen, dining room, and living room",
         repeats_frame='daily',
@@ -13,14 +13,14 @@ def seed_dailies():
 
         )
     dishes = Daily(
-        user_Id=1,
+        user_id=1,
         title = "Do Dishes",
         repeats_frame='daily',
         repeats_frequency=1,
     )
 
     sheets = Daily(
-        user_Id=1,
+        user_id=1,
         title = "Change Bedsheets",
         description = "Change the sheets in all bedrooms",
         repeats_frame= 'weekly',

@@ -1,26 +1,26 @@
-import enum
+from enum import Enum
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class repeatOptions(enum.Enum):
-    """
-    Enables passing in a Python enum and storing the enum's *value* in the db.
-    """
+
+class repeatOptions(Enum):
     daily = 1
     weekly = 7
-    monthy = 30
+    monthly = 30
     yearly = 365
 
-class daysOfWeek(enum.Enum):
-    """
-    Creates an enum of each day of week to use when repeat frequency is set to weekly
-    """
-    su = 'Sunday'
-    mo = 'Monday'
-    tu = 'Tuesday'
-    we = 'Wednesday'
-    th = 'Thursday'
-    fr = 'Friday'
-    sa = 'Saturday'
+class daysOfWeek(Enum):
+     sunday = 'su'
+     monday = 'mo'
+     tuesday = 'tu'
+     wednesday = 'we'
+     thursday = 'th'
+     friday = 'fr'
+     saturday = 'sa'
+class difficulty(Enum):
+    trivial = 1
+    easy = 2
+    medium = 3
+    hard = 4
 
 
 class Daily(db.Model):
@@ -30,9 +30,10 @@ class Daily(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_Id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
+    strength = db.Column(db.Enum(difficulty))
     repeats_frame = db.Column(db.Enum(repeatOptions), nullable=False)
     repeats_frequency = db.Column(db.Integer, nullable=False)
     repeats_on = db.Column(db.Enum(daysOfWeek))
@@ -45,16 +46,17 @@ class Daily(db.Model):
 
     def to_dict(self):
         return {
-        'id': self.id,
-        'user_Id': self.user_Id,
-        'title': self.title,
-        'description': self.description,
-        'repeats_frame' : self.repeats_frame.value if self.repeats_frame else None,
-        'repeats_frequency' : self.repeats_frequency,
-        'repeats_on' : self.repeats_on.value if self.repeats_on else None,
-        'streak' : self.streak,
-        'completed' : self.completed,
-        'due_date' : self.due_date
+            'id': self.id,
+            'user_id': self.user_id,
+            'title': self.title,
+            'description': self.description,
+            'strength': self.strength.value if self.strength else None,
+            'repeats_frame': self.repeats_frame.value if self.repeats_frame else None,
+            'repeats_frequency': self.repeats_frequency,
+            'repeats_on': self.repeats_on.value if self.repeats_on else None,
+            'streak': self.streak,
+            'completed': self.completed,
+            'due_date': self.due_date.strftime('%Y-%m-%d') if self.due_date else None
         }
 
     def increaseStreak(self):
