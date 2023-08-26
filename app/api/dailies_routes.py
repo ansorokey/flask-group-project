@@ -41,7 +41,7 @@ def all_dailies():
     """
     Query for all dailies for the current user and returns them in a list of daily dictionaries.
     """
-    dailys = Daily.query.all()
+    dailys = Daily.query.filter(Daily.user_id == current_user.id).all()
 
     updated_dailies = []
 
@@ -51,7 +51,7 @@ def all_dailies():
             updated_dailies.append(d.to_dict())
         else:
             updated_dailies.append(d.to_dict())
-
+    
     return updated_dailies
 
 @daily_bp.route('/<id>', methods=['GET'])
@@ -61,6 +61,9 @@ def one_daily(id):
     Query for a single daily by id and return the daily as a dictionary.
     """
     daily = Daily.query.get_or_404(id)
+    if current_user.id != daily.user_id:
+        return {'Unauthorized': 'You do not have permission to view this Daily'}
+
     if daily.due_date < today:
         daily = changeDueDate(daily)
     return  daily.to_dict()
@@ -114,10 +117,15 @@ def new_daily():
 @daily_bp.route('/<id>', methods=['PUT'])
 @login_required
 def update_daily(id):
+    """
+    update a specific record of daily by id
+    """
     record = Daily.query.get_or_404(id)
+    if current_user.id != record.user_id:
+        return {'Unauthorized': 'You do not have permission to update this Daily'}
+
     form = DailyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
 
     if form.validate_on_submit():
 
@@ -149,9 +157,12 @@ def update_daily(id):
 @login_required
 def delete_daily(id):
     """
-    Delete a daily from an id
+    Delete a daily from an id. Signed in user must be owner of the Daily
     """
     daily = Daily.query.get_or_404(id)
-    db.session.delete(daily)
-    db.session.commit()
-    return {'message': 'Daily deleted successfully!'}
+    if current_user.id == daily.user_id:
+        db.session.delete(daily)
+        db.session.commit()
+        return {'message': 'Daily deleted successfully!'}
+    else:
+        return {"Unauthorized": "You do not have permission to delete this Daily"}
