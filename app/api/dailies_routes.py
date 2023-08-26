@@ -9,15 +9,29 @@ daily_bp = Blueprint('dailies',  __name__)
 
 
 today = date.today()
-def updateDueDate(frame, frequency,last=today):
+def getDueDate(frame, frequency,last=today):
     """
     Returns an updated due date based on two arguments: frame <int> and frequency <int> and a third optional parameter of last due date (defaults to todays date)
     """
 
     due_multiplier = int(frame) * int(frequency)
-    due_date = today + timedelta(days=due_multiplier)
+    due_date = last + timedelta(days=due_multiplier)
     return due_date
 
+def changeDueDate(d):
+    """
+    Changes the streak, completed and then sends the date to getDueDate to update a record when a due date has passed
+    """
+
+    if d.completed == False:
+        d.streak = 0
+    else:
+        d.completed = False
+        d.streak += 1
+    new_due_date = getDueDate(d.repeats_frame.value, d.repeats_frequency, d.due_date)
+    d.due_date = new_due_date
+    db.session.commit()
+    return d
 
 
 
@@ -33,22 +47,12 @@ def all_dailies():
 
     for d in dailys:
         if d.due_date < today:
-            if d.completed == False:
-                d.streak = 0
-            else:
-                d.completed = False
-                d.streak += 1
-            new_due_date = updateDueDate(d.repeats_frame.value, d.repeats_frequency, d.due_date)
-            d.due_date = new_due_date
-            updated_dailies.append(d)
-            db.session.commit()
+            d = changeDueDate(d)
+            updated_dailies.append(d.to_dict())
         else:
-            updated_dailies.append(d)
+            updated_dailies.append(d.to_dict())
 
-    formattedDailies = [d.to_dict() for d in updated_dailies]
-
-
-    return formattedDailies
+    return updated_dailies
 
 @daily_bp.route('/<id>', methods=['GET'])
 @login_required
@@ -57,7 +61,9 @@ def one_daily(id):
     Query for a single daily by id and return the daily as a dictionary.
     """
     daily = Daily.query.get_or_404(id)
-    return  daily
+    if daily.due_date < today:
+        daily = changeDueDate(daily)
+    return  daily.to_dict()
 
 @daily_bp.route('/', methods=['POST'])
 @login_required
@@ -75,7 +81,7 @@ def new_daily():
         # perform logic to calculate the due date based on the the parameters given by the user
         frame = int(form.data['repeats_frame'])
         frequency = form.data['repeats_frequency']
-        due_date = updateDueDate(frame, frequency)
+        due_date = getDueDate(frame, frequency)
 
         # Convert form data to enum values
         repeats_frame_enum = repeatOptions(int(form.data['repeats_frame']))
@@ -111,14 +117,14 @@ def update_daily(id):
     record = Daily.query.get_or_404(id)
     form = DailyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    user_id = current_user.id
+
 
     if form.validate_on_submit():
 
         # calculate the due date based on user inputs
         frame = int(form.data['repeats_frame'])
         frequency = form.data['repeats_frequency']
-        due_date = updateDueDate(frame, frequency)
+        due_date = getDueDate(frame, frequency)
 
         # convert the user input into correct format for the enum
         repeats_frame_enum = repeatOptions(int(form.data['repeats_frame']))
