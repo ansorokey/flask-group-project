@@ -1,5 +1,9 @@
 .habit-edit-ctn {
     width: 400px;
+    color: #C6C1BA;
+    /* overflow-y: scroll; */
+    /* max-height: 90vh; */
+
     /* padding: 24px 12px; */
     /* box-sizing: border-box; */
     /* background-color: black; */
@@ -90,10 +94,11 @@
     border-radius: 100%;
     width: 40px;
     height: 40px;
+    background-color: #181A1b;
 }
 
 .pos-neg-habit-btn.selected {
-    background-color: #181A1b;
+    background-color: #9E4000;
 }
 
 /* Habit Select Inputs */
@@ -105,12 +110,43 @@
 .edit-habit-select-ctn > select {
     padding: 0 8px;
 }
+
+/* Advanced Options */
+.advanced-options-chevron {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advanced-options-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.advanced-counters {
+    display: flex;
+    gap: 4px;
+}
+
+.advanced-counters > div {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+}
+
+.advanced-counters > div > input {
+    width: 100%;
+}
+
+.fa-square-minus, .fa-square-plus {
+    font-size: 20px;
+}
+
 /* Delete Habit Button */
 .edit-habit-del {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 24px;
+    padding: 12px;
     background-color: #5b2d0e;
 }
 

@@ -32,6 +32,8 @@ def upgrade():
     sa.Column('frequency', sa.Enum('daily', 'weekly', 'monthly'), default='daily'),
     sa.Column('date_to_reset', sa.String, default=date.today()+timedelta(days=1)),
     sa.Column('strength', sa.Enum('Neutral', 'Weak', 'Strong'), default='Neutral'),
+    sa.Column('pos', sa.Boolean, default=True),
+    sa.Column('neg', sa.Boolean, default=True),
     sa.Column('pos_count', sa.Integer, default=0),
     sa.Column('neg_count', sa.Integer, default=0),
     sa.Column('created_at', sa.DateTime, default=functions.now()),

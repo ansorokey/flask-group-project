@@ -1,15 +1,14 @@
-/* DRAGGING */
-.draggable {
-    background-color: blue;
-}
-
 /* Habits container */
 .habit-ctn {
-    background-color: #222526;
     padding: 8px;
     color: #C6C1BA;
 }
 
+.habit-title-and-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 .task-header {
     padding: 0;
     margin: 0;
@@ -19,31 +18,28 @@
 .habit-sorts {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-end;
+    gap: 8px;
     font-size: 12px;
-    padding-bottom: 10px;
-    text-decoration: none;
-    height: 100%;
 }
 
 .habit-filter-by {
-    height: 100%;
+    padding: 0 4px;
+    text-decoration: none;
 }
 
-.habit_filter_by:hover {
+.habit-filter-by:hover {
     cursor: pointer;
 }
 
-.habit_filter_by.active {
+.habit-filter-by.active {
     color: #7D70D6;
     border-bottom: 2px solid #7D70D6;
 }
 
-.habit-title-and-sort {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+/* Bottom of container */
+.ctn-btm {
+    background-color: #222526;
 }
 
 /* Habit Quick Add */
@@ -69,6 +65,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
+    padding: 0 4px;
 }
 
 .habit-list-footer {
@@ -107,6 +104,10 @@
 .habit-item-button.minus {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+}
+
+.habit-item-button.inc-inactive {
+    background-color: transparent;
 }
 
 /* Habit Item Content */

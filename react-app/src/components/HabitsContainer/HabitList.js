@@ -8,6 +8,7 @@ function HabitList({habits}) {
         <div>Habits don't have a rigid schedule. You can check them off multiple times per day.</div>
     </div>
 
+    // THE COMPONENT -------------------------------------------------------------------------------
     return <div className="habit-list">
         {habits.map(h => <HabitItem habit={h} key={h.id} />)}
         {habits.length <= 3 && footer}

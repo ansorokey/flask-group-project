@@ -20,6 +20,8 @@ class Habit(db.Model):
     frequency = db.Column(db.Enum("daily", "weekly", "monthly"), default='daily')
     date_to_reset = db.Column(db.String, default=date.today()+timedelta(days=1))
     strength = db.Column(db.Enum('Neutral', 'Weak', 'Strong'), default='Neutral')
+    pos = db.Column(db.Boolean, default=True)
+    neg = db.Column(db.Boolean, default=True)
     pos_count = db.Column(db.Integer, default=0)
     neg_count = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=functions.now())
@@ -37,6 +39,8 @@ class Habit(db.Model):
             'difficulty': self.difficulty,
             'frequency': self.frequency,
             'strength': self.strength,
+            'pos': self.pos,
+            'neg': self.neg,
             'posCount': self.pos_count,
             'negCount': self.neg_count,
             'createdAt': self.created_at,

@@ -64,8 +64,8 @@ function HabitsCtn() {
   }
 
   function setSortActive(e){
-    document.querySelectorAll(".habit_filter_by").forEach( sp => sp.className = "habit_filter_by")
-    e.target.className += ' active'
+    document.querySelectorAll(".habit-filter-by").forEach( f => f.classList.remove('active'));
+    e.target.classList.add('active');
     setFilterBy(e.target.id)
   }
 
@@ -74,21 +74,23 @@ function HabitsCtn() {
     <div className="habit-title-and-sort">
       <h2 className="task-header">Habits</h2>
       <div className="habit-sorts">
-        <div id="All" className="habit_filter_by active" onClick={setSortActive}>All</div>
-        <div id="Weak" className="habit_filter_by" onClick={setSortActive}>Weak</div>
-        <div id="Strong" className="habit_filter_by" onClick={setSortActive}>Strong</div>
+        <div id="All" className="habit-filter-by active" onClick={setSortActive}>All</div>
+        <div id="Weak" className="habit-filter-by" onClick={setSortActive}>Weak</div>
+        <div id="Strong" className="habit-filter-by" onClick={setSortActive}>Strong</div>
       </div>
     </div>
 
-    <form className="habit-quick-add" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={habitTitle}
-        placeholder="Add a Habit"
-        onChange={e => setHabitTitle(e.target.value)}/>
-    </form>
+    <div className="ctn-btm">
+      <form className="habit-quick-add" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={habitTitle}
+          placeholder="Add a Habit"
+          onChange={e => setHabitTitle(e.target.value)}/>
+      </form>
 
-    <HabitList habits={habits} />
+      <HabitList habits={habits} />
+    </div>
   </div>
 }
 export default HabitsCtn;

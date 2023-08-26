@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { updateHabit } from "../../store/habits";
+import { deleteHabit, updateHabit } from "../../store/habits";
 import './EditHabitForm.css';
 
 function EditHabitForm({habit}){
@@ -13,8 +13,12 @@ function EditHabitForm({habit}){
     const [notes, setNotes] = useState(habit.notes);
     const [difficulty, setDifficulty] = useState(habit.difficulty);
     const [frequency, setFrequency] = useState(habit.frequency);
-    const [pos, setPos] = useState(true);
-    const [neg, setNeg] = useState(true);
+    const [pos, setPos] = useState(habit.pos);
+    const [neg, setNeg] = useState(habit.neg);
+    const [posCount, setPosCount] = useState(habit.posCount);
+    const [negCount, setNegCount] = useState(habit.negCount);
+
+    const [advanced, setAdvanced] = useState(false);
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -28,15 +32,17 @@ function EditHabitForm({habit}){
             title,
             notes,
             difficulty,
-            frequency
+            frequency,
+            'pos_count': posCount,
+            'neg_count': negCount,
+            pos,
+            neg
         }
-
-        console.log(data);
 
         dispatch(updateHabit(habit.id, data));
     }
 
-
+    // THE COMPONENT ---------------------------------------------------------------------------------------
     return <div className="habit-edit-ctn">
         <div className="habit-title-and-btns">
             <div>Edit Habit</div>
@@ -88,7 +94,10 @@ function EditHabitForm({habit}){
                     <div className='habit-btn-ctn'>
                         <button
                             className={`pos-neg-habit-btn ${pos ? 'selected' : null}`}
-                            onClick={() => setPos(!pos)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setPos(!pos)}
+                            }
                         >
                             <i className="fa-solid fa-plus"></i>
                         </button>
@@ -97,7 +106,10 @@ function EditHabitForm({habit}){
                     <div className="habit-btn-ctn">
                         <button
                             className={`pos-neg-habit-btn ${neg ? 'selected' : null}`}
-                            onClick={() => setNeg(!neg)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setNeg(!neg)}
+                            }
                         >
                             <i className="fa-solid fa-minus"></i>
                         </button>
@@ -134,12 +146,39 @@ function EditHabitForm({habit}){
                     </select>
                 </div>
 
-                <div>Advanced Options</div>
+                {/* In order to show advanced options, habit must have at leaast one trait */}
+                {(pos || neg) &&
+                <div className="advanced-options-ctn" onClick={() => setAdvanced(!advanced)}>
+                    <div className="advanced-options-chevron">
+                        <div>Advanced Options</div>
+                        { advanced ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i> }
+                    </div>
+                </div>}
+                {(pos || neg) && advanced &&
+                    <div className="advanced-options-menu">
+                        <label>Adjust Counter</label>
+                        <div className="advanced-counters">
+                            {pos && <div>
+                                <i className="fa-regular fa-square-plus"></i>
+                                <input type="number" value={posCount} onChange={e => setPosCount(e.target.value)} /></div>}
+                            {neg && <div>
+                                <i className="fa-regular fa-square-minus"></i>
+                                <input type="number" value={negCount} onChange={e => setNegCount(e.target.value)} /></div>}
+                        </div>
+                    </div>
+                }
             </div>
 
         </form>
         <div className="edit-habit-del">
-            <button className="edit-habit-del-btn">
+            <button className="edit-habit-del-btn"
+                    onClick={() => {
+                        if(window.confirm('Are you sure you want to delete this habit?')) {
+                            dispatch(deleteHabit(habit.id));
+                            closeModal();
+                        }
+                    }}
+            >
                 <i className="fa-solid fa-trash-can"></i>
                 Delete This Habit
             </button>

@@ -9,7 +9,7 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='nav-bar'>
-			<div hidden="true">Menu</div>
+			{/* <div hidden="true">Menu</div> */}
 
 			<div className='nav-links-ctn'>
 			<NavLink exact to="/" className="nav-home">LevelUp!</NavLink>

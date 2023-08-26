@@ -30,11 +30,12 @@ def put_habit(id):
     Unable to use Habit['notes'] = body['notes']
     Instead, chosing to be explicit
     """
-    for k in body:
-        print(body[k])
-
     if 'title' in body:
         updated_habit.title = body['title']
+    if 'pos' in body:
+        updated_habit.pos = body['pos']
+    if 'neg' in body:
+        updated_habit.neg = body['neg']
     if 'pos_count' in body:
         updated_habit.pos_count = body['pos_count']
     if 'neg_count' in body:

@@ -51,10 +51,8 @@ function HabitItem({habit}){
 
     // displays habit item options menu, or closes if already open
     function displayOrHideMenu() {
-        console.log('previously', menuIsOpen, showOptions)
         setMenuIsOpen(prev => !prev);
         setShowOptions(prev => !prev);
-        console.log('after', menuIsOpen, showOptions)
     }
 
     function incHabit() {
@@ -67,7 +65,6 @@ function HabitItem({habit}){
 
     // THE COMPONENT ----------------------------------------------------------
     return <div className="habit-item"
-                draggable="true"
                 onMouseEnter={showOptionsMenuIconOnHover}
                 onMouseLeave={hideOptionsOnExit}
             >
@@ -75,9 +72,9 @@ function HabitItem({habit}){
         {/* Incrememnt Button */}
         <div>
             <button
-                className="habit-item-button plus"
-                onClick={incHabit}
-            >
+                className={`habit-item-button plus ${habit.pos ? 'inc-active' : 'inc-inactive'}`}
+                onClick={ habit.pos ? incHabit : null}
+                >
                 <i className="fa-solid fa-plus"></i>
             </button>
         </div>
@@ -87,19 +84,24 @@ function HabitItem({habit}){
             <div className="habit-item-title-and-options">
                 {habit.title}
                 {showOptionsIcon && <button className="habit-options-btn" title="options" onClick={displayOrHideMenu}>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <i className="fa-solid fa-ellipsis-vertical"></i>
                 </button>}
                 {showOptions && optionsMenu}
             </div>
             {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
-            <div className="habit-item-counts"><i className="fa-solid fa-forward icon-forward"></i> {habit.posCount} | -{habit.negCount}</div>
+            <div className="habit-item-counts">
+                {(habit.pos || habit.neg) && <i className="fa-solid fa-forward icon-forward"></i>}
+                {habit.pos && habit.posCount}
+                {habit.pos && habit.neg && <span>|</span>}
+                {habit.neg && <span>-{habit.negCount}</span>}
+            </div>
         </div>
 
         {/* Decrement button */}
         <div>
             <button
-                className="habit-item-button minus"
-                onClick={decHabit}
+                className={`habit-item-button minus ${habit.neg ? 'inc-active' : 'inc-inactive'}`}
+                onClick={habit.neg ? decHabit : null}
             >
                 <i className="fa-solid fa-minus"></i>
             </button>
