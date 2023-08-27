@@ -1,6 +1,6 @@
 from enum import Enum
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import date
 
 class repeatOptions(Enum):
     daily = 1
@@ -23,6 +23,7 @@ class difficulty(Enum):
     medium = 3
     hard = 4
 
+today = date.today()
 
 class Daily(db.Model):
     __tablename__ = 'dailies'
@@ -34,15 +35,15 @@ class Daily(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
-    strength = db.Column(db.Enum(difficulty))
-    repeats_frame = db.Column(db.Enum(repeatOptions), nullable=False)
-    repeats_frequency = db.Column(db.Integer, nullable=False)
+    strength = db.Column(db.Enum(difficulty), default=difficulty.medium)
+    repeats_frame = db.Column(db.Enum(repeatOptions), nullable=False, default=repeatOptions.daily)
+    repeats_frequency = db.Column(db.Integer, nullable=False, default=1)
     repeats_on = db.Column(db.Enum(daysOfWeek))
-    streak = db.Column(db.Integer)
-    completed = db.Column(db.Boolean)
+    streak = db.Column(db.Integer, default=0)
+    completed = db.Column(db.Boolean, default=False)
     due_date = db.Column(db.Date)
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.Date, default=today)
+    updated_at = db.Column(db.Date, default=today)
 
 
     def to_dict(self):
@@ -59,21 +60,3 @@ class Daily(db.Model):
             'completed': self.completed,
             'due_date': self.due_date.strftime('%Y-%m-%d') if self.due_date else None
         }
-
-    def increaseStreak(self):
-        self.streak += 1
-
-    def resetStreak(self):
-        self.streak = 0
-
-    def getStreak(self):
-        return self.streak
-
-    def markComplete(self):
-        self.completed = True
-
-    def changeDueDate(self):
-        self.completed = False
-
-        # add functionality that will update duedate by adding frame*frequency to current due date if due date is older than todays date
-        pass

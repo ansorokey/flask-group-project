@@ -27,7 +27,6 @@ def changeDueDate(d):
         d.streak = 0
     else:
         d.completed = False
-        d.streak += 1
     new_due_date = getDueDate(d.repeats_frame.value, d.repeats_frequency, d.due_date)
     d.due_date = new_due_date
     db.session.commit()
@@ -41,17 +40,15 @@ def all_dailies():
     """
     Query for all dailies for the current user and returns them in a list of daily dictionaries.
     """
-    dailys = Daily.query.filter(Daily.user_id == current_user.id).all()
+    dailys = Daily.query.filter_by(user_id = current_user.id).all()
 
     updated_dailies = []
 
     for d in dailys:
         if d.due_date < today:
             d = changeDueDate(d)
-            updated_dailies.append(d.to_dict())
-        else:
-            updated_dailies.append(d.to_dict())
-    
+        updated_dailies.append(d.to_dict())
+
     return updated_dailies
 
 @daily_bp.route('/<id>', methods=['GET'])
@@ -98,10 +95,6 @@ def new_daily():
             strength=strength_enum,
             repeats_frame=repeats_frame_enum,
             repeats_frequency=form.data['repeats_frequency'],
-            streak=0,
-            completed=False,
-            created_at=today,
-            updated_at=today,
             due_date=due_date
         )
 
@@ -152,6 +145,25 @@ def update_daily(id):
         return record.to_dict()
     if form.errors:
         return form.errors
+
+@daily_bp.route('/<id>/completed', methods=['PUT'])
+@login_required
+def complete_daily(id):
+    """
+    Toggle a Dailies completed status and adjust streak accordingly
+    """
+    record = Daily.query.get_or_404(id)
+    if current_user.id != record.user_id:
+        return {'Unauthorized': 'You do not have permission to update this Daily'}
+
+    record.completed = not record.completed
+    if record.completed:
+        record.streak +=1
+    else:
+        record.streak -=1
+
+    db.session.commit()
+    return record.to_dict()
 
 @daily_bp.route('/<id>',methods=['DELETE'] )
 @login_required
