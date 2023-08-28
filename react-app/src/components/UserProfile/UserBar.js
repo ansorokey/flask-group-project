@@ -12,8 +12,11 @@ function UserBar({user}) {
                     onClick={() => setModalContent(<UserProfileModal user={user} />)}
                 ></div>
                 <div className="user-stats">
-                    <div>{user.username}</div>
-                    <div>{user.email}</div>
+                    <i className="fa-solid fa-hat-wizard"></i>
+                    <div>
+                        <div>{user.firstName} {user.lastName}</div>
+                        <div>{user.email}</div>
+                    </div>
                 </div>
             </div>
         </div>

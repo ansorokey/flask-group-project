@@ -18,13 +18,19 @@
 
 .user-stats {
     padding: 0 12px 0 24px;
+    display: flex;
 }
 
 /* User Profile Modal */
 .profile-modal-ctn {
     max-width: 766px;
-    width: 100%;
+    width: 766px;
+    box-sizing: border-box;
     background-color: #181A1B;
+    padding: 2em;
+    border-radius: 8px;
+    border: 1px solid white;
+    color: #E8E6E3;
 }
 
 /* Top */
@@ -33,13 +39,14 @@
 }
 
 .avatar-img {
-    width: 90px;
-    height: 90px;
+    width: 141px;
+    height: 147px;
 }
 .health-and-level {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0 24px;
 }
 
 /* Stats */
@@ -70,8 +77,16 @@
     background-color: red;
 }
 
+.fa-heart {
+    color: red;
+}
+
 .exp-bar {
     background-color: orange;
+}
+
+.fa-star {
+    color: orange;
 }
 
 /* Middle */
