@@ -40,6 +40,9 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime, default=functions.now())
     )
 
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
 
 def downgrade():
     op.drop_table('habits')
