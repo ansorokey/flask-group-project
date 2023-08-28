@@ -23,7 +23,8 @@ function HabitItem({habit}){
             Edit
         </div>
         <hr/>
-        <div>
+        {/* Save this for when we change habits into a context */}
+        {/* <div>
             <i className="fa-solid fa-arrow-up"></i>
             To top
         </div>
@@ -32,7 +33,7 @@ function HabitItem({habit}){
             <i className="fa-solid fa-arrow-down"></i>
             To bottom
         </div>
-        <hr/>
+        <hr/> */}
         <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>
             <i className="fa-solid fa-trash-can"></i>
             Delete
