@@ -57,7 +57,7 @@ def update_todo_for_user(user_id, todo_id):
         todo.title = data['title']
         todo.description = data['description']
         todo.due_date = data.get('due_date')
-        todo.updated_at = db.func.current_timestamp()  # Assuming you're using SQLalchemy and this function exists
+        todo.updated_at = db.func.current_timestamp()  
 
         db.session.commit()
         return jsonify(todo.to_dict())
