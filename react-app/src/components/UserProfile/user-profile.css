@@ -27,7 +27,67 @@
     background-color: #181A1B;
 }
 
+/* Top */
+.user-profile-top {
+    display: flex;
+}
+
 .avatar-img {
     width: 90px;
     height: 90px;
+}
+.health-and-level {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Stats */
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fa-star, .fa-heart {
+    width: 20px;
+}
+
+.max-stat-bar {
+    width: 200px;
+    height: 16px;
+    position: relative;
+}
+
+.health-bar, .exp-bar {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.health-bar {
+    background-color: red;
+}
+
+.exp-bar {
+    background-color: orange;
+}
+
+/* Middle */
+.user-profile-links {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1em;
+}
+
+.user-profile-links > div {
+    padding: 8px 8px;
+    box-sizing: border-box;
+}
+
+.user-profile-links > div:hover, .user-profile-links > div.active {
+    color: #8F6DCF;
+    border-bottom: 2px solid #8F6DCF;
+    cursor: pointer;
 }
