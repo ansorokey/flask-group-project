@@ -1,0 +1,157 @@
+.habit-edit-ctn {
+    width: 400px;
+    color: #C6C1BA;
+    /* overflow-y: scroll; */
+    /* max-height: 90vh; */
+
+    /* padding: 24px 12px; */
+    /* box-sizing: border-box; */
+    /* background-color: black; */
+}
+
+/* Title and buttons */
+.habit-title-and-btns {
+    background-color: #9E4000;
+    color: #FFAB73;
+    box-sizing: border-box;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.habit-edit {
+    padding: 8px 12px;
+}
+
+.habit-edit.cancel {
+    background-color: transparent;
+    border: none;
+    color: #FFAB73;
+}
+
+.habit-edit.save {
+    background-color: #181A1b;
+    border: none;
+    color: #FFAB73;
+}
+
+/* Top of form */
+.edit-form-top {
+    background-color: #9E4000;
+    padding: 0 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.edit-form-top-input {
+    background-color: #5b2d0e;
+    width: 100%;
+    color: white;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.habit-edit-input-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.habit-edit-input-ctn > label {
+    font-size: 20px;
+}
+
+/* Bottom of form */
+.edit-form-bottom {
+    padding: 0 24px 24px;
+    background-color: #181A1b;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Habit Type Buttons */
+.edit-habit-plus-and-minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.habit-btn-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.pos-neg-habit-btn {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #181A1b;
+}
+
+.pos-neg-habit-btn.selected {
+    background-color: #9E4000;
+}
+
+/* Habit Select Inputs */
+.edit-habit-select-ctn {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-habit-select-ctn > select {
+    padding: 0 8px;
+}
+
+/* Advanced Options */
+.advanced-options-chevron {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advanced-options-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.advanced-counters {
+    display: flex;
+    gap: 4px;
+}
+
+.advanced-counters > div {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+}
+
+.advanced-counters > div > input {
+    width: 100%;
+}
+
+.fa-square-minus, .fa-square-plus {
+    font-size: 20px;
+}
+
+/* Delete Habit Button */
+.edit-habit-del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background-color: #5b2d0e;
+}
+
+.edit-habit-del-btn {
+    color: red;
+    background-color: transparent;
+    border: none;
+}
