@@ -36,7 +36,7 @@ export const loadAllDailies = () => async dispatch => {
 }
 
 export const createDaily = (daily) => async dispatch =>{
-    const response = await fetch("/api/daily", {
+    const response = await fetch("/api/dailies", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -61,7 +61,7 @@ export const createDaily = (daily) => async dispatch =>{
 }
 
 export const updateDaily = (id, daily) => async dispatch =>{
-    const response = await fetch(`/api/daily/${id}`, {
+    const response = await fetch(`/api/dailies/${id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -85,7 +85,7 @@ export const updateDaily = (id, daily) => async dispatch =>{
 	}
 }
 export const completeDaily = (id, daily) => async dispatch =>{
-    const response = await fetch(`/api/daily/${id}//completed`, {
+    const response = await fetch(`/api/dailies/${id}//completed`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
