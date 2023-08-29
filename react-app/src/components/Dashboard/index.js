@@ -3,6 +3,7 @@ import HabitsCtn from "../HabitsContainer/HabitsCtn"
 import UserBar from "../UserProfile/UserBar";
 import './Dashboard.css';
 import { useSelector } from "react-redux";
+import DailyCont from "../DailyCont";
 
 function Dashboard() {
     const user = useSelector(state => state.session.user);
@@ -12,7 +13,7 @@ function Dashboard() {
 
         <div className="task-grid">
             <HabitsCtn />
-            <div>Dailies</div>
+            <DailyCont />
             <div>To-Dos</div>
             <div>Rewards</div>
         </div>
