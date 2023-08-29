@@ -2,6 +2,22 @@ from flask import Blueprint, jsonify, request, abort
 from app.models.to_do import ToDo
 from flask_login import current_user, login_required
 from app.models import db
+from flask_wtf import FlaskForm
+from wtforms import StringField, DateField, DateTimeField, Form, validators
+from wtforms.validators import DataRequired, Optional
+
+
+
+def todo_form_validation_errors(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 todo_routes = Blueprint('todos', __name__)
 # STILL NEED TO DO: Add something for when a user has no to-do's
@@ -25,25 +41,45 @@ def get_single_todo_for_user(user_id, todo_id):
     return jsonify({"error": "ToDo not found"}), 404
 
 # Create a new ToDo
+class ToDoForm(FlaskForm):
+    title = StringField('title', validators=[DataRequired()])
+    description = StringField('description', validators=[DataRequired()])
+    due_date = DateField('due_date', validators=[Optional()])
+    # csrf_token is implicitly included by FlaskForm
+
 @todo_routes.route('/users/<int:user_id>/todos', methods=['POST'])
 @login_required
 def create_todo_for_user(user_id):
     if current_user.id != user_id:
         abort(403)
 
-    data = request.json
-    new_todo = ToDo(
-        user_id=user_id,
-        title=data['title'],
-        description=data['description'],
-        due_date=data.get('due_date'),  # This allows for an optional due_date
-        created_at=data.get('created_at')
-        completed=False,  # Newly created todos will not be completed
-    )
+    form = ToDoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    db.session.add(new_todo)
-    db.session.commit()
-    return jsonify(new_todo.to_dict()), 201
+    if form.validate_on_submit():
+        new_todo = ToDo(
+            user_id=user_id,
+            title=form.data['title'],
+            description=form.data['description'],
+            due_date=form.data.get('due_date'),
+            completed=False
+        )
+
+        try:
+            db.session.add(new_todo)
+            db.session.commit()
+            return jsonify(new_todo.to_dict()), 201
+
+        except Exception as e:
+            # we can log the exception if needed
+            print(f"Error occurred: {e}")
+            
+            # Rolling back in case of error ensures the database remains in a consistent state
+            db.session.rollback()
+            return {"errors": "An error occurred while saving the todo. Please try again."}, 500
+
+    return {'errors': todo_form_validation_errors(form.errors)}, 401
+
 
 # Update an existing ToDo
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>', methods=['PUT'])
@@ -70,7 +106,17 @@ def update_todo_for_user(user_id, todo_id):
 def delete_todo_for_user(user_id, todo_id):
     todo = ToDo.query.get(todo_id)
     if todo and todo.user_id == user_id:
-        db.session.delete(todo)
-        db.session.commit()
-        return jsonify({"message": "Deleted successfully"}), 204
+        try:
+            db.session.delete(todo)
+            db.session.commit()
+            return jsonify({"message": "Deleted successfully"}), 200
+
+        except Exception as e:
+            # we can log the exception if needed
+            print(f"Error occurred: {e}")
+
+            # Rolling back in case of error ensures the database remains in a consistent state
+            db.session.rollback()
+            return jsonify({"error": "An error occurred while deleting the todo. Please try again."}), 500
+
     return jsonify({"error": "ToDo not found or unauthorized"}), 404
