@@ -1,1 +1,6 @@
 /* TODO Add site wide styles */
+body {
+    margin: 0;
+    background-color: #1B1E1F;
+    font-family: Arial, Helvetica, sans-serif
+}
