@@ -37,9 +37,9 @@ function HabitsCtn() {
           case 'All':
             return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           case 'Weak':
-            return filtersortHabits.filter(h => h.strength === 'Weak').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.filter(h => +h.strength < 1).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           case 'Strong':
-            return filtersortHabits.filter(h => h.strength === 'Strong').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return filtersortHabits.filter(h => +h.strength > 0 ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           default:
             return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }});
