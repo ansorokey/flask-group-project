@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from app.models import db
 
 todo_routes = Blueprint('todos', __name__)
-
+# STILL NEED TO DO: Add something for when a user has no to-do's
 # Get all ToDos for a user
 @todo_routes.route('/users/<int:user_id>/todos', methods=['GET'])
 @login_required
@@ -37,6 +37,7 @@ def create_todo_for_user(user_id):
         title=data['title'],
         description=data['description'],
         due_date=data.get('due_date'),  # This allows for an optional due_date
+        created_at=data.get('created_at')
         completed=False,  # Newly created todos will not be completed
     )
 
