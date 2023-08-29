@@ -3,19 +3,13 @@ import thunk from 'redux-thunk';
 
 // Default exports allow us to name the reducers here
 import session from './session'
-<<<<<<< HEAD
 import habits from "./habits"
+import daily from './daily';
 
 const rootReducer = combineReducers({
   session,
-  habits
-=======
-import daily from './daily'
-
-const rootReducer = combineReducers({
-  session,
+  habits,
   daily
->>>>>>> dailies
 });
 
 
