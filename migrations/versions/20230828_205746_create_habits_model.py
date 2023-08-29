@@ -1,8 +1,8 @@
-"""add habit model
+"""create habits table
 
-Revision ID: e169266d82e4
-Revises: ffdc0a98111c
-Create Date: 2023-08-18 06:36:53.260548
+Revision ID: 7bc612a21204
+Revises: 4672152826f8
+Create Date: 2023-08-28 20:57:46.499388
 
 """
 from alembic import op
@@ -16,8 +16,8 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'e169266d82e4'
-down_revision = 'ffdc0a98111c'
+revision = '7bc612a21204'
+down_revision = '4672152826f8'
 branch_labels = None
 depends_on = None
 

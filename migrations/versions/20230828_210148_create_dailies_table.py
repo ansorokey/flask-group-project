@@ -1,8 +1,8 @@
 """create dailies table
 
-Revision ID: 171086687dad
-Revises: ffdc0a98111c
-Create Date: 2023-08-23 19:18:48.334388
+Revision ID: 27d7b093c012
+Revises: 7bc612a21204
+Create Date: 2023-08-28 21:01:48.988044
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '171086687dad'
-down_revision = 'ffdc0a98111c'
+revision = '27d7b093c012'
+down_revision = '7bc612a21204'
 branch_labels = None
 depends_on = None
 
