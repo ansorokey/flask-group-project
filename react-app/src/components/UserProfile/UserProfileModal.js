@@ -2,7 +2,7 @@ function UserProfileModal({user}) {
     return (
         <div className="profile-modal-ctn">
             <div className="user-profile-top">
-                <img className="avatar-img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/10f13510774061.560eadfde5b61.png" />
+                <img className="avatar-img" src={user.avatarUrl} />
                 <div className="health-and-level">
                     <div>@{user.username} | Level LEVEL</div>
                     <div className="stat-bar">

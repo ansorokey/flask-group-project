@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
+    avatar_url = db.Column(db.String(255), default=None)
 
     @property
     def password(self):
@@ -33,5 +34,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'firstName': self.first_name,
-            'lastName': self.last_name
+            'lastName': self.last_name,
+            'avatarUrl': self.avatar_url
         }

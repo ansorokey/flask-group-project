@@ -10,7 +10,9 @@ function UserBar({user}) {
             <div className="user-info">
                 <div className="user-avatar-ctn"
                     onClick={() => setModalContent(<UserProfileModal user={user} />)}
-                ></div>
+                >
+                    <img className="user-bar-avatar" src={user.avatarUrl}/>
+                </div>
                 <div className="user-stats">
                     <i className="fa-solid fa-hat-wizard"></i>
                     <div>
