@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('title', sa.String(255), nullable=False),
     sa.Column('notes', sa.String(255), default=''),
     sa.Column('difficulty', sa.Integer(), default=2),
-    sa.Column('frequency', sa.Enum('daily', 'weekly', 'monthly'), default='daily'),
+    sa.Column('frequency', sa.Enum('daily', 'weekly', 'monthly', name='frequency'), default='daily'),
     sa.Column('date_to_reset', sa.String, default=date.today()+timedelta(days=1)),
     sa.Column('strength', sa.Integer, default=0),
     sa.Column('pos', sa.Boolean, default=True),

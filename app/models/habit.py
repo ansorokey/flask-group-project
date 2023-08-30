@@ -17,7 +17,7 @@ class Habit(db.Model):
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
-    frequency = db.Column(db.Enum("daily", "weekly", "monthly"), default='daily')
+    frequency = db.Column(db.Enum("daily", "weekly", "monthly", name='frequency'), default='daily')
     date_to_reset = db.Column(db.String, default=date.today()+timedelta(days=1))
     strength = db.Column(db.Integer, default=0)
     pos = db.Column(db.Boolean, default=True)
