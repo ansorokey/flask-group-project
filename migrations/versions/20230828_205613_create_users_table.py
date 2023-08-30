@@ -7,6 +7,8 @@ Create Date: 2023-08-28 20:56:13.381334
 """
 from alembic import op
 import sqlalchemy as sa
+from datetime import date
+from sqlalchemy.sql import functions
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -29,6 +31,7 @@ def upgrade():
     sa.Column('last_name', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('last_login', sa.DateTime, default=functions.now()),
     sa.Column('avatar_url', sa.String(length=255), default=None),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),

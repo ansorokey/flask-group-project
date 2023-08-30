@@ -67,8 +67,7 @@ def sign_up():
             email=form.data['email'],
             first_name=form.data['firstName'],
             last_name=form.data['lastName'],
-            password=form.data['password'],
-            avatar_url='https://res.cloudinary.com/dzntryr5a/image/upload/v1693264304/level_up_avatars/001_Bulbasaur_htvvhs.jpg'
+            password=form.data['password']
         )
         db.session.add(user)
         db.session.commit()

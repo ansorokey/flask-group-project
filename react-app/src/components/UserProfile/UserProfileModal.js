@@ -1,4 +1,7 @@
 function UserProfileModal({user}) {
+
+    const lastLogin = new Date(user.lastLogin);
+
     return (
         <div className="profile-modal-ctn">
             <div className="user-profile-top">
@@ -36,7 +39,7 @@ function UserProfileModal({user}) {
                 <div className="user-profile-info">
                     <div>Joined DATE</div>
                     <div>Total Check-ins INT</div>
-                    <div>Last Check In DATE</div>
+                    <div>Last Check In {lastLogin.getMonth() + 1}-{lastLogin.getDate()}-{lastLogin.getFullYear()}</div>
                 </div>
             </div>
         </div>

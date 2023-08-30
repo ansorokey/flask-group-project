@@ -5,11 +5,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import habits from "./habits"
 import daily from './daily';
+import avatar from './avatar';
 
 const rootReducer = combineReducers({
   session,
   habits,
-  daily
+  daily,
+  avatar
 });
 
 

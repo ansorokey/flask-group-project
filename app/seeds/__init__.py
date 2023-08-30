@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .test_habits import seed_test_habits, undo_test_habits
 from .dailies import seed_dailies, undo_dailies
+from .add_avatars import seed_base_avatars, undo_base_avatars
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -21,8 +22,8 @@ def seed():
         undo_dailies()
     seed_users()
     seed_dailies()
-    # Add other seed functions here
     seed_test_habits()
+    seed_base_avatars()
 
 
 # Creates the `flask seed undo` command
@@ -31,4 +32,4 @@ def undo():
     undo_users()
     undo_test_habits()
     undo_dailies()
-    # Add other undo functions here
+    undo_base_avatars()
