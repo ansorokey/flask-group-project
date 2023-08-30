@@ -111,3 +111,15 @@
     border-bottom: 2px solid #8F6DCF;
     cursor: pointer;
 }
+
+/* Bottom */
+.name-and-edit {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 12px;
+}
+
+.edit-prof:hover {
+    cursor: pointer;
+    color: #8F6DCF;
+}

@@ -1,6 +1,14 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 function UserProfileModal({user}) {
 
     const lastLogin = new Date(user.lastLogin);
+    const [activeTab, setActiveTab] = useState('Profile');
+    const [edit, setEdit] = useState(false);
+    const [avatarId, setAvatarId] = useState(0);
+    const avatar_state = useSelector(state => state.avatar);
+    const availableAvatars = Object.values(avatar_state);
 
     return (
         <div className="profile-modal-ctn">
@@ -26,22 +34,66 @@ function UserProfileModal({user}) {
             </div>
 
             <div className="user-profile-links">
-                <div className="active">Profile</div>
-                <div>Stats</div>
-                <div>Achievements</div>
+                <div className={activeTab == 'Profile' ? 'active' : null} onClick={() => setActiveTab('Profile')}>Profile</div>
+                <div className={activeTab == 'Stats' ? 'active' : null} onClick={() => setActiveTab('Stats')}>Stats</div>
+                <div className={activeTab == 'Achievements' ? 'active' : null} onClick={() => setActiveTab('Achievements')}>Achievements</div>
             </div>
-            <div>{user.username}</div>
-            <div>Edit</div>
-            <div>About</div>
-            <div className="user-profile-info-ctn">
-                <div>Info</div>
-                <hr />
-                <div className="user-profile-info">
-                    <div>Joined DATE</div>
-                    <div>Total Check-ins INT</div>
-                    <div>Last Check In {lastLogin.getMonth() + 1}-{lastLogin.getDate()}-{lastLogin.getFullYear()}</div>
+
+            {activeTab == 'Profile' && <div>
+                <div className='name-and-edit'>
+                    <div>
+                        <h2>{user.firstName} {user.lastName}</h2>
+                        <div>@{user.username}</div>
+                    </div>
+
+                    <div className="edit-prof" onClick={() => setEdit(!edit)}>Edit</div>
                 </div>
-            </div>
+
+                {!edit && <div>
+                    <div>About</div>
+
+                    <div className="user-profile-info-ctn">
+                        <div>Info</div>
+                        <hr />
+                        <div className="user-profile-info">
+                            <div>Joined DATE</div>
+                            <div>Total Check-ins INT</div>
+                            <div>Last Check In {lastLogin.getMonth() + 1}-{lastLogin.getDate()}-{lastLogin.getFullYear()}</div>
+                        </div>
+                    </div>
+                </div>}
+
+                {edit && <div>
+                    <form>
+                        <label>
+                            About
+                            <textarea />
+                        </label>
+
+                        <label>
+                            Change Avatar
+                            <div>
+                                {availableAvatars.map(av => {
+                                    return (<label key={av.id}>
+                                        <img src={av.url} alt="pokemon profile picture"/>
+                                        <input type="radio" name="avatar" value={av.id} checked={avatarId == av.id} onChange={(e) => {setAvatarId(e.target.value)}} />
+                                    </label>);
+                                })}
+                            </div>
+                        </label>
+                    </form>
+                </div>}
+
+            </div>}
+
+            {activeTab == 'Profile' && <div>
+
+            </div>}
+
+            {activeTab == 'Profile' && <div>
+
+            </div>}
+
         </div>
     )
 }
