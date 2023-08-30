@@ -33,6 +33,7 @@ def upgrade():
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('last_login', sa.DateTime, default=functions.now()),
     sa.Column('avatar_url', sa.String(length=255), default=None),
+    sa.Column('about', sa.String(length=255)),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')

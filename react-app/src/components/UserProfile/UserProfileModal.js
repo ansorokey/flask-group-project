@@ -7,8 +7,14 @@ function UserProfileModal({user}) {
     const [activeTab, setActiveTab] = useState('Profile');
     const [edit, setEdit] = useState(false);
     const [avatarId, setAvatarId] = useState(0);
+    const [about, setAbout] = useState(user.about);
+    const [changeAvatar, setChangeAvatar] = useState(false);
     const avatar_state = useSelector(state => state.avatar);
     const availableAvatars = Object.values(avatar_state);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
 
     return (
         <div className="profile-modal-ctn">
@@ -64,23 +70,25 @@ function UserProfileModal({user}) {
                 </div>}
 
                 {edit && <div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <label>
                             About
                             <textarea />
                         </label>
 
                         <label>
-                            Change Avatar
-                            <div>
+                            <span onClick={() => setChangeAvatar(!changeAvatar)}>Change Avatar</span>
+                            {changeAvatar && <div>
                                 {availableAvatars.map(av => {
                                     return (<label key={av.id}>
                                         <img src={av.url} alt="pokemon profile picture"/>
                                         <input type="radio" name="avatar" value={av.id} checked={avatarId == av.id} onChange={(e) => {setAvatarId(e.target.value)}} />
                                     </label>);
                                 })}
-                            </div>
+                            </div>}
                         </label>
+
+                        <button>Save</button>
                     </form>
                 </div>}
 

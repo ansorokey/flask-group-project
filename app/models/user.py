@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(40), nullable=False)
     last_login = db.Column(db.DateTime, default=functions.now())
     avatar_url = db.Column(db.String(255), default=None)
+    about = db.Column(db.String(255))
 
     @property
     def password(self):
@@ -39,5 +40,6 @@ class User(db.Model, UserMixin):
             'firstName': self.first_name,
             'lastName': self.last_name,
             'lastLogin': self.last_login,
-            'avatarUrl': self.avatar_url
+            'avatarUrl': self.avatar_url,
+            'about': self.about
         }
