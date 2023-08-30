@@ -1,0 +1,200 @@
+/* Habits container */
+.habit-ctn {
+    padding: 8px;
+    color: #C6C1BA;
+}
+
+.habit-title-and-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.task-header {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.habit-sorts {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.habit-filter-by {
+    padding: 0 4px;
+    text-decoration: none;
+}
+
+.habit-filter-by:hover {
+    cursor: pointer;
+}
+
+.habit-filter-by.active {
+    color: #7D70D6;
+    border-bottom: 2px solid #7D70D6;
+}
+
+/* Bottom of container */
+.ctn-btm {
+    background-color: #222526;
+}
+
+/* Habit Quick Add */
+.habit-quick-add {
+    width: 100%;
+}
+
+.habit-quick-add > input {
+    box-sizing: border-box;
+    height: 50px;
+    padding: 12px 16px;
+    border: 1px;
+    margin-bottom: 3px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    width: 100%;
+    background-color: #212425;
+}
+
+/* Habit List */
+.habit-list {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 4px;
+}
+
+.habit-list-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Habit Item */
+.habit-item {
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    min-height: 72px;
+    background-color: #181A1B;
+    /* color: #C6C1BA; */
+}
+
+/* Habit Item Buttons ( + & -) */
+.habit-item-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39px;
+    height: 100%;
+    /* background-color: #945900; */
+}
+
+.habit-item-button.plus {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.habit-item-button.minus {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.habit-item-button.inc-inactive {
+    background-color: transparent;
+}
+
+.strongest {
+    background-color: #136A96;
+}
+
+.stronger {
+    background-color: #2195A0;
+}
+
+.strong {
+    background-color: #1DA372;
+}
+
+.neutral {
+    background-color: #945900;
+}
+
+.weak {
+    background-color: #9E4000;
+}
+
+.weaker {
+    background-color: #920004;
+}
+
+.weakest {
+    background-color: #9F1B1B;
+}
+
+/* Habit Item Content */
+.habit-item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    padding: 8px 12px 0;
+}
+
+
+.habit-item-title-and-options {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.habit-options-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.fa-ellipsis-vertical {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.fa-ellipsis-vertical:hover {
+    color: #935DF3;
+}
+
+.habits-options-menu {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 1px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    background-color: #181A1B;
+    padding: 8px 12px;
+}
+
+.habits-options-menu > div {
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+}
+
+/* Habit Item Counts */
+.habit-item-counts {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.icon-forward{
+    font-size: 12px;
+    margin-right: 6px;
+}

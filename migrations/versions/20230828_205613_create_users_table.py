@@ -1,12 +1,14 @@
-"""create_users_table
+"""create users table
 
-Revision ID: ffdc0a98111c
+Revision ID: 4672152826f8
 Revises:
-Create Date: 2020-11-20 15:06:02.230689
+Create Date: 2023-08-28 20:56:13.381334
 
 """
 from alembic import op
 import sqlalchemy as sa
+from datetime import date
+from sqlalchemy.sql import functions
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -14,7 +16,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'ffdc0a98111c'
+revision = '4672152826f8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,8 +27,13 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
+    sa.Column('first_name', sa.String(length=40), nullable=False),
+    sa.Column('last_name', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('last_login', sa.DateTime, default=functions.now()),
+    sa.Column('avatar_url', sa.String(length=255), default=None),
+    sa.Column('about', sa.String(length=255)),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')

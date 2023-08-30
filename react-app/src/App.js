@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { authenticate } from "./store/session";
+// Component Imports
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Dashboard from "./components/Dashboard"
+import LandingPage from "./components/LandingPage";
+import ChooseAvatarModal from "./components/ChooseAvatarModal/ChooseAvatarModal";
 
 function App() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -23,6 +28,13 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            {sessionUser ? <Dashboard /> : <LandingPage />}
+          </Route>
+          <Route>
+            {/* return <h1> You've gone beyond the bounds! Page not found </h1> */}
+            <ChooseAvatarModal />
           </Route>
         </Switch>
       )}
