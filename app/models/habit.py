@@ -1,5 +1,5 @@
 # db is defined in db.py, import from local directory
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import functions
 from datetime import date, timedelta, datetime
 # use this to set the timestamps
@@ -13,7 +13,7 @@ class Habit(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
