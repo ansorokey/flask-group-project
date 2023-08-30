@@ -81,7 +81,6 @@ def create_todo_for_user(user_id):
     return {'errors': todo_form_validation_errors(form.errors)}, 401
 
 
-# Update an existing ToDo
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>', methods=['PUT'])
 @login_required
 def update_todo_for_user(user_id, todo_id):
@@ -89,16 +88,31 @@ def update_todo_for_user(user_id, todo_id):
         abort(403)
 
     todo = ToDo.query.get(todo_id)
-    if todo and todo.user_id == user_id:
-        data = request.json
-        todo.title = data['title']
-        todo.description = data['description']
-        todo.due_date = data.get('due_date')
-        todo.updated_at = db.func.current_timestamp()  
+    if not todo or todo.user_id != user_id:
+        return jsonify({"error": "ToDo not found or unauthorized"}), 404
 
-        db.session.commit()
-        return jsonify(todo.to_dict())
-    return jsonify({"error": "ToDo not found or unauthorized"}), 404
+    form = ToDoForm()  # Initialize the form
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        try:
+            todo.title = form.data['title']
+            todo.description = form.data['description']
+            todo.due_date = form.data.get('due_date')
+            todo.updated_at = db.func.current_timestamp()
+
+            db.session.commit()
+            return jsonify(todo.to_dict()), 200
+
+        except Exception as e:
+            # we can log the exception if needed
+            print(f"Error occurred: {e}")
+
+            # Rolling back in case of error ensures the database remains in a consistent state
+            db.session.rollback()
+            return {"errors": "An error occurred while updating the todo. Please try again."}, 500
+
+    return {'errors': todo_form_validation_errors(form.errors)}, 401
 
 # Delete a ToDo
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>', methods=['DELETE'])
