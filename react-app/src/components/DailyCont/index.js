@@ -8,11 +8,19 @@ import DisplayDailyItems from "./items";
 function DailyCont () {
     const dispatch = useDispatch();
     const[cat, setCat] = useState('due')
+    const[title, setTitle] = useState('')
 
 
     useEffect(()=>{
         dispatch(loadAllDailies());
     }, [dispatch])
+
+    const quickAdd = (e) => {
+        e.preventDefault()
+        console.log(title)
+        setTitle('')
+
+    }
 
 
 
@@ -36,13 +44,16 @@ function DailyCont () {
 
     <div className="greyBox">
         <button>Add a Daily</button>
+        <form onSubmit={quickAdd} >
+            <input type="text" placeholder="Add a Daily" value={title} onChange={e => setTitle(e.currentTarget.value)} />
+        </form>
         <div>
             {/* LOOP AND DISPLAY DAILIES HERE */}
             <DisplayDailyItems dailies={dailies[cat]} />
 
         </div>
         <div className="ExplainBox">
-            
+
             <p>📆</p>
             <h3>These are your Dailies</h3>
             <p>Dailies repeat on a regular basis. Choose the schedule that works best for you!</p>

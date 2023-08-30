@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import Daily, db, repeatOptions, difficulty
+from app.models import Daily, db
 from datetime import date, timedelta
 from flask_login import login_required, current_user
 from app.forms import DailyForm
@@ -84,17 +84,14 @@ def new_daily():
         frequency = form.data['repeats_frequency']
         due_date = getDueDate(frame, frequency)
 
-        # Convert form data to enum values
-        repeats_frame_enum = repeatOptions(int(form.data['repeats_frame']))
-        strength_enum = difficulty(int(form.data['strength']))
 
         # create the new record
         newDaily = Daily(
             user_id=user_id,
             title=form.data['title'],
             description=form.data['description'],
-            strength=strength_enum,
-            repeats_frame=repeats_frame_enum,
+            strength=form.data['strength'],
+            repeats_frame=form.data['repeats_frame'],
             repeats_frequency=form.data['repeats_frequency'],
             due_date=due_date
         )
@@ -129,15 +126,12 @@ def update_daily(id):
         due_date = getDueDate(frame, frequency)
 
         # convert the user input into correct format for the enum
-        repeats_frame_enum = repeatOptions(int(form.data['repeats_frame']))
-        strength_enum = difficulty(int(form.data['strength']))
 
         # populate the columns that the user is allowed to change
         form.populate_obj(record)
 
         # Update the fields that require extra logic
-        record.strength = strength_enum
-        record.repeats_frame = repeats_frame_enum
+
         record.updated_at = today
         record.due_date = due_date
 
