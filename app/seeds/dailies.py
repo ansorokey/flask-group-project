@@ -1,4 +1,4 @@
-from app.models import db, Daily, environment, SCHEMA
+from app.models import db, Daily, environment, SCHEMA, difficulty, repeatOptions
 from sqlalchemy.sql import text
 from datetime import date
 
@@ -9,8 +9,10 @@ def seed_dailies():
         user_id=1,
         title = "Sweep Floors",
         description = "Sweep in kitchen, dining room, and living room",
-        strength=2,
-        repeats_frame=1,
+        # strength='easy',
+        strength=difficulty(2),
+        # repeats_frame='daily',
+        repeats_frame=repeatOptions(1),
         repeats_frequency=1,
         streak=5,
         completed=True,
@@ -19,37 +21,37 @@ def seed_dailies():
         updated_at = date(2023,6,15)
 
         )
-    dishes = Daily(
-        user_id=1,
-        title = "Do Dishes",
-        strength=2,
-        repeats_frame=1,
-        repeats_frequency=1,
-        streak=5,
-        completed=False,
-        due_date=date(2023,8,25),
-        created_at = date(2023,6,15),
-        updated_at = date(2023,6,15)
-    )
+    # dishes = Daily(
+    #     user_id=1,
+    #     title = "Do Dishes",
+    #     strength='easy',
+    #     repeats_frame='daily',
+    #     repeats_frequency=1,
+    #     streak=5,
+    #     completed=False,
+    #     due_date=date(2023,8,25),
+    #     created_at = date(2023,6,15),
+    #     updated_at = date(2023,6,15)
+    # )
 
-    sheets = Daily(
-        user_id=1,
-        title = "Change Bedsheets",
-        description = "Change the sheets in all bedrooms",
-        strength=2,
-        repeats_frame=7,
-        repeats_frequency=1,
-        streak=0,
-        completed=False,
-        due_date=date(2023,8,28),
-        created_at = date(2023,6,15),
-        updated_at = date(2023,6,15)
-    )
+    # sheets = Daily(
+    #     user_id=1,
+    #     title = "Change Bedsheets",
+    #     description = "Change the sheets in all bedrooms",
+    #     strength='easy',
+    #     repeats_frame='weekly',
+    #     repeats_frequency=1,
+    #     streak=0,
+    #     completed=False,
+    #     due_date=date(2023,8,28),
+    #     created_at = date(2023,6,15),
+    #     updated_at = date(2023,6,15)
+    # )
 
 
     db.session.add(sweep)
-    db.session.add(dishes)
-    db.session.add(sheets)
+    # db.session.add(dishes)
+    # db.session.add(sheets)
     db.session.commit()
 
 
