@@ -14,7 +14,7 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
-	const { closeModal, setModalContent } = useModal();
+	const { setModalContent } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

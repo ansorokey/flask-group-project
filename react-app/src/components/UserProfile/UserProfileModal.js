@@ -35,7 +35,7 @@ function UserProfileModal() {
     return (
         <div className="profile-modal-ctn">
             <div className="user-profile-top">
-                <img className="avatar-img" src={user.avatarUrl} />
+                <img className="avatar-img" src={user.avatarUrl} alt='user avatar' />
                 <div className="health-and-level">
                     <div>@{user.username} | Level LEVEL</div>
                     <div className="stat-bar">
@@ -56,12 +56,12 @@ function UserProfileModal() {
             </div>
 
             <div className="user-profile-links">
-                <div className={activeTab == 'Profile' ? 'active' : null} onClick={() => setActiveTab('Profile')}>Profile</div>
-                <div className={activeTab == 'Stats' ? 'active' : null} onClick={() => setActiveTab('Stats')}>Stats</div>
-                <div className={activeTab == 'Achievements' ? 'active' : null} onClick={() => setActiveTab('Achievements')}>Achievements</div>
+                <div className={activeTab === 'Profile' ? 'active' : null} onClick={() => setActiveTab('Profile')}>Profile</div>
+                <div className={activeTab === 'Stats' ? 'active' : null} onClick={() => setActiveTab('Stats')}>Stats</div>
+                <div className={activeTab === 'Achievements' ? 'active' : null} onClick={() => setActiveTab('Achievements')}>Achievements</div>
             </div>
 
-            {activeTab == 'Profile' && <div>
+            {activeTab === 'Profile' && <div>
                 <div className='name-and-edit'>
                     <div>
                         <h2>{user.firstName} {user.lastName}</h2>
@@ -97,8 +97,8 @@ function UserProfileModal() {
                             {changeAvatar && <div>
                                 {availableAvatars.map(av => {
                                     return (<label key={av.id}>
-                                        <img src={av.url} alt="pokemon profile picture"/>
-                                        <input type="radio" name="avatar" value={av.id} checked={avatarId == av.id} onChange={(e) => {setAvatarId(e.target.value)}} />
+                                        <img src={av.url} alt="user avatar"/>
+                                        <input type="radio" name="avatar" value={av.id} checked={avatarId === av.id} onChange={(e) => {setAvatarId(e.target.value)}} />
                                     </label>);
                                 })}
                             </div>}
@@ -110,11 +110,11 @@ function UserProfileModal() {
 
             </div>}
 
-            {activeTab == 'Profile' && <div>
+            {activeTab === 'Profile' && <div>
 
             </div>}
 
-            {activeTab == 'Profile' && <div>
+            {activeTab === 'Profile' && <div>
 
             </div>}
 

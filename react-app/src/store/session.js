@@ -1,5 +1,4 @@
 // constants
-const UPDATE_USER = 'session/UPDATE_USER';
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
