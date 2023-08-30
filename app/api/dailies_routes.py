@@ -9,6 +9,7 @@ daily_bp = Blueprint('dailies',  __name__)
 
 
 today = date.today()
+
 def getDueDate(frame, frequency,last=today):
     """
     Returns an updated due date based on two arguments: frame <int> and frequency <int> and a third optional parameter of last due date (defaults to todays date)

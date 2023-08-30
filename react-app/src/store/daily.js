@@ -21,9 +21,11 @@ const deleteDaily = id => ({
 
 
 export const loadAllDailies = () => async dispatch => {
-    const response = await fetch('api/dailies')
+    const response = await fetch('api/dailies/')
     if (response.ok) {
-        const data = response.json()
+        const data = await response.json()
+		// console.log('!!!!!!!!! right after the response')
+		// console.log(data)
         dispatch(getAllDaily(data))
     } else if (response.status < 500) {
 		const data = await response.json();
@@ -133,7 +135,7 @@ export default function reducer(state = initialState, action) {
     const today = new Date().toJSON().slice(0, 10)
 	switch (action.type) {
 		case GET_ALL_DAILY:
-            action.data.forEach((daily)=>{
+            action.dailies.forEach((daily)=>{
                 newState.all[daily.id] = daily
                 newState.order.push(daily.id)
                 if(daily.due_date === today){
@@ -144,12 +146,12 @@ export default function reducer(state = initialState, action) {
             })
             return newState
         case CREATE_UPDATE_DAILY:
-            newState.all[action.data.id] = action.data
-            newState.order.push(action.data.id)
-            if(action.data.due_date === today){
-                newState.due[action.data.id] = action.data
+            newState.all[action.daily.id] = action.daily
+            newState.order.push(action.daily.id)
+            if(action.daily.due_date === today){
+                newState.due[action.daily.id] = action.daily
             }else{
-                newState.notdue[action.data.id] = action.data
+                newState.notdue[action.daily.id] = action.daily
             }
             return newState
         case DELETE_DAILY:
