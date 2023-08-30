@@ -1,19 +1,35 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserInfo } from "../../store/session";
 
-function UserProfileModal({user}) {
+function UserProfileModal() {
+    const user = useSelector(state => state.session.user)
 
     const lastLogin = new Date(user.lastLogin);
     const [activeTab, setActiveTab] = useState('Profile');
     const [edit, setEdit] = useState(false);
-    const [avatarId, setAvatarId] = useState(0);
+    const [avatarId, setAvatarId] = useState(1);
     const [about, setAbout] = useState(user.about);
     const [changeAvatar, setChangeAvatar] = useState(false);
     const avatar_state = useSelector(state => state.avatar);
     const availableAvatars = Object.values(avatar_state);
+    const dispatch = useDispatch();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+
+        const data = {
+            userId: user.id,
+            avatarUrl: avatar_state[avatarId].url || user.avatarUrl,
+            about
+        }
+
+        // console.log(data);
+        // dispatch the data as a thunk
+        const response = await dispatch(updateUserInfo(data));
+        if(response.ok) {
+            setEdit(false);
+        }
     }
 
     return (
@@ -73,7 +89,7 @@ function UserProfileModal({user}) {
                     <form onSubmit={handleSubmit}>
                         <label>
                             About
-                            <textarea />
+                            <textarea value={about} onChange={(e) => setAbout(e.target.value) } />
                         </label>
 
                         <label>

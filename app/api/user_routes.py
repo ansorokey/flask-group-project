@@ -1,19 +1,22 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
 
 user_routes = Blueprint('users', __name__)
 
+@user_routes.route('/<int:id>', methods=['PUT'])
+def update_user(id):
+    updated_user = User.query.filter(User.id == id).first()
+    body = request.get_json()
 
-@user_routes.route('/')
-@login_required
-def users():
-    """
-    Query for all users and returns them in a list of user dictionaries
-    """
-    users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+    if 'about' in body:
+        updated_user.about = body['about']
+    if 'avatarUrl' in body:
+        updated_user.avatar_url = body['avatarUrl']
 
+    db.session.commit()
+    return updated_user.to_dict()
+    # return {'message': 'success'}
 
 @user_routes.route('/<int:id>')
 @login_required
@@ -23,3 +26,12 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/')
+@login_required
+def users():
+    """
+    Query for all users and returns them in a list of user dictionaries
+    """
+    users = User.query.all()
+    return {'users': [user.to_dict() for user in users]}
