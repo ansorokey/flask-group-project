@@ -7,7 +7,7 @@ import DisplayDailyItems from "./items";
 
 function DailyCont () {
     const dispatch = useDispatch();
-    const[cat, setCat] = useState('Due')
+    const[cat, setCat] = useState('due')
 
 
     useEffect(()=>{
@@ -18,9 +18,7 @@ function DailyCont () {
 
     const dailies = useSelector((state) => state.daily)
 
-    useEffect(()=>{
-        console.log(dailies[cat])
-    }, [cat])
+
 
     return <div className="daily_cont">
     <div className="dailyTitleCont">

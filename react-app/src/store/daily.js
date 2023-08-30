@@ -86,15 +86,12 @@ export const updateDaily = (id, daily) => async dispatch =>{
 		return ["An error occurred. Please try again."];
 	}
 }
-export const completeDaily = (id, daily) => async dispatch =>{
-    const response = await fetch(`/api/dailies/${id}//completed`, {
+export const completeDaily = (id) => async dispatch =>{
+    const response = await fetch(`/api/dailies/${id}/completed`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			daily
-		}),
+		}
 	});
 
 	if (response.ok) {
@@ -135,9 +132,11 @@ export default function reducer(state = initialState, action) {
     const today = new Date().toJSON().slice(0, 10)
 	switch (action.type) {
 		case GET_ALL_DAILY:
+
             action.dailies.forEach((daily)=>{
                 newState.all[daily.id] = daily
                 newState.order.push(daily.id)
+
                 if(daily.due_date === today){
                     newState.due[daily.id] = daily
                 } else {

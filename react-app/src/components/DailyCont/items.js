@@ -1,12 +1,22 @@
+import { useEffect, useState} from "react";
+import { useDispatch} from "react-redux";
+import { completeDaily } from "../../store/daily";
+
 
 function DisplayDailyItems(props){
-    console.log('%%%%%')
-    console.log(props.dailies)
+    const [comId, setComId] = useState()
+    const dispatch = useDispatch()
+
+    const markComplete = (id) => {
+        dispatch(completeDaily(id))
+    }
+
+
     return <div>
                 { Object.values(props.dailies).map((daily) =>{
                     return (
-                        <div>
-                            <input type="checkbox" />
+                        <div >
+                            <input type="checkbox" onChange={e =>{markComplete(daily.id);}}/>
                             {daily.title}
                             {daily.streak}
                         </div>
