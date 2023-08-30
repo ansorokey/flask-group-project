@@ -21,7 +21,7 @@ def seed():
         undo_users()
         undo_dailies()
     seed_users()
-    seed_dailies()
+    # seed_dailies()
     seed_test_habits()
     seed_base_avatars()
 
@@ -31,5 +31,5 @@ def seed():
 def undo():
     undo_users()
     undo_test_habits()
-    undo_dailies()
+    # undo_dailies()
     undo_base_avatars()
