@@ -8,7 +8,7 @@ function UserProfileModal() {
     const lastLogin = new Date(user.lastLogin);
     const [activeTab, setActiveTab] = useState('Profile');
     const [edit, setEdit] = useState(false);
-    const [avatarId, setAvatarId] = useState(1);
+    const [avatarId, setAvatarId] = useState(0);
     const [about, setAbout] = useState(user.about);
     const [changeAvatar, setChangeAvatar] = useState(false);
     const avatar_state = useSelector(state => state.avatar);
@@ -20,9 +20,10 @@ function UserProfileModal() {
 
         const data = {
             userId: user.id,
-            avatarUrl: avatar_state[avatarId].url || user.avatarUrl,
             about
         }
+
+        if(avatarId > 0) data['avatarUrl'] = avatar_state[avatarId].url
 
         // console.log(data);
         // dispatch the data as a thunk
@@ -71,11 +72,15 @@ function UserProfileModal() {
                     <div className="edit-prof" onClick={() => setEdit(!edit)}>Edit</div>
                 </div>
 
-                {!edit && <div>
-                    <div>About</div>
+                {!edit && <div className="user-about">
+                    <div>
+                        <h2>About</h2>
+                        <hr />
+                        {user.about ? <div>{user.about}</div> : <div>This user hasn't added a description.</div>}
+                    </div>
 
                     <div className="user-profile-info-ctn">
-                        <div>Info</div>
+                        <h2>Info</h2>
                         <hr />
                         <div className="user-profile-info">
                             <div>Joined DATE</div>
@@ -87,22 +92,23 @@ function UserProfileModal() {
 
                 {edit && <div>
                     <form onSubmit={handleSubmit}>
-                        <label>
-                            About
+                        <div className="edit-prof-sec">
+                            <label>About</label>
                             <textarea value={about} onChange={(e) => setAbout(e.target.value) } />
-                        </label>
+                        </div>
 
-                        <label>
-                            <span onClick={() => setChangeAvatar(!changeAvatar)}>Change Avatar</span>
-                            {changeAvatar && <div>
-                                {availableAvatars.map(av => {
-                                    return (<label key={av.id}>
-                                        <img src={av.url} alt="user avatar"/>
-                                        <input type="radio" name="avatar" value={av.id} checked={avatarId === av.id} onChange={(e) => {setAvatarId(e.target.value)}} />
-                                    </label>);
-                                })}
-                            </div>}
-                        </label>
+                        <div onClick={() => setChangeAvatar(!changeAvatar)}>
+                            Change Avatar
+                            {changeAvatar ? <i className="fa-solid fa-caret-up"></i> :<i className="fa-solid fa-caret-down"></i>}
+                        </div>
+                        {changeAvatar && <div className="edit-user-avatar-ctn">
+                            {availableAvatars.map(av => {
+                                return (<label key={av.id} className="avatar-radio-ctn">
+                                    <img src={av.url} alt="user avatar"/>
+                                    <input type="radio" name="avatar" value={+av.id} checked={+avatarId === +av.id} onChange={(e) => {setAvatarId(+e.target.value)}} />
+                                </label>);
+                            })}
+                        </div>}
 
                         <button>Save</button>
                     </form>

@@ -123,3 +123,33 @@
     cursor: pointer;
     color: #8F6DCF;
 }
+
+.user-about {
+    display: flex;
+}
+
+.user-about > div {
+    padding: 0 8px;
+}
+
+/* Editing user profile */
+.edit-user-avatar-ctn {
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1em 2em;
+}
+
+.edit-prof-sec {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-radio-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
