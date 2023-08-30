@@ -16,9 +16,11 @@ function DisplayDailyItems(props){
                 { Object.values(props.dailies).map((daily) =>{
                     return (
                         <div >
-                            <input type="checkbox" onChange={e =>{markComplete(daily.id);}}/>
-                            {daily.title}
-                            {daily.streak}
+                            <div> <input type="checkbox" onChange={e =>{markComplete(daily.id);}}/> </div>
+                            <div>{daily.title} </div>
+                            <div>▶▶  {daily.streak} </div>
+
+
                         </div>
                     )
                 })}

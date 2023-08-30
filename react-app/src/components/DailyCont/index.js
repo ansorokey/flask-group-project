@@ -42,7 +42,8 @@ function DailyCont () {
 
         </div>
         <div className="ExplainBox">
-            {/* insert calender icon here */}
+            
+            <p>📆</p>
             <h3>These are your Dailies</h3>
             <p>Dailies repeat on a regular basis. Choose the schedule that works best for you!</p>
         </div>
