@@ -48,7 +48,7 @@ def seed_todos():
                 db.session.add(todo)
     db.session.commit()
 
-def undo_todoes():
+def undo_todos():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.todos RESTART IDENTITY CASCADE;")
     else:
