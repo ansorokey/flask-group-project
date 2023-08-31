@@ -1,5 +1,5 @@
 # db is defined in db.py, import from local directory
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import functions
 from datetime import date, timedelta, datetime
 # use this to set the timestamps
@@ -13,13 +13,13 @@ class Habit(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(255), default='')
     difficulty = db.Column(db.Integer, default=2)
-    frequency = db.Column(db.Enum("daily", "weekly", "monthly"), default='daily')
+    frequency = db.Column(db.Enum("daily", "weekly", "monthly", name='frequency'), default='daily')
     date_to_reset = db.Column(db.String, default=date.today()+timedelta(days=1))
-    strength = db.Column(db.Enum('Neutral', 'Weak', 'Strong'), default='Neutral')
+    strength = db.Column(db.Integer, default=0)
     pos = db.Column(db.Boolean, default=True)
     neg = db.Column(db.Boolean, default=True)
     pos_count = db.Column(db.Integer, default=0)
@@ -89,6 +89,6 @@ class Habit(db.Model):
                 self.reset_counts()
                 self.new_reset_date('monthly')
 
-    # def check_strength(self):
-    #     if self.pos_count <
+    def set_strength(self):
+        self.strength = self.pos_count - self.neg_count
     # tags a habit can have multiple tags, make it a relationship

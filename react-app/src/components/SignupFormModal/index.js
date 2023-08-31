@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import OnboardingModal from '../OnboardingModal'
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
-	const { closeModal } = useModal();
+	const { setModalContent } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -22,7 +23,7 @@ function SignupFormModal() {
 			if (data) {
 				setErrors(data);
 			} else {
-				closeModal();
+				setModalContent(<OnboardingModal />)
 			}
 		} else {
 			setErrors([

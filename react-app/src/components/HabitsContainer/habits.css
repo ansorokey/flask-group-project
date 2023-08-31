@@ -93,7 +93,7 @@
     align-items: center;
     width: 39px;
     height: 100%;
-    background-color: #945900;
+    /* background-color: #945900; */
 }
 
 .habit-item-button.plus {
@@ -108,6 +108,34 @@
 
 .habit-item-button.inc-inactive {
     background-color: transparent;
+}
+
+.strongest {
+    background-color: #136A96;
+}
+
+.stronger {
+    background-color: #2195A0;
+}
+
+.strong {
+    background-color: #1DA372;
+}
+
+.neutral {
+    background-color: #945900;
+}
+
+.weak {
+    background-color: #9E4000;
+}
+
+.weaker {
+    background-color: #920004;
+}
+
+.weakest {
+    background-color: #9F1B1B;
 }
 
 /* Habit Item Content */

@@ -64,6 +64,24 @@ function HabitItem({habit}){
         dispatch(updateHabit(habit.id, {'neg_count': habit.negCount + 1}))
     }
 
+    function check_strength(str) {
+        if(+str >= 12){
+            return 'strongest';
+        } else if(+str >= 6) {
+            return 'stronger';
+        } else if(+str >= 1) {
+            return 'strong';
+        } else if(+str === 0) {
+            return 'neutral';
+        } else if(+str <= -12){
+            return 'weakest';
+        } else if(+str <= -6){
+            return 'weaker';
+        } else if(+str <= -1){
+            return 'weak';
+        }
+    }
+
     // THE COMPONENT ----------------------------------------------------------
     return <div className="habit-item"
                 onMouseEnter={showOptionsMenuIconOnHover}
@@ -73,7 +91,7 @@ function HabitItem({habit}){
         {/* Incrememnt Button */}
         <div>
             <button
-                className={`habit-item-button plus ${habit.pos ? 'inc-active' : 'inc-inactive'}`}
+                className={`habit-item-button plus ${habit.pos ? 'inc-active' : 'inc-inactive'} ${check_strength(habit.strength)}`}
                 onClick={ habit.pos ? incHabit : null}
                 >
                 <i className="fa-solid fa-plus"></i>
@@ -101,7 +119,7 @@ function HabitItem({habit}){
         {/* Decrement button */}
         <div>
             <button
-                className={`habit-item-button minus ${habit.neg ? 'inc-active' : 'inc-inactive'}`}
+                className={`habit-item-button minus ${habit.neg ? 'inc-active' : 'inc-inactive'} ${check_strength(habit.strength)}`}
                 onClick={habit.neg ? decHabit : null}
             >
                 <i className="fa-solid fa-minus"></i>

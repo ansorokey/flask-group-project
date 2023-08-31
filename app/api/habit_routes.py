@@ -54,6 +54,7 @@ def put_habit(id):
         if body['frequency'] == 'monthly':
             updated_habit.new_reset_date('monthly')
 
+    updated_habit.set_strength()
     updated_habit.updated_at = functions.now()
 
     db.session.commit()

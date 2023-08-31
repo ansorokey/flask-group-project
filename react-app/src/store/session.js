@@ -11,6 +11,22 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
+export function updateUserInfo(data) {
+	return async function(dispatch){
+		const response = await fetch(`/api/users/${data.userId}`, {
+			method: 'PUT',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(data)
+		});
+
+		if(response.ok){
+			const res = await response.json();
+			dispatch(setUser(res));
+			return {'ok': true}
+		}
+	}
+}
+
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {

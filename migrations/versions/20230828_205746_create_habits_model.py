@@ -1,8 +1,8 @@
-"""add habit model
+"""create habits table
 
-Revision ID: e169266d82e4
-Revises: ffdc0a98111c
-Create Date: 2023-08-18 06:36:53.260548
+Revision ID: 7bc612a21204
+Revises: 4672152826f8
+Create Date: 2023-08-28 20:57:46.499388
 
 """
 from alembic import op
@@ -16,8 +16,8 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'e169266d82e4'
-down_revision = 'ffdc0a98111c'
+revision = '7bc612a21204'
+down_revision = '4672152826f8'
 branch_labels = None
 depends_on = None
 
@@ -29,9 +29,9 @@ def upgrade():
     sa.Column('title', sa.String(255), nullable=False),
     sa.Column('notes', sa.String(255), default=''),
     sa.Column('difficulty', sa.Integer(), default=2),
-    sa.Column('frequency', sa.Enum('daily', 'weekly', 'monthly'), default='daily'),
+    sa.Column('frequency', sa.Enum('daily', 'weekly', 'monthly', name='frequency'), default='daily'),
     sa.Column('date_to_reset', sa.String, default=date.today()+timedelta(days=1)),
-    sa.Column('strength', sa.Enum('Neutral', 'Weak', 'Strong'), default='Neutral'),
+    sa.Column('strength', sa.Integer, default=0),
     sa.Column('pos', sa.Boolean, default=True),
     sa.Column('neg', sa.Boolean, default=True),
     sa.Column('pos_count', sa.Integer, default=0),
@@ -41,7 +41,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE habits SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
