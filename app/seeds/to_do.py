@@ -1,5 +1,6 @@
-from app.models import db, ToDo, User
+from app.models import db, ToDo, User, environment, SCHEMA
 from datetime import datetime, timedelta
+from sqlalchemy.sql import text
 
 # Sample todos for each user
 todos_samples = {
@@ -47,11 +48,19 @@ def seed_todos():
                 db.session.add(todo)
     db.session.commit()
 
+def undo_todoes():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.todos RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM todos"))
 
-def undo_todos():
-    db.session.execute("DELETE FROM todos")
     db.session.commit()
 
+# Modified the original below to include the schema for production
+# def undo_todos():
+#     db.session.execute("DELETE FROM todos")
+#     db.session.commit()
 
-if __name__ == "__main__":
-    seed_todos()
+
+# if __name__ == "__main__":
+#     seed_todos()
