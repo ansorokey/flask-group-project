@@ -16,8 +16,8 @@ class Daily(db.Model):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
     strength = db.Column(db.Enum("Trivial", "Easy", "Medium", "Hard"), default="Medium")
-    repeats_frame = db.Column(db.Enum("1", "7", "30", "365"), nullable=False, default="1")
-    repeats_frequency = db.Column(db.Integer, nullable=False, default=1)
+    repeats_frame = db.Column(db.Enum("1", "7", "30", "365"),  default="1")
+    repeats_frequency = db.Column(db.Integer,  default=1)
     repeats_on = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
     streak = db.Column(db.Integer, default=0)
     completed = db.Column(db.Boolean, default=False)
@@ -32,10 +32,10 @@ class Daily(db.Model):
             'user_id': self.user_id,
             'title': self.title,
             'description': self.description,
-            'strength': self.strength.value if self.strength else None,
-            'repeats_frame': self.repeats_frame.value if self.repeats_frame else None,
+            'strength': self.strength ,
+            'repeats_frame': self.repeats_frame,
             'repeats_frequency': self.repeats_frequency,
-            'repeats_on': self.repeats_on.value if self.repeats_on else None,
+            'repeats_on': self.repeats_on,
             'streak': self.streak,
             'completed': self.completed,
             'due_date': self.due_date.strftime('%Y-%m-%d') if self.due_date else None
