@@ -38,7 +38,7 @@ export const loadAllDailies = () => async dispatch => {
 }
 
 export const createDaily = (daily) => async dispatch =>{
-    const response = await fetch("/api/dailies", {
+    const response = await fetch("/api/dailies/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

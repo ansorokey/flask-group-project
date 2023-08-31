@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllDailies } from "../../store/daily";
+import { loadAllDailies, createDaily } from "../../store/daily";
 import DisplayDailyItems from "./items";
 
 
@@ -15,9 +15,10 @@ function DailyCont () {
         dispatch(loadAllDailies());
     }, [dispatch])
 
-    const quickAdd = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(title)
+        dispatch(createDaily({title}))
+
         setTitle('')
 
     }
@@ -43,9 +44,13 @@ function DailyCont () {
     </div>
 
     <div className="greyBox">
-        <button>Add a Daily</button>
-        <form onSubmit={quickAdd} >
-            <input type="text" placeholder="Add a Daily" value={title} onChange={e => setTitle(e.currentTarget.value)} />
+
+        <form onSubmit={handleSubmit} >
+            <input
+                type="text"
+                placeholder="Add a Daily"
+                value={title}
+                onChange={e => setTitle(e.currentTarget.value)} />
         </form>
         <div>
             {/* LOOP AND DISPLAY DAILIES HERE */}

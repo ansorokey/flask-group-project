@@ -28,8 +28,11 @@ def changeDueDate(d):
         d.streak = 0
     else:
         d.completed = False
-    new_due_date = getDueDate(d.repeats_frame.value, d.repeats_frequency, d.due_date)
-    d.due_date = new_due_date
+    while d.due_date < today:
+        new_due_date = getDueDate(d.repeats_frame, d.repeats_frequency, d.due_date)
+        d.due_date = new_due_date
+
+
     db.session.commit()
     return d
 
@@ -65,6 +68,7 @@ def one_daily(id):
     if daily.due_date < today:
         daily = changeDueDate(daily)
     return  daily.to_dict()
+
 
 @daily_bp.route('/', methods=['POST'])
 @login_required
@@ -120,20 +124,13 @@ def update_daily(id):
 
     if form.validate_on_submit():
 
-        # calculate the due date based on user inputs
-        frame = int(form.data['repeats_frame'])
-        frequency = form.data['repeats_frequency']
-        due_date = getDueDate(frame, frequency)
-
-        # convert the user input into correct format for the enum
-
         # populate the columns that the user is allowed to change
         form.populate_obj(record)
 
         # Update the fields that require extra logic
 
         record.updated_at = today
-        record.due_date = due_date
+        record.due_date = today
 
         db.session.commit()
 
