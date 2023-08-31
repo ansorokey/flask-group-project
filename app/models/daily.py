@@ -15,7 +15,7 @@ class Daily(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
-    strength = db.Column(db.Enum("Trivial", "Easy", "Medium", "Hard"), default="Medium")
+    strength = db.Column(db.Enum("Trivial", "Easy", "Medium", "Hard", name='difficulty'), default="Medium")
     repeats_frame = db.Column(db.Enum("1", "7", "30", "365"),  default="1")
     repeats_frequency = db.Column(db.Integer,  default=1)
     repeats_on = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
