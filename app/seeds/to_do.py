@@ -1,4 +1,4 @@
-from app.models import db, ToDo
+from app.models import db, ToDo, User
 from datetime import datetime, timedelta
 
 # Sample todos for each user
