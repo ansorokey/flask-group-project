@@ -33,8 +33,8 @@ function EditHabitForm({habit}){
             notes,
             difficulty,
             frequency,
-            'pos_count': posCount,
-            'neg_count': negCount,
+            'pos_count': +posCount,
+            'neg_count': +negCount,
             pos,
             neg
         }

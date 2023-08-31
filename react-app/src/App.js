@@ -8,7 +8,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
-import ChooseAvatarModal from "./components/ChooseAvatarModal/ChooseAvatarModal";
+import OnboardingModal from "./components/OnboardingModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function App() {
           </Route>
           <Route>
             {/* return <h1> You've gone beyond the bounds! Page not found </h1> */}
-            <ChooseAvatarModal />
+            <OnboardingModal />
           </Route>
         </Switch>
       )}
