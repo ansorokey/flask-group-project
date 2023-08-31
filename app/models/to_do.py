@@ -3,7 +3,11 @@ from datetime import datetime
 
 
 class ToDo(db.Model):
-    __tablename__ = "todos"  # we can change this if we need to 
+    __tablename__ = "todos"  # we can change this if we need to
+
+        # If production, use render schema
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
