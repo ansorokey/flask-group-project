@@ -1,4 +1,4 @@
-from app.models import db, ToDo, User, environment, SCHEMA
+from app.models import db, ToDo, User, environment, SCHEMA, User
 from datetime import datetime, timedelta
 from sqlalchemy.sql import text
 
