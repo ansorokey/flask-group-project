@@ -13,7 +13,7 @@ from .api.avatar_routes import avatar_routes
 from .seeds import seed_commands
 from .config import Config
 
-
+from .api.to_do_routes import todo_routes
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -34,7 +34,11 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(habit_routes, url_prefix='/api/habits')
 app.register_blueprint(daily_bp, url_prefix='/api/dailies')
+<<<<<<< HEAD
 app.register_blueprint(avatar_routes, url_prefix='/api/avatars')
+=======
+app.register_blueprint(todo_routes, url_prefix='/api/todos')
+>>>>>>> fdd0dcc7ee84d07d0079db7121f120ce694f8ba4
 db.init_app(app)
 Migrate(app, db)
 
