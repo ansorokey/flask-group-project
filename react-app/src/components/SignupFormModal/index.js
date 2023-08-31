@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
-import ChooseAvatarModal from "../ChooseAvatarModal/ChooseAvatarModal";
+import OnboardingModal from '../OnboardingModal'
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function SignupFormModal() {
 			if (data) {
 				setErrors(data);
 			} else {
-				setModalContent(<ChooseAvatarModal />)
+				setModalContent(<OnboardingModal />)
 			}
 		} else {
 			setErrors([

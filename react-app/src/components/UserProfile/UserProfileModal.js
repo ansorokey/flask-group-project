@@ -33,6 +33,7 @@ function UserProfileModal() {
         }
     }
 
+    // THE COMPONENT ---------------------------------------------------------------------------------
     return (
         <div className="profile-modal-ctn">
             <div className="user-profile-top">

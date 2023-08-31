@@ -2,26 +2,6 @@ from enum import Enum
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import date
 
-class repeatOptions(Enum):
-    daily = 1
-    weekly = 7
-    monthly = 30
-    yearly = 365
-
-class daysOfWeek(Enum):
-    sunday = 'su'
-    monday = 'mo'
-    tuesday = 'tu'
-    wednesday = 'we'
-    thursday = 'th'
-    friday = 'fr'
-    saturday = 'sa'
-
-class difficulty(Enum):
-    trivial = 1
-    easy = 2
-    medium = 3
-    hard = 4
 
 today = date.today()
 
@@ -35,10 +15,10 @@ class Daily(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
-    strength = db.Column(db.Enum(difficulty), default=difficulty.medium)
-    repeats_frame = db.Column(db.Enum(repeatOptions), nullable=False, default=repeatOptions.daily)
+    strength = db.Column(db.Enum("Trivial", "Easy", "Medium", "Hard"), default="Medium")
+    repeats_frame = db.Column(db.Enum("1", "7", "30", "365"), nullable=False, default="1")
     repeats_frequency = db.Column(db.Integer, nullable=False, default=1)
-    repeats_on = db.Column(db.Enum(daysOfWeek))
+    repeats_on = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
     streak = db.Column(db.Integer, default=0)
     completed = db.Column(db.Boolean, default=False)
     due_date = db.Column(db.Date)

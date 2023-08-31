@@ -12,7 +12,6 @@ from .api.dailies_routes import daily_bp
 from .api.avatar_routes import avatar_routes
 from .seeds import seed_commands
 from .config import Config
-
 from .api.to_do_routes import todo_routes
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -36,9 +35,13 @@ app.register_blueprint(habit_routes, url_prefix='/api/habits')
 app.register_blueprint(daily_bp, url_prefix='/api/dailies')
 <<<<<<< HEAD
 app.register_blueprint(avatar_routes, url_prefix='/api/avatars')
+<<<<<<< HEAD
 =======
 app.register_blueprint(todo_routes, url_prefix='/api/todos')
 >>>>>>> fdd0dcc7ee84d07d0079db7121f120ce694f8ba4
+=======
+app.register_blueprint(todo_routes, url_prefix='/api/todos')
+>>>>>>> onboarding
 db.init_app(app)
 Migrate(app, db)
 
