@@ -30,7 +30,7 @@ def authenticate():
     return {'errors': ['Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
+@auth_routes.route('/login', methods=['GET','POST'])
 def login():
     """
     Logs a user in
@@ -67,6 +67,8 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
+            first_name=form.data['firstName'],
+            last_name=form.data['lastName'],
             password=form.data['password']
         )
         db.session.add(user)
