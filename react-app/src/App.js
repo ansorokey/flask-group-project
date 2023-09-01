@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
 import OnboardingModal from "./components/OnboardingModal";
+import { HabitProvider } from "./context/Habit";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,10 +31,14 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            {sessionUser ? <Dashboard /> : <LandingPage />}
+            {sessionUser ?
+              <HabitProvider>
+                <Dashboard />
+              </HabitProvider>
+
+              : <LandingPage />}
           </Route>
           <Route>
-            {/* return <h1> You've gone beyond the bounds! Page not found </h1> */}
             <OnboardingModal />
           </Route>
         </Switch>
