@@ -87,6 +87,7 @@ def new_daily():
         frame = int(form.data['repeats_frame'])
         frequency = form.data['repeats_frequency']
         due_date = getDueDate(frame, frequency)
+        # maybe impliment a place for the user to specify first due date?
 
 
         # create the new record

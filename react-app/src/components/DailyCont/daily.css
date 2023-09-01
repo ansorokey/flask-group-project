@@ -1,0 +1,27 @@
+.dailyItem {
+    background-color: rgb(24, 26, 27);
+    color: white;
+    margin: 5px;
+    height: 75px;
+    padding: 10px;
+}
+
+.daily-options-btn {
+    visibility: hidden;
+    background-color: rgb(24, 26, 27);
+    box-shadow: none;
+}
+.dailyItem:hover .daily-options-btn {
+    visibility: visible;
+    background-color: rgb(24, 26, 27);
+
+}
+.daily-options-menu{
+    background-color: azure;
+    color: black;
+    height: auto;
+    width: 100px;
+    z-index: 999;
+    position: absolute;
+    padding: 10px;
+}

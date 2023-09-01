@@ -53,9 +53,9 @@ function DailyCont () {
                 onChange={e => setTitle(e.currentTarget.value)} />
         </form>
         <div>
-            {/* LOOP AND DISPLAY DAILIES HERE */}
-            <DisplayDailyItems dailies={dailies[cat]} />
-
+            {Object.values(dailies[cat]).map((daily) => (
+                <DisplayDailyItems key={daily.id} daily={daily} />
+            ))}
         </div>
         <div className="ExplainBox">
 
