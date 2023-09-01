@@ -17,8 +17,13 @@ function DailyCont () {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(createDaily({title}))
 
+        if (!title) return
+        const newDaily = {title: title}
+      
+        dispatch(createDaily(newDaily))
+
+        dispatch(loadAllDailies())
         setTitle('')
 
     }

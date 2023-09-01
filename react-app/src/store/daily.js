@@ -43,9 +43,7 @@ export const createDaily = (daily) => async dispatch =>{
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({
-			daily
-		}),
+		body: JSON.stringify(daily),
 	});
 
 	if (response.ok) {
