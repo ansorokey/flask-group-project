@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useModal } from '../../context/Modal';
+import { useHabit } from "../../context/Habit";
 import { useDispatch } from "react-redux";
 import { updateHabit } from "../../store/habits";
 
@@ -16,6 +17,7 @@ function HabitItem({habit}){
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const { setModalContent } = useModal();
+    const { setHabits } = useHabit();
 
     const optionsMenu = <div className="habits-options-menu" onClick={displayOrHideMenu}>
         <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>
@@ -24,16 +26,16 @@ function HabitItem({habit}){
         </div>
         <hr/>
         {/* Save this for when we change habits into a context */}
-        {/* <div>
+        <div onClick={() => setHabits(habits => [habit, ...habits])}>
             <i className="fa-solid fa-arrow-up"></i>
             To top
         </div>
         <hr/>
-        <div>
+        <div onClick={() => setHabits(habits => [...habits, habit])}>
             <i className="fa-solid fa-arrow-down"></i>
             To bottom
         </div>
-        <hr/> */}
+        <hr/>
         <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>
             <i className="fa-solid fa-trash-can"></i>
             Delete
