@@ -29,12 +29,12 @@ function DisplayDailyItems({daily}) {
 
 
     const dailyMenu = <div className="daily-options-menu" ref={ulRef}>
-        <div onClick={() => setModalContent(<EditDailyForm  />)}>
+        <div onClick={() => setModalContent(<EditDailyForm  daily={daily}/>)}>
             <i className="fa-solid fa-pen"></i>
             Edit
         </div>
         <hr />
-        <div onClick={() => setModalContent(<DeleteDailyModal  />)}>
+        <div onClick={() => setModalContent(<DeleteDailyModal daily={daily}  />)}>
             <i className="fa-solid fa-trash-can"></i>
                 Delete
         </div>

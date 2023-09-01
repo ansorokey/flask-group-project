@@ -25,3 +25,13 @@
     position: absolute;
     padding: 10px;
 }
+
+.deleteDailyModal{
+    background-color: azure;
+    color: black;
+    height: 200px;
+    width: 300px;
+    padding: 15px;
+    margin: 10px;
+    align-content: center;
+}

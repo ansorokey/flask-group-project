@@ -1,17 +1,22 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
+import { removeDaily, loadAllDailies } from "../../store/daily";
+import "./daily.css"
 
-function DeleteDailyModal() {
+
+function DeleteDailyModal({daily}) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="deleteDailyModal">
       <h1> Are you sure you want to delete this Daily? </h1>
-      {/* <p><em>{title}</em></p> */}
+      <p><em>{daily.title}</em></p>
 
       <button
         onClick={async () => {
+          dispatch(removeDaily(daily.id))
+          dispatch(loadAllDailies())
           closeModal();
         }}
       >
