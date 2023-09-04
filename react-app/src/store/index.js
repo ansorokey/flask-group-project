@@ -6,12 +6,14 @@ import session from './session'
 import habits from "./habits"
 import daily from './daily';
 import avatar from './avatar';
+import todosReducer from './todos';
 
 const rootReducer = combineReducers({
   session,
   habits,
   daily,
   avatar
+  todos: todosReducer,
 });
 
 
