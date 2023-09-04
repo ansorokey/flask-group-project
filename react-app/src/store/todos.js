@@ -1,52 +1,132 @@
-import { csrfFetch } from './csrf'; // since we're using csrfFetch utility
+import { csrfFetch } from './csrf';
 
 // ACTION TYPES
-const SET_TODOS = 'todos/SET_TODOS';
+const LOAD_USER_TODOS = 'todos/LOAD_USER_TODOS';
+const ADD_USER_TODO = 'todos/ADD_USER_TODO';
+const UPDATE_USER_TODO = 'todos/UPDATE_USER_TODO';
+const DELETE_USER_TODO = 'todos/DELETE_USER_TODO';
 
 // ACTION CREATORS
-const setTodos = (todos) => ({
-  type: SET_TODOS,
-  todos
+const loadUserTodos = (todos) => ({
+    type: LOAD_USER_TODOS,
+    todos,
+});
+
+const addUserTodo = (todo) => ({
+    type: ADD_USER_TODO,
+    todo,
+});
+
+const updateUserTodo = (todo) => ({
+    type: UPDATE_USER_TODO,
+    todo,
+});
+
+const deleteUserTodo = (todoId) => ({
+    type: DELETE_USER_TODO,
+    todoId,
 });
 
 // THUNKS
 
-
-// Thunk to fetch all todos from the server
-export const getTodos = () => async dispatch => {
+export const getTodosForUser = (userId) => async dispatch => {
     try {
-      // Use csrfFetch to make a request with CSRF protection.
-      const response = await csrfFetch('/api/todos');  // Adjust this URL as per your final routes.
-  
-      // Check if the response status is OK.
-      if (response.ok) {
-        const todos = await response.json();
-        dispatch(setTodos(todos));  // Dispatch the fetched todos to the store.
-      } else {
-        // If the response is not OK, it likely means there's an error on the server side.
-        // We can get the error message from the response body and throw it.
-        const errorData = await response.json();
-        throw new Error(errorData.errors || "Error fetching todos.");
-      }
+        const response = await csrfFetch(`/api/users/${userId}/todos`);
+        
+        if (response.ok) {
+            const todos = await response.json();
+            dispatch(loadUserTodos(todos));
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.errors || "Error fetching todos.");
+        }
     } catch (error) {
-      console.error("Error in getTodos thunk:", error.message);
-      // Optionally, dispatch an action to set an error state in your store.
-      // dispatch(setErrorAction(error.message));
+        console.error("Error in getTodosForUser thunk:", error.message);
     }
-  };
-  
+};
+
+export const createTodoForUser = (userId, todoData) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/users/${userId}/todos`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(todoData),
+        });
+
+        if (response.ok) {
+            const newTodo = await response.json();
+            dispatch(addUserTodo(newTodo));
+            return newTodo;
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.errors || "Error creating todo.");
+        }
+    } catch (error) {
+        console.error("Error in createTodoForUser thunk:", error.message);
+    }
+};
+
+export const editTodoForUser = (userId, todoId, todoData) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/users/${userId}/todos/${todoId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(todoData),
+        });
+
+        if (response.ok) {
+            const updatedTodo = await response.json();
+            dispatch(updateUserTodo(updatedTodo));
+            return updatedTodo;
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.errors || "Error updating todo.");
+        }
+    } catch (error) {
+        console.error("Error in editTodoForUser thunk:", error.message);
+    }
+};
+
+export const removeTodoForUser = (userId, todoId) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/users/${userId}/todos/${todoId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            dispatch(deleteUserTodo(todoId));
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.errors || "Error deleting todo.");
+        }
+    } catch (error) {
+        console.error("Error in removeTodoForUser thunk:", error.message);
+    }
+};
 
 // INITIAL STATE
 const initialState = [];
 
 // REDUCER
 const todosReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_TODOS:
-      return action.todos;
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case LOAD_USER_TODOS:
+            return action.todos;
+        case ADD_USER_TODO:
+            return [...state, action.todo];
+        case UPDATE_USER_TODO:
+            return state.map(todo => 
+                todo.id === action.todo.id ? action.todo : todo
+            );
+        case DELETE_USER_TODO:
+            return state.filter(todo => todo.id !== action.todoId);
+        default:
+            return state;
+    }
 };
 
 export default todosReducer;
