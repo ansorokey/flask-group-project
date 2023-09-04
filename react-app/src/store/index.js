@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   session,
   habits,
   daily,
-  avatar
+  avatar,
   todos: todosReducer,
 });
 
