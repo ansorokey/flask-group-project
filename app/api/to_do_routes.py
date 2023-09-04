@@ -160,16 +160,16 @@ def delete_todo_for_user(user_id, todo_id):
         # Return a success message
         return jsonify({"message": "Todo item deleted successfully"}), 200
     
-        except Exception as e:
+    except Exception as e:
             # If there's a database error during deletion, log it and rollback the transaction
-            print(f"Database error: {e}")
-            db.session.rollback()
-            return jsonify({"error": "Database error: Unable to delete the todo item."}), 500
+        print(f"Database error: {e}")
+        db.session.rollback()
+        return jsonify({"error": "Database error: Unable to delete the todo item."}), 500
 
 # CSRF fetch route for the front end: 
-@app.route('/csrf', methods=['GET'])
-def get_csrf_token():
-    response = make_response(jsonify(success=True))
-    csrf_token = generate_csrf()
-    response.set_cookie('csrf_token', csrf_token)
-    return response
+# @todo_routes.route.route('/csrf', methods=['GET'])
+# def get_csrf_token():
+#     response = make_response(jsonify(success=True))
+#     csrf_token = generate_csrf()
+#     response.set_cookie('csrf_token', csrf_token)
+#     return response

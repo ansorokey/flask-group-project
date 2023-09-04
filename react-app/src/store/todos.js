@@ -1,4 +1,3 @@
-import { csrfFetch } from './csrf';
 
 // ACTION TYPES
 const LOAD_USER_TODOS = 'todos/LOAD_USER_TODOS';
@@ -31,7 +30,7 @@ const deleteUserTodo = (todoId) => ({
 
 export const getTodosForUser = (userId) => async dispatch => {
     try {
-        const response = await csrfFetch(`/api/users/${userId}/todos`);
+        const response = await fetch(`/api/users/${userId}/todos`);
         
         if (response.ok) {
             const todos = await response.json();
@@ -47,7 +46,7 @@ export const getTodosForUser = (userId) => async dispatch => {
 
 export const createTodoForUser = (userId, todoData) => async dispatch => {
     try {
-        const response = await csrfFetch(`/api/users/${userId}/todos`, {
+        const response = await fetch(`/api/users/${userId}/todos`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +69,7 @@ export const createTodoForUser = (userId, todoData) => async dispatch => {
 
 export const editTodoForUser = (userId, todoId, todoData) => async dispatch => {
     try {
-        const response = await csrfFetch(`/api/users/${userId}/todos/${todoId}`, {
+        const response = await fetch(`/api/users/${userId}/todos/${todoId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +92,7 @@ export const editTodoForUser = (userId, todoId, todoData) => async dispatch => {
 
 export const removeTodoForUser = (userId, todoId) => async dispatch => {
     try {
-        const response = await csrfFetch(`/api/users/${userId}/todos/${todoId}`, {
+        const response = await fetch(`/api/users/${userId}/todos/${todoId}`, {
             method: 'DELETE',
         });
 
