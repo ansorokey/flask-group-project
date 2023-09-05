@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useModal } from '../../context/Modal';
 import { useHabit } from "../../context/Habit";
 import { useDispatch } from "react-redux";
-import { updateHabit } from "../../store/habits";
+import { updateHabit, deleteHabit } from "../../store/habits";
 
 // Component Imports
 // import OpenModalButton from "../OpenModalButton";
 import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
-import DeleteHabitModal from "../DeleteHabitModal/DeleteHabitModal";
 
 // Will eventually take individual habits as an argument
 function HabitItem({habit}){
@@ -25,7 +24,7 @@ function HabitItem({habit}){
             Edit
         </div>
         <hr/>
-        {/* Save this for when we change habits into a context */}
+
         <div onClick={() => setHabits(habits => {
             const index = habits.indexOf(habit);
             return [habit, ...habits.slice(0, index), ...habits.slice(index + 1)]})}>
@@ -33,6 +32,7 @@ function HabitItem({habit}){
             To top
         </div>
         <hr/>
+
         <div onClick={() => setHabits(habits => {
             const index = habits.indexOf(habit);
             return [...habits.slice(0, index), ...habits.slice(index + 1), habit]})}>
@@ -40,7 +40,12 @@ function HabitItem({habit}){
             To bottom
         </div>
         <hr/>
-        <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>
+
+        <div onClick={() => {
+            const res = window.confirm("Are you sure you want to delete this habit?");
+            if(res){
+                dispatch(deleteHabit(habit.id));
+            }}}>
             <i className="fa-solid fa-trash-can"></i>
             Delete
         </div>
