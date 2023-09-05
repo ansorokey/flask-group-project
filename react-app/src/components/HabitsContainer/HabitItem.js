@@ -26,12 +26,16 @@ function HabitItem({habit}){
         </div>
         <hr/>
         {/* Save this for when we change habits into a context */}
-        <div onClick={() => setHabits(habits => [habit, ...habits])}>
+        <div onClick={() => setHabits(habits => {
+            const index = habits.indexOf(habit);
+            return [habit, ...habits.slice(0, index), ...habits.slice(index + 1)]})}>
             <i className="fa-solid fa-arrow-up"></i>
             To top
         </div>
         <hr/>
-        <div onClick={() => setHabits(habits => [...habits, habit])}>
+        <div onClick={() => setHabits(habits => {
+            const index = habits.indexOf(habit);
+            return [...habits.slice(0, index), ...habits.slice(index + 1), habit]})}>
             <i className="fa-solid fa-arrow-down"></i>
             To bottom
         </div>
