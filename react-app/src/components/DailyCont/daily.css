@@ -1,8 +1,56 @@
+/* Daily container */
+.daily_cont{
+    color:#C6C1BA;
+    padding: 8px
+}
+
+.dailyTitleCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+#titleDaily{
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+.titleRight{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.titleRight > input{
+    padding: 0 4px;
+    text-decoration: none;
+}
+
+.titleRight input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.titleRight label {
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.titleRight label:hover{
+    cursor: pointer;
+}
+
+.titleRight input[type="radio"]:checked + label {
+    color: #7D70D6;
+    border-bottom: 2px solid #7D70D6;
+}
 
 /* Individual Daily Elements */
 
 .dailyItem {
-    background-color: rgb(206, 206, 65);
+    background-color: #181A1B;
     border-radius: 4px;
     height: 75px;
     display: grid;
@@ -64,12 +112,13 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 .dailyItemRight{
 
-    background-color: aliceblue;
+
     grid-area: 1 / 3 / 3 / 4;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    padding: 5px
 
 }
 

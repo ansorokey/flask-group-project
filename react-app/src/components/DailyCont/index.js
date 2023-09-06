@@ -20,7 +20,7 @@ function DailyCont () {
 
         if (!title) return
         const newDaily = {title: title}
-      
+
         dispatch(createDaily(newDaily))
 
         dispatch(loadAllDailies())
@@ -37,14 +37,19 @@ function DailyCont () {
     return <div className="daily_cont">
     <div className="dailyTitleCont">
         <div className="titleLeft">
-            <p id='titleDaily'>Dailies</p>
+            <h2 id='titleDaily'>Dailies</h2>
             {/* display a little purple circle with the number of how many dailies are due */}
         </div>
         <div className="titleRight" onChange={(e)=>setCat(e.target.value)}>
 
-        <input type="radio" value="due" name="daily" checked={cat === 'due'} /> Due
-        <input type="radio" value="notdue" name="daily" checked={cat === 'notdue'} /> Not Due
-        <input type="radio" value="all" name="daily" checked={cat === 'all'} /> All
+        <input type="radio" value="due" id="due" name="daily" checked={cat === 'due'} />
+        <label for="due">Due</label>
+        <input type="radio" value="notdue" name="daily" id = "notdue" checked={cat === 'notdue'} /> <label for="notdue">Not Due</label>
+        <input type="radio" value="all" id="all" name="daily" checked={cat === 'all'} />
+        <label for="all">All</label>
+
+
+
         </div>
     </div>
 
