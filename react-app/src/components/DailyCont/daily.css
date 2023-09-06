@@ -2,11 +2,12 @@
 /* Individual Daily Elements */
 
 .dailyItem {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(206, 206, 65);
     border-radius: 4px;
     height: 75px;
     display: grid;
-    grid-template: 50% 50%/40px 70% 40px;
+    grid-template-rows: 50% 50% ;
+    grid-template-columns: 20% 60% 20% ;
     color: #C6C1BA;
     margin: 5px;
     box-shadow: 1px 1px 5px black;
@@ -60,6 +61,23 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 .dailyTitle{
     margin: 10px;
 }
+
+.dailyItemRight{
+
+    background-color: aliceblue;
+    grid-area: 1 / 3 / 3 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+
+
+
+
+
+
 
 /* Options Menu */
 .daily-options-btn {
