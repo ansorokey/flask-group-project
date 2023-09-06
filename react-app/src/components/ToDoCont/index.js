@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, getTodosForUser } from '/Users/alexflorea/Desktop/LevelUp/flask-group-project/react-app/src/store/todos.js';
-import { useModal } from '../../context/Modal'; 
+import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, getTodosForUser } from '../../store/todos';
+import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import './todo.css';
 
@@ -12,20 +12,20 @@ function ToDoCont() {
   const dispatch = useDispatch();
 
   const [newTodo, setNewTodo] = useState('');
-  
+
   useEffect(() => {
     if(userId) {
       dispatch(getTodosForUser(userId));
     } else {
       console.error("User ID not found");
     }
-  }, [dispatch, userId]); 
+  }, [dispatch, userId]);
 
   const { setModalContent } = useModal();
 
   const openAddQuestModal = () => {
     setModalContent(
-      <TodoForm 
+      <TodoForm
         onSubmit={(data) => {
           handleAddTodo(data);
           setModalContent(null); // Close the modal after submitting
@@ -46,17 +46,17 @@ function ToDoCont() {
 
   const handleEditTodo = (todoId, todoData) => {
     setModalContent(
-      <TodoForm 
-        initialData={todoData} 
+      <TodoForm
+        initialData={todoData}
         onSubmit={(data) => {
           handleEditTodoSubmit(todoId, data);
-          setModalContent(null); 
+          setModalContent(null);
         }}
         onCancel={() => setModalContent(null)}
       />
     );
   };
-  
+
   const handleEditTodoSubmit = (todoId, data) => {
     if(userId) {
       dispatch(editTodoForUser(userId, todoId, data));
@@ -64,7 +64,7 @@ function ToDoCont() {
       console.error("User ID not found");
     }
   };
-  
+
 
   const handleDeleteTodo = (todoId) => {
     if(userId) {
@@ -91,11 +91,11 @@ function ToDoCont() {
     <div className="todo-container">
       <h2>Quests</h2>
       <div className="todo-input-container">
-        <input 
-          type="text" 
-          value={newTodo} 
-          onChange={(e) => setNewTodo(e.target.value)} 
-          placeholder="Add a new quest title" 
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add a new quest title"
         />
         <button onClick={openAddQuestModal}>Add Quest</button>
       </div>
@@ -103,7 +103,7 @@ function ToDoCont() {
       <div className="todo-list">
         {sortedTodos.map(todo => (
           <div key={todo.id} className="todo-item">
-            {todo.title} 
+            {todo.title}
             {/* If you also want to display the due date, you can include the following line */}
             {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
             <button onClick={() => handleEditTodo(todo.id, todo)}>Edit</button>
