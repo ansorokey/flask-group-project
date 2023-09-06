@@ -63,7 +63,7 @@ function DisplayDailyItems({daily}) {
                <label htmlFor={`checkbox_${daily.id}`} class="checkbox-label"></label>
             </div>
           </div>
-          <div>
+          <div className="dailyTitle">
             {daily.title}
           </div>
           <div className="dailyItemRight">

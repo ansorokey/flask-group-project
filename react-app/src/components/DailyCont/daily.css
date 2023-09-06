@@ -57,7 +57,9 @@ input[type="checkbox"]:checked +.checkbox-label::after{
     color: black;
 }
 
-
+.dailyTitle{
+    margin: 10px;
+}
 
 /* Options Menu */
 .daily-options-btn {
