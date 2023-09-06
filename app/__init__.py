@@ -13,17 +13,16 @@ from .api.avatar_routes import avatar_routes
 from .seeds import seed_commands
 from .config import Config
 from .api.to_do_routes import todo_routes
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
@@ -41,7 +40,6 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
 # Therefore, we need to make sure that in production any
@@ -55,18 +53,15 @@ def https_redirect():
             code = 301
             return redirect(url, code=code)
 
-
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie(
         'csrf_token',
         generate_csrf(),
         secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-        samesite='Strict' if os.environ.get(
-            'FLASK_ENV') == 'production' else None,
+        samesite='Strict' if os.environ.get('FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
-
 
 @app.route("/api/docs")
 def api_help():
@@ -78,7 +73,6 @@ def api_help():
                     app.view_functions[rule.endpoint].__doc__ ]
                     for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
     return route_list
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -92,7 +86,3 @@ def react_root(path):
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
-
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file('index.html')
