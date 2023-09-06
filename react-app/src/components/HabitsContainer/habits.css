@@ -74,6 +74,7 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+    text-align: center;
 }
 
 /* Habit Item */
@@ -162,7 +163,7 @@
 
 .fa-ellipsis-vertical {
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .fa-ellipsis-vertical:hover {
@@ -185,6 +186,10 @@
     display: flex;
     gap: 12px;
     cursor: pointer;
+}
+
+.habit-notes {
+    font-size: 12px;
 }
 
 /* Habit Item Counts */

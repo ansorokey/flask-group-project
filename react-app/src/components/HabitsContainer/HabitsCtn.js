@@ -1,50 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { getUserHabits, createUserHabit } from "../../store/habits.js"
-
-// COMPONENT Import
-import HabitList from "./HabitList.js"
-
-// CSS Import
+import { useState } from "react";
+import { createUserHabit } from "../../store/habits.js";
+import { useHabit } from "../../context/Habit.js";
+import HabitList from "./HabitList.js";
 import "./habits.css"
 
 function HabitsCtn() {
     const sessionUser = useSelector((state) => state.session.user);
-    const habitState = useSelector((state) => state.habits);
+    const { habits, setFilterBy } = useHabit();
 
     const [habitTitle, setHabitTitle] = useState('');
-    const [habits, setHabits] = useState([]);
-    const [filterBy, setFilterBy] = useState('All')
     const dispatch = useDispatch();
-
-    // fetch habits and store them on page load
-    // useEffect prefers to run a defined async function
-    // rather than an async anonymous
-    useEffect(() => {
-      async function initialLoad() {
-        dispatch(getUserHabits())
-      }
-
-      initialLoad();
-    }, [dispatch]);
-
-    // Modify filtered habits every time filter changes
-    useEffect(() => {
-
-      setHabits(() => {
-        const filtersortHabits = Object.values(habitState);
-        switch (filterBy) {
-          case 'All':
-            return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          case 'Weak':
-            return filtersortHabits.filter(h => +h.strength < 1).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          case 'Strong':
-            return filtersortHabits.filter(h => +h.strength > 0 ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          default:
-            return filtersortHabits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      }});
-    // habitState is the key to getting it to load upon refresh
-    }, [filterBy, habitState]);
 
   function handleSubmit(e){
     e.preventDefault();
