@@ -1,0 +1,91 @@
+.todo-container {
+  padding: 20px;
+  border: 2px solid #00ff00; /* Greenscreen green border */
+  border-radius: 5px;
+  background-color: rgba(0, 255, 0, 0.1); /* Slight green fog as background */
+}
+
+.todo-input-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.todo-input-container input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.todo-input-container button {
+  padding: 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.todo-input-container button:hover {
+  background-color: #218838;
+}
+
+.todo-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.todo-item button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.todo-item button:hover {
+  text-decoration: underline;
+}
+
+/* New styles for the form component */
+.todo-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.todo-form-group {
+  margin-bottom: 15px;
+}
+
+.todo-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.todo-form-input, .todo-form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.todo-form-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.todo-form-button:hover {
+  background-color: #218838;
+}
