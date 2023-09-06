@@ -47,15 +47,12 @@ function DailyCont () {
         <input type="radio" value="notdue" name="daily" id = "notdue" checked={cat === 'notdue'} /> <label for="notdue">Not Due</label>
         <input type="radio" value="all" id="all" name="daily" checked={cat === 'all'} />
         <label for="all">All</label>
-
-
-
         </div>
     </div>
 
     <div className="greyBox">
 
-        <form onSubmit={handleSubmit} >
+        <form className="habit-quick-add" onSubmit={handleSubmit} >
             <input
                 type="text"
                 placeholder="Add a Daily"
@@ -69,9 +66,9 @@ function DailyCont () {
         </div>
         <div className="ExplainBox">
 
-            <p>📆</p>
-            <h3>These are your Dailies</h3>
-            <p>Dailies repeat on a regular basis. Choose the schedule that works best for you!</p>
+            <div>📆</div>
+            <div>These are your Dailies</div>
+            <div>Dailies repeat on a regular basis. Choose the schedule that works best for you!</div>
         </div>
     </div>
 
