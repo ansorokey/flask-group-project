@@ -9,8 +9,14 @@ function Search() {
         <div
             className="task-options"
         >
-            <div>Habit</div>
-            <div>Daily</div>
+            <div>
+                <i className="fa-solid fa-cubes-stacked"></i>
+                Habit
+            </div>
+            <div>
+                <span>📆</span>
+                Daily
+            </div>
             <div>To Do</div>
             <div>Reward</div>
         </div>
@@ -30,7 +36,11 @@ function Search() {
             onClick={() => setTagsOpen(!tagsOpen)}
         >
             <i className="fa-solid fa-sliders"></i>
-            Tags
+            <span
+                className="search-tags-text"
+            >
+                Tags
+            </span>
             {tagsOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}
         </div>
 
@@ -39,7 +49,11 @@ function Search() {
             onClick={() => setTasksOpen(!tasksOpen)}
         >
             <i className="fa-solid fa-plus"></i>
-            Add Task
+            <span
+                className="add-task-text"
+            >
+                    Add Task
+            </span>
             {tasksOpen && taskOptions}
         </div>
     </div>);
