@@ -81,7 +81,8 @@ function DisplayDailyItems({daily}) {
             </div>
 
             <div className="streak">
-              ▶▶ {daily.streak}
+            <i className="fa-solid fa-forward icon-forward"></i>
+              {daily.streak}
             </div>
           </div>
         </div>
