@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getStarterAvatars } from "../../store/avatar";
 import DailyCont from "../DailyCont";
+import Search from "../Search";
 
 function Dashboard() {
     const user = useSelector(state => state.session.user);
@@ -18,6 +19,7 @@ function Dashboard() {
 
     return <>
         <UserBar user={user} />
+        <Search />
 
         <div className="task-grid">
             <HabitsCtn />
