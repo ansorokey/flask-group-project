@@ -118,7 +118,7 @@ function HabitItem({habit}){
                 </button>}
                 {showOptions && optionsMenu}
             </div>
-            {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
+            {habit.notes && habit.notes.length && <div className="habit-notes">{habit.notes}</div>}
             <div className="habit-item-counts">
                 {(habit.pos || habit.neg) && <i className="fa-solid fa-forward icon-forward"></i>}
                 {habit.pos && habit.posCount}
