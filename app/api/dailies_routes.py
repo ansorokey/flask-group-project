@@ -137,7 +137,7 @@ def update_daily(id):
 
         return record.to_dict()
     if form.errors:
-        return form.errors
+        return form.errors, 400
 
 @daily_bp.route('/<id>/completed', methods=['PUT'])
 @login_required

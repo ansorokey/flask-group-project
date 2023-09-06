@@ -1,11 +1,65 @@
+
+/* Individual Daily Elements */
+
 .dailyItem {
     background-color: rgb(24, 26, 27);
-    color: white;
-    margin: 5px;
+    border-radius: 4px;
     height: 75px;
-    padding: 10px;
+    display: grid;
+    grid-template: 50% 50%/40px 70% 40px;
+    color: #C6C1BA;
+    margin: 5px;
+    box-shadow: 1px 1px 5px black;
+}
+.dailyCheckbox{
+    grid-area: span 2/ span 1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.completed{
+    background-color: gray;
+}
+.notCompleted{
+    background-color: rgb(35, 142, 35)
+}
+
+.hiddenCheck{
+    display:none
+}
+.checkbox-label {
+    cursor: pointer;
+    padding-left: 30px;
+    padding-top: 8px;
+    position: relative;
+}
+input[type="checkbox"] +.checkbox-label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px; /* Adjust the size as needed */
+    height: 30px; /* Adjust the size as needed */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.339)/* Change the background color */
+
+
+}
+input[type="checkbox"]:checked +.checkbox-label::after{
+    content: "\2713"; /* Unicode checkmark character */
+    position: absolute;
+    left: 5px; /* Adjust the positioning as needed */
+    top: 1px; /* Adjust the positioning as needed */
+    font-size: 20px; /* Adjust the size of the checkmark */
+    color: black;
+}
+
+
+
+/* Options Menu */
 .daily-options-btn {
     visibility: hidden;
     background-color: rgb(24, 26, 27);
@@ -26,6 +80,7 @@
     padding: 10px;
 }
 
+/* Delete Daily modal */
 .deleteDailyModal{
     background-color: azure;
     color: black;
@@ -36,6 +91,7 @@
     align-content: center;
 }
 
+/* Edit Daily modal */
 .daily-edit-ctn{
     background-color: azure;
     position: fixed;

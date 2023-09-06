@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { updateDaily, removeDaily } from "../../store/daily";
+import { updateDaily, removeDaily, loadAllDailies } from "../../store/daily";
 
 function EditDailyForm({daily}) {
   const { closeModal } = useModal();
@@ -16,13 +16,25 @@ function EditDailyForm({daily}) {
     const [streak, setStreak] = useState(daily.streak)
   // to toggle advanced setting menu
   const [advanced, setAdvanced] = useState(false)
+  // Errors from submit
+  const [errors, setErrors] = useState()
 
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const updatedDaily = {title, description, strength, repeats_frame, repeats_frequency}
-    await dispatch(updateDaily(daily.id, updatedDaily))
+    const newDaily = { title, description, strength, repeats_frame, repeats_frequency };
+    console.log('!!!!!!!handleSubmit: updated daily!!!!!!!!!!!!')
+    console.log(newDaily)
+    const res = await dispatch(updateDaily(daily.id, newDaily));
 
+    console.log("Response from updateDaily:", res); // Add this line
+
+    if (res && Array.isArray(res)) {
+      setErrors(res);
+    } else {
+      await dispatch(loadAllDailies());
+      closeModal();
+    }
   }
 
 
@@ -61,6 +73,7 @@ function EditDailyForm({daily}) {
               placeholder="Add a title"
               onChange={(e)=> setTitle(e.target.value)}
             />
+            <div className="errors">{errors?.title}</div>
 
 
           <div className="NotesTitleLineEditDaily">
@@ -73,10 +86,11 @@ function EditDailyForm({daily}) {
             <textarea
               className="descriptionInputDaily"
               placeholder="Add notes"
-              value={title}
-              onChange={(e)=> setTitle(e.target.value)}
+              value={description}
+              onChange={(e)=> setDescription(e.target.value)}
             />
       </div>
+      <div className="errors">{errors?.description}</div>
 
 
       <div className="otherDailyinputs">
@@ -97,6 +111,7 @@ function EditDailyForm({daily}) {
             <option value="Medium">Medium</option>
             <option value="Hard">Hard</option>
           </select>
+          <div className="errors">{errors?.difficulty}</div>
 
           {/* This is where Start date will go when it is implimented */}
 
@@ -107,9 +122,12 @@ function EditDailyForm({daily}) {
             <option value="30">Monthly</option>
             <option value="365">Yearly</option>
           </select>
+          <div className="errors">{errors?.repeats_frame}</div>
 
           <label>Repeat Every</label>
           <input type='number' value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />
+
+          <div className="errors">{errors?.repeats_frequency}</div>
 
           {/* This is where the tags input will go when that feature is implimented  */}
 
@@ -128,7 +146,10 @@ function EditDailyForm({daily}) {
               {/* icon */}
               <input type="number" value={streak} onChange={(e)=>{setStreak(e.target.value)}}/>
           </div>
-        </div>}
+        </div>
+
+        }
+        <div className="errors">{errors?.streak}</div>
 
       </div>
 

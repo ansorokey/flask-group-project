@@ -49,13 +49,19 @@ function DisplayDailyItems({daily}) {
 
     return (
         <div className="dailyItem">
-          <div className="dailyCheckbox">
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                markComplete(daily.id);
-              }}
-            />
+          <div className={`dailyCheckbox ${daily.completed ? 'completed' : 'notCompleted'}`}>
+            <div className="checkbox">
+              <input
+                type="checkbox"
+                className="hiddenCheck"
+                id={`checkbox_${daily.id}`}
+                checked={daily.completed}
+                onChange={(e) => {
+                  markComplete(daily.id);
+                }}
+              />
+               <label htmlFor={`checkbox_${daily.id}`} class="checkbox-label"></label>
+            </div>
           </div>
           <div>
             {daily.title}
