@@ -3,7 +3,7 @@ from app.models.to_do import ToDo
 from flask_login import current_user, login_required
 from app.models import db
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, DateTimeField, Form, validators
+from wtforms import StringField, DateField, DateTimeField, BooleanField, Form, validators
 from wtforms.validators import DataRequired, Optional
 from flask_wtf.csrf import generate_csrf
 
@@ -46,6 +46,9 @@ def get_single_todo_for_user(user_id, todo_id):
 
     # Return the ToDo details
     return jsonify(todo.to_dict())
+
+
+
 
 # Form setup to create a new ToDo
 class ToDoForm(FlaskForm):
@@ -91,6 +94,52 @@ def create_todo_for_user(user_id):
 
     # If the form isn't valid, return the form errors
     return {'errors': todo_form_validation_errors(form.errors)}, 401
+
+
+
+# Form setup to mark a ToDo as completed
+class MarkTodoCompletedForm(FlaskForm):
+    completed = BooleanField('completed', validators=[DataRequired()])
+
+@todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>/completed', methods=['PUT'])
+@login_required
+def mark_todo_completed(user_id, todo_id):
+    # Ensure only the rightful user can update the ToDo
+    if current_user.id != user_id:
+        abort(403)
+
+    # Fetch the ToDo to be marked as completed from the database
+    todo = ToDo.query.get(todo_id)
+    if not todo or todo.user_id != user_id:
+        return jsonify({"error": "ToDo item not found or unauthorized update attempt"}), 404
+
+    # Initialize the form with the request data
+    form = MarkTodoCompletedForm(data=request.json)
+    # Set the csrf_token for security
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # If the form is valid
+    if form.validate_on_submit():
+        try:
+            # Mark the ToDo as completed and set the completion date
+            todo.completed = form.data['completed']
+            todo.completed_at = datetime.utcnow() if form.data['completed'] else None
+            todo.updated_at = datetime.utcnow()
+
+            # Save the updated details in the database
+            db.session.commit()
+            # Return the updated details
+            return jsonify(todo.to_dict()), 200
+
+        except Exception as e:
+            # If there's a database error, rollback and return an error message
+            print(f"Database error: {e}")
+            db.session.rollback()
+            return {"errors": "Database error: Unable to mark the todo item as completed."}, 500
+
+    # If the form isn't valid, return the form errors
+    return {'errors': todo_form_validation_errors(form.errors)}, 401
+
 
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>', methods=['PUT'])
 @login_required

@@ -14,6 +14,7 @@ class ToDo(db.Model):
     description = db.Column(db.String(500), nullable=True)
     due_date = db.Column(db.Date, nullable=True)
     completed = db.Column(db.Boolean, default=False, nullable=False)
+    completed_at = db.Column(db.DateTime, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
@@ -30,6 +31,7 @@ class ToDo(db.Model):
             "description": self.description,
             "due_date": self.due_date,
             "completed": self.completed,
+            "completed_at": self.completed_at,
             "user_id": self.user_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at

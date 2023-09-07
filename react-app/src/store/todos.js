@@ -4,6 +4,7 @@ const LOAD_USER_TODOS = 'todos/LOAD_USER_TODOS';
 const ADD_USER_TODO = 'todos/ADD_USER_TODO';
 const UPDATE_USER_TODO = 'todos/UPDATE_USER_TODO';
 const DELETE_USER_TODO = 'todos/DELETE_USER_TODO';
+const MARK_TODO_COMPLETED = 'todos/COMPLETED';
 
 // ACTION CREATORS
 const loadUserTodos = (todos) => ({
@@ -24,6 +25,11 @@ const updateUserTodo = (todo) => ({
 const deleteUserTodo = (todoId) => ({
     type: DELETE_USER_TODO,
     todoId,
+});
+
+const Completed = (todo) => ({
+    type: MARK_TODO_COMPLETED,
+    todo,
 });
 
 // THUNKS
@@ -66,6 +72,32 @@ export const createTodoForUser = (userId, todoData) => async dispatch => {
         console.error("Error in createTodoForUser thunk:", error.message);
     }
 };
+
+
+export const markTodoAsCompleted = (userId, todoId, completed) => async dispatch => {
+    try {
+        const response = await fetch(`/api/todos/users/${userId}/todos/${todoId}/completed`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ completed }),
+        });
+
+        if (response.ok) {
+            const updatedTodo = await response.json();
+            dispatch(Completed(updatedTodo));
+            return updatedTodo;
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.errors || "Error marking todo as completed.");
+        }
+    } catch (error) {
+        console.error("Error in markTodoAsCompleted thunk:", error.message);
+    }
+};
+
+
 
 export const editTodoForUser = (userId, todoId, todoData) => async dispatch => {
     try {
@@ -123,6 +155,10 @@ const todosReducer = (state = initialState, action) => {
             );
         case DELETE_USER_TODO:
             return state.filter(todo => todo.id !== action.todoId);
+        case MARK_TODO_COMPLETED:
+                return state.map(todo => 
+                    todo.id === action.todo.id ? action.todo : todo
+                );
         default:
             return state;
     }

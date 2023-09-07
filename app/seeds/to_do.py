@@ -1,4 +1,4 @@
-from app.models import db, ToDo, User, environment, SCHEMA, User
+from app.models import db, ToDo, User, environment, SCHEMA
 from datetime import datetime, timedelta
 from sqlalchemy.sql import text
 
@@ -9,13 +9,15 @@ todos_samples = {
             "title": "Finish project",
             "description": "Complete final project and deploy it",
             "due_date": datetime.now() + timedelta(days=3),
-            "completed": False
+            "completed": False,
+            "completed_at": None
         },
         {
             "title": "Read book",
             "description": "Read 'The Great Gatsby'",
             "due_date": datetime.now() + timedelta(days=10),
-            "completed": False
+            "completed": False,
+            "completed_at": None
         }
     ],
     'marnie': [
@@ -23,7 +25,8 @@ todos_samples = {
             "title": "Go for a run",
             "description": "Complete 5km morning run",
             "due_date": datetime.now() + timedelta(days=1),
-            "completed": False
+            "completed": False,
+            "completed_at": None
         }
     ],
     'bobbie': [
@@ -31,7 +34,8 @@ todos_samples = {
             "title": "Visit dentist",
             "description": "Regular check-up",
             "due_date": datetime.now() + timedelta(days=7),
-            "completed": False
+            "completed": False,
+            "completed_at": None
         }
     ]
 }
@@ -53,14 +57,4 @@ def undo_todos():
         db.session.execute(f"TRUNCATE table {SCHEMA}.todos RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM todos"))
-
     db.session.commit()
-
-# Modified the original below to include the schema for production
-# def undo_todos():
-#     db.session.execute("DELETE FROM todos")
-#     db.session.commit()
-
-
-# if __name__ == "__main__":
-#     seed_todos()
