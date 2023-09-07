@@ -1,4 +1,3 @@
-
 // ACTION TYPES
 const LOAD_USER_TODOS = 'todos/LOAD_USER_TODOS';
 const ADD_USER_TODO = 'todos/ADD_USER_TODO';
@@ -37,7 +36,7 @@ const Completed = (todo) => ({
 export const getTodosForUser = (userId) => async dispatch => {
     try {
         const response = await fetch(`/api/todos/users/${userId}/todos`);
-        
+
         if (response.ok) {
             const todos = await response.json();
             dispatch(loadUserTodos(todos));
@@ -150,7 +149,7 @@ const todosReducer = (state = initialState, action) => {
         case ADD_USER_TODO:
             return [...state, action.todo];
         case UPDATE_USER_TODO:
-            return state.map(todo => 
+            return state.map(todo =>
                 todo.id === action.todo.id ? action.todo : todo
             );
         case DELETE_USER_TODO:

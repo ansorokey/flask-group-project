@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, getTodosForUser, markTodoAsCompleted } from '/Users/alexflorea/Desktop/LevelUp/flask-group-project/react-app/src/store/todos.js';
-import { useModal } from '../../context/Modal'; 
+import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, getTodosForUser, markTodoAsCompleted } from '../../store/todos';
+import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import TodoDetails from './tododetails'; 
 import './todo.css';
@@ -13,7 +13,6 @@ function ToDoCont() {
   const dispatch = useDispatch();
 
   const [newTodo, setNewTodo] = useState('');
-  const [activeTab, setActiveTab] = useState('Scheduled');
 
   useEffect(() => {
     if(userId) {
@@ -21,13 +20,13 @@ function ToDoCont() {
     } else {
       console.error("User ID not found");
     }
-  }, [dispatch, userId]); 
+  }, [dispatch, userId]);
 
   const { setModalContent } = useModal();
 
   const openAddQuestModal = () => {
     setModalContent(
-      <TodoForm 
+      <TodoForm
         initialTitle={newTodo}
         onSubmit={(data) => {
           handleAddTodo(data);
@@ -50,11 +49,11 @@ function ToDoCont() {
 
   const handleEditTodo = (todoId, todoData) => {
     setModalContent(
-      <TodoForm 
-        initialData={todoData} 
+      <TodoForm
+        initialData={todoData}
         onSubmit={(data) => {
           handleEditTodoSubmit(todoId, data);
-          setModalContent(null); 
+          setModalContent(null);
         }}
         onCancel={() => setModalContent(null)} 
       />
@@ -68,6 +67,8 @@ function ToDoCont() {
       console.error("User ID not found");
     }
   };
+
+
 
   const handleDeleteTodo = (todoId) => {
     if(userId) {
@@ -127,11 +128,11 @@ function ToDoCont() {
       <button className={`habit-filter-by ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
       </div>
       <div className="todo-input-container">
-        <input 
-          type="text" 
-          value={newTodo} 
-          onChange={(e) => setNewTodo(e.target.value)} 
-          placeholder="Add Quest Title..." 
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add Quest Title..."
         />
         <button onClick={openAddQuestModal}>Add Quest</button>
       </div>
@@ -140,7 +141,7 @@ function ToDoCont() {
         {filteredTodos.map(todo => (
           <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
             <div className="todo-item">
-              {todo.title} 
+              {todo.title}
               {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
             </div>
           </div>

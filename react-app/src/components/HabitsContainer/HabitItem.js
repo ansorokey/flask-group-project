@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useModal } from '../../context/Modal';
+import { useHabit } from "../../context/Habit";
 import { useDispatch } from "react-redux";
-import { updateHabit } from "../../store/habits";
+import { updateHabit, deleteHabit } from "../../store/habits";
 
 // Component Imports
 // import OpenModalButton from "../OpenModalButton";
 import EditHabitForm from "../EditHabitForm/EditHabitForm.js"
-import DeleteHabitModal from "../DeleteHabitModal/DeleteHabitModal";
 
 // Will eventually take individual habits as an argument
 function HabitItem({habit}){
@@ -16,6 +16,7 @@ function HabitItem({habit}){
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const { setModalContent } = useModal();
+    const { setHabits } = useHabit();
 
     const optionsMenu = <div className="habits-options-menu" onClick={displayOrHideMenu}>
         <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>
@@ -23,18 +24,28 @@ function HabitItem({habit}){
             Edit
         </div>
         <hr/>
-        {/* Save this for when we change habits into a context */}
-        {/* <div>
+
+        <div onClick={() => setHabits(habits => {
+            const index = habits.indexOf(habit);
+            return [habit, ...habits.slice(0, index), ...habits.slice(index + 1)]})}>
             <i className="fa-solid fa-arrow-up"></i>
             To top
         </div>
         <hr/>
-        <div>
+
+        <div onClick={() => setHabits(habits => {
+            const index = habits.indexOf(habit);
+            return [...habits.slice(0, index), ...habits.slice(index + 1), habit]})}>
             <i className="fa-solid fa-arrow-down"></i>
             To bottom
         </div>
-        <hr/> */}
-        <div onClick={() => setModalContent(<DeleteHabitModal habit={habit} />)}>
+        <hr/>
+
+        <div onClick={() => {
+            const res = window.confirm("Are you sure you want to delete this habit?");
+            if(res){
+                dispatch(deleteHabit(habit.id));
+            }}}>
             <i className="fa-solid fa-trash-can"></i>
             Delete
         </div>
@@ -107,7 +118,7 @@ function HabitItem({habit}){
                 </button>}
                 {showOptions && optionsMenu}
             </div>
-            {habit.notes && habit.notes.length && <div>{habit.notes}</div>}
+            {habit.notes && habit.notes.length && <div className="habit-notes">{habit.notes}</div>}
             <div className="habit-item-counts">
                 {(habit.pos || habit.neg) && <i className="fa-solid fa-forward icon-forward"></i>}
                 {habit.pos && habit.posCount}
