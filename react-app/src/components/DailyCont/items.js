@@ -66,6 +66,9 @@ function DisplayDailyItems({daily}) {
           <div className="dailyTitle">
             {daily.title}
           </div>
+          <div className="dailyDesc">
+                {daily.description}
+          </div>
           <div className="dailyItemRight">
 
             <div className="options">
