@@ -1,0 +1,43 @@
+.ct {
+    text-align: center;
+}
+
+.landing-page {
+    background-image: url("https://habitica.com/static/svg/cce576f817758fa4398dadf559199d47.svg");
+    background-color: #6133B4;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    padding: 70px 12px;
+}
+
+.landing-page-ctn {
+    width: 1140px;
+}
+
+.landing-sec-1, .landing-sec-4 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.landing-header > img, .landing-hilight > img, .landing-sec-4 > div > img {
+    width: 100%;
+}
+
+.landing-header {
+    padding: 0 12px;
+}
+
+.hilight-ctn {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.landing-hilight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 12px;
+}

@@ -17,8 +17,13 @@ function DailyCont () {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(createDaily({title}))
 
+        if (!title) return
+        const newDaily = {title: title}
+
+        dispatch(createDaily(newDaily))
+
+        dispatch(loadAllDailies())
         setTitle('')
 
     }
@@ -32,20 +37,26 @@ function DailyCont () {
     return <div className="daily_cont">
     <div className="dailyTitleCont">
         <div className="titleLeft">
-            <p id='titleDaily'>Dailies</p>
+            <h2 id='titleDaily'>Dailies</h2>
             {/* display a little purple circle with the number of how many dailies are due */}
         </div>
-        <div className="titleRight" onChange={(e)=>setCat(e.target.value)}>
+        <div className="titleRight" >
 
-        <input type="radio" value="due" name="daily" checked={cat === 'due'} /> Due
-        <input type="radio" value="notdue" name="daily" checked={cat === 'notdue'} /> Not Due
-        <input type="radio" value="all" name="daily" checked={cat === 'all'} /> All
+            <input type="radio" value="due" id="due" name="daily" checked={cat === 'due'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="due">Due</label>
+
+            <input type="radio" value="notdue" name="daily" id = "notdue" checked={cat === 'notdue'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="notdue">Not Due</label>
+
+            <input type="radio" value="all" id="all" name="daily" checked={cat === 'all'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="all">All</label>
+
         </div>
     </div>
 
     <div className="greyBox">
 
-        <form onSubmit={handleSubmit} >
+        <form className="habit-quick-add" onSubmit={handleSubmit} >
             <input
                 type="text"
                 placeholder="Add a Daily"
@@ -53,15 +64,15 @@ function DailyCont () {
                 onChange={e => setTitle(e.currentTarget.value)} />
         </form>
         <div>
-            {/* LOOP AND DISPLAY DAILIES HERE */}
-            <DisplayDailyItems dailies={dailies[cat]} />
-
+            {Object.values(dailies[cat]).map((daily) => (
+                <DisplayDailyItems key={daily.id} daily={daily} />
+            ))}
         </div>
         <div className="ExplainBox">
 
-            <p>📆</p>
-            <h3>These are your Dailies</h3>
-            <p>Dailies repeat on a regular basis. Choose the schedule that works best for you!</p>
+            <div>📆</div>
+            <div>These are your Dailies</div>
+            <div>Dailies repeat on a regular basis. Choose the schedule that works best for you!</div>
         </div>
     </div>
 
