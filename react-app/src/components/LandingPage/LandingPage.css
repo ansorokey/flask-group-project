@@ -1,3 +1,7 @@
+.ct {
+    text-align: center;
+}
+
 .landing-page {
     background-image: url("https://habitica.com/static/svg/cce576f817758fa4398dadf559199d47.svg");
     background-color: #6133B4;
@@ -13,13 +17,17 @@
     width: 1140px;
 }
 
-.landing-sec-1 {
+.landing-sec-1, .landing-sec-4 {
     display: grid;
     grid-template-columns: 50% 50%;
 }
 
-.landing-header > img, .landing-hilight > img {
+.landing-header > img, .landing-hilight > img, .landing-sec-4 > div > img {
     width: 100%;
+}
+
+.landing-header {
+    padding: 0 12px;
 }
 
 .hilight-ctn {

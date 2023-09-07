@@ -22,6 +22,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password, firstName, lastName));
         if (data) {
+          console.log(data);
           const errs = {}
           data.forEach(e => {
             const keyMessage = e.split(':');
@@ -30,13 +31,13 @@ function SignupFormPage() {
           setErrors(errs);
         }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+        setErrors({'password': 'Confirm Password field must be the same as the Password field'});
     }
   };
 
   return (
     <div className="signup-page">
-      <h2>Sign Up For Free</h2>
+      <h2 className="ct">Sign Up For Free</h2>
       <p>Username must be 1 to 20 characters, containing only letters a to z, numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
       <form onSubmit={handleSubmit} className="signup-page-form">
 
@@ -83,18 +84,20 @@ function SignupFormPage() {
           className="signup-input"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {setPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
           required
         />
+        {errors.password}
 
         <input
           placeholder="Confirm Password"
           className="signup-input"
           type="password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={(e) => {setConfirmPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
           required
         />
+        {errors.password}
 
         <button className="signup-button" type="submit">Sign Up</button>
       </form>
