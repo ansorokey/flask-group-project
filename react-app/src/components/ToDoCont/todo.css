@@ -1,9 +1,10 @@
+/* To-Do Container */
 .todo-container {
   padding: 20px;
-  border: 2px solid purple; /* Updated border color to purple */
+  border: 2px solid purple;
   border-radius: 5px;
-  background-color: #2b2b2b; /* Updated background color to a dark shade */
-  color: silver; /* Updated text color to silver */
+  background-color: #2b2b2b;
+  color: silver;
 }
 
 .todo-input-container {
@@ -14,59 +15,53 @@
 .todo-input-container input {
   flex: 1;
   padding: 10px;
-  border: 1px solid gray; /* Updated border color to gray */
+  border: 1px solid gray;
   border-radius: 5px;
-  background-color: #5b2d0e; /* Updated background color */
-  color: #c6c1ba; /* Updated text color */
+  background-color: #5b2d0e;
+  color: #c6c1ba;
 }
 
 .todo-input-container button {
   padding: 10px;
   border: none;
-  background-color: purple; /* Updated background color to purple */
-  color: silver; /* Updated text color to silver */
+  background-color: purple;
+  color: silver;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .todo-input-container button:hover {
-  background-color: #9E4000; /* Updated hover background color */
+  background-color: #9E4000;
 }
 
 .todo-list {
   max-height: 300px;
   overflow-y: auto;
-  background-color: black; /* Updated background color to black */
-  border: 1px solid gray; /* Added border with gray color */
-  border-radius: 5px; /* Added border-radius */
+  background-color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 .todo-item {
   display: block;
   width: 100%;
-  padding: 10px; /* Added padding */
-  border-bottom: 1px solid gray; /* Updated border color to gray */
-  color: silver; /* Updated text color to silver */
+  padding: 10px;
+  border-bottom: 1px solid gray;
+  color: silver;
 }
 
 .todo-item button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #FFAB73; /* Updated text color */
+  color: #FFAB73;
 }
 
 .todo-item button:hover {
   text-decoration: underline;
 }
 
-/* The rest of your CSS (for the forms and details) can remain the same as it already matches the desired scheme */
-
-
-/* The rest of your CSS remains unchanged */
-
-/* todo details styling */
-
+/* Todo Details Styling */
 .todo-details-container {
   background-color: black;
   color: silver;
@@ -112,9 +107,7 @@
   color: black;
 }
 
-
-/* todoform styling  */
-
+/* Todo Form Styling */
 .todo-form-ctn {
   background-color: #2b2b2b;
   padding: 20px;
@@ -141,7 +134,6 @@
   border-radius: 4px;
   background-color: #5b2d0e;
   color: #c6c1ba;
-  box-sizing: border-box;
 }
 
 .todo-form-buttons {

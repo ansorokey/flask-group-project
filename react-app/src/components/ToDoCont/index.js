@@ -122,9 +122,9 @@ function ToDoCont() {
     <div className="todo-container">
       <h2>Quests</h2>
       <div className="todo-tab-container">
-        <button onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
-        <button onClick={() => setActiveTab('Active')}>Active</button>
-        <button onClick={() => setActiveTab('Completed')}>Completed</button>
+      <button className={`habit-filter-by ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
+      <button className={`habit-filter-by ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
+      <button className={`habit-filter-by ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
       </div>
       <div className="todo-input-container">
         <input 
