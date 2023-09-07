@@ -1,0 +1,206 @@
+/* Daily container */
+.daily_cont{
+    color:#C6C1BA;
+    padding: 8px
+}
+
+.dailyTitleCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+#titleDaily{
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+.titleRight{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.titleRight > input{
+    padding: 0 4px;
+    text-decoration: none;
+}
+
+.titleRight input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.titleRight label {
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.titleRight label:hover{
+    cursor: pointer;
+}
+
+.titleRight input[type="radio"]:checked + label {
+    color: #7D70D6;
+    border-bottom: 2px solid #7D70D6;
+}
+
+.greyBox{
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #212425;
+    margin: 0px;
+}
+
+.ExplainBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+}
+
+/* Individual Daily Elements */
+
+.dailyItem {
+    background-color: #181A1B;
+    border-radius: 4px;
+    height: 75px;
+    display: grid;
+    grid-template-rows: 50% 50% ;
+    grid-template-columns: 20% 60% 20% ;
+    color: #C6C1BA;
+    margin: 5px;
+    box-shadow: 1px 1px 5px black;
+}
+.dailyCheckbox{
+    grid-area: span 2/ span 1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.completed{
+    background-color: gray;
+}
+.notCompleted{
+    background-color: rgb(35, 142, 35)
+}
+
+.hiddenCheck{
+    display:none
+}
+.checkbox-label {
+    cursor: pointer;
+    padding-left: 30px;
+    padding-top: 8px;
+    position: relative;
+}
+input[type="checkbox"] +.checkbox-label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.339)
+
+}
+input[type="checkbox"]:checked +.checkbox-label::after{
+    content: "\2713";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    font-size: 20px;
+    color: black;
+}
+
+.dailyTitle{
+    margin: 10px;
+}
+.dailyDesc{
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.dailyItemRight{
+    grid-area: 1 / 3 / 3 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5px
+}
+
+
+
+/* Options Menu */
+.daily-options-btn {
+    visibility: hidden;
+    background-color: rgb(24, 26, 27);
+    box-shadow: none;
+}
+.dailyItem:hover .daily-options-btn {
+    visibility: visible;
+    background-color: rgb(24, 26, 27);
+
+}
+.daily-options-menu{
+    background-color: #C6C1BA;
+    color: #181A1B;
+    height: auto;
+    width: 100px;
+    z-index: 999;
+    position: absolute;
+    padding: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px rgb(46, 46, 46);
+    border-radius: 1px;
+}
+
+/* Delete Daily modal */
+.deleteDailyModal{
+    background-color: azure;
+    color: black;
+    height: 200px;
+    width: 300px;
+    padding: 15px;
+    margin: 10px;
+    align-content: center;
+}
+
+/* Edit Daily modal */
+.streakIcon{
+    display: flex;
+    background-color: #b5b5b5;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    color: #181A1B;
+
+}
+.fa-solid fa-forward icon-forward{
+    color: #181A1B;
+
+}
+#streakLabel{
+    margin-top: 25px;
+}
+.timeFrame{
+    background-color: #b5b5b5;
+    padding: 3px 10px;
+    color: black;
+    border-radius: 1px;
+    font-size: 14px;
+}
+#gap{
+    margin-top: 10px;
+    padding-top: 10px;
+}

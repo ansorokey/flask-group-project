@@ -44,7 +44,7 @@ def all_dailies():
     """
     Query for all dailies for the current user and returns them in a list of daily dictionaries.
     """
-    dailys = Daily.query.filter_by(user_id = current_user.id).all()
+    dailys = Daily.query.filter(Daily.user_id == current_user.id).all()
 
     updated_dailies = []
 
@@ -87,6 +87,7 @@ def new_daily():
         frame = int(form.data['repeats_frame'])
         frequency = form.data['repeats_frequency']
         due_date = getDueDate(frame, frequency)
+        # maybe impliment a place for the user to specify first due date?
 
 
         # create the new record
@@ -136,7 +137,7 @@ def update_daily(id):
 
         return record.to_dict()
     if form.errors:
-        return form.errors
+        return form.errors, 400
 
 @daily_bp.route('/<id>/completed', methods=['PUT'])
 @login_required

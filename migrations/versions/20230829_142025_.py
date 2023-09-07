@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('due_date', sa.Date(), nullable=True),
     sa.Column('completed', sa.Boolean(), nullable=False),
+    sa.Column('completed_at', sa.Date(), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id')
