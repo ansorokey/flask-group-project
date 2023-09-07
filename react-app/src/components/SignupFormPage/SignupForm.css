@@ -2,3 +2,17 @@
     display: grid;
     grid-template-rows: auto;
 }
+
+.signup-input {
+    background-color: #432874;
+    color: #925cf3;
+    padding: 10px 12px;
+    border: 2px solid transparent;
+    margin-bottom: 14px;
+}
+
+.signup-button {
+    background-color: #46A7D9;
+    padding: 11px 12px;
+    color: white;
+}
