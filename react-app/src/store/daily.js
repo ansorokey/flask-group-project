@@ -66,24 +66,19 @@ export const updateDaily = (id, daily) => async dispatch =>{
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(
-			daily
-		),
+		body: JSON.stringify(daily),
 	});
-
 
 	if (response.ok) {
 		const data = await response.json();
 
 		dispatch(createOrUpdateDaily(data));
-		return null;
+		return data;
 	} else if (response.status < 500) {
 		const data = await response.json();
-
 		if (data.errors) {
 			return data.errors;
 		}
-		return {'message': "HERE"}
 	} else {
 		return ["An error occurred. Please try again."];
 	}

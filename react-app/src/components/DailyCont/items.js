@@ -60,7 +60,7 @@ function DisplayDailyItems({daily}) {
                   markComplete(daily.id);
                 }}
               />
-               <label htmlFor={`checkbox_${daily.id}`} class="checkbox-label"></label>
+               <label htmlFor={`checkbox_${daily.id}`} className="checkbox-label"></label>
             </div>
           </div>
           <div className="dailyTitle">

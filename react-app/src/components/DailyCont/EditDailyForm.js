@@ -22,18 +22,20 @@ function EditDailyForm({daily}) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const newDaily = { title, description, strength, repeats_frame, repeats_frequency };
-    console.log('!!!!!!!handleSubmit: updated daily!!!!!!!!!!!!')
-    console.log(newDaily)
-    const res = await dispatch(updateDaily(daily.id, newDaily));
+    const issues = {}
 
-    console.log("Response from updateDaily:", res); // Add this line
+    if(!title.length) {
+      issues.title = "Title is required"
+      setErrors(issues)
+    }
 
-    if (res && Array.isArray(res)) {
-      setErrors(res);
-    } else {
-      await dispatch(loadAllDailies());
+    const newDaily = { title, description, strength, repeats_frame, repeats_frequency, streak: +streak };
+
+
+    if(!Object.values(issues).length){
+      await dispatch(updateDaily(daily.id, newDaily));
       closeModal();
+
     }
   }
 
@@ -49,7 +51,8 @@ function EditDailyForm({daily}) {
     <div className="habit-edit-ctn">
 
 
-      <div className="habit-title-and-btns">
+      <div className="habit-title-and-btns" >
+
         <div>
           Edit Daily
         </div>
@@ -59,10 +62,7 @@ function EditDailyForm({daily}) {
             Cancel
           </button>
           <button
-            onClick={(e) => {
-              handleSubmit(e);
-              closeModal();
-            }}
+            onClick={(e) => {handleSubmit(e);}}
             className="habit-edit save">
               Save
           </button>
@@ -103,7 +103,7 @@ function EditDailyForm({daily}) {
             {/* This is where checklist input will go in the future */}
 
           <div className="edit-habit-select-ctn">
-              <label>Difficulty </label>
+              <label id="gap">Difficulty </label>
 
               <select value={strength} onChange={(e) => setStrength(e.target.value)}>
                 <option value="Trivial">Trivial</option>
@@ -132,7 +132,7 @@ function EditDailyForm({daily}) {
           <div className="edit-habit-select-ctn">
             <label>Repeat Every</label>
             <div>
-              <input type='number' value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />    &ensp; <span className="timeFrame">{getTimeframe()}</span>
+              <input type='number'  min="1" value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />    &ensp; <span className="timeFrame">{getTimeframe()}</span>
             </div>
 
             <div className="errors">{errors?.repeats_frequency}</div>
@@ -164,7 +164,7 @@ function EditDailyForm({daily}) {
             <div className="streakIcon">
               <i className="fa-solid fa-forward icon-forward"></i>
 
-              <input type="number" value={streak} onChange={(e)=>{setStreak(e.target.value)}}/></div>
+              <input type="number" value={streak} min="0" onChange={(e)=>{setStreak(e.target.value)}}/></div>
 
           </div>
         </div>
