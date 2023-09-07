@@ -1,0 +1,4 @@
+.signup-page-form {
+    display: grid;
+    grid-template-rows: auto;
+}

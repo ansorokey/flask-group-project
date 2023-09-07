@@ -160,10 +160,10 @@ function EditHabitForm({habit}){
                         <div className="advanced-counters">
                             {pos && <div>
                                 <i className="fa-regular fa-square-plus"></i>
-                                <input type="number" value={posCount} onChange={e => setPosCount(e.target.value)} /></div>}
+                                <input type="number" value={posCount} min={0} onChange={e => setPosCount(e.target.value)} /></div>}
                             {neg && <div>
                                 <i className="fa-regular fa-square-minus"></i>
-                                <input type="number" value={negCount} onChange={e => setNegCount(e.target.value)} /></div>}
+                                <input type="number" value={negCount} min={0} onChange={e => setNegCount(e.target.value)} /></div>}
                         </div>
                     </div>
                 }
