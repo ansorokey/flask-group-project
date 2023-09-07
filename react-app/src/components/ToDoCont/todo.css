@@ -1,7 +1,6 @@
 /* To-Do Container */
 .todo-container {
   padding: 20px;
-  border: 2px solid purple;
   border-radius: 5px;
   background-color: #2b2b2b;
   color: silver;
@@ -15,9 +14,9 @@
 .todo-input-container input {
   flex: 1;
   padding: 10px;
-  border: 1px solid gray;
+  border: none;
   border-radius: 5px;
-  background-color: #5b2d0e;
+  background-color: transparent;
   color: #c6c1ba;
 }
 
@@ -38,7 +37,7 @@
   max-height: 300px;
   overflow-y: auto;
   background-color: black;
-  border: 1px solid gray;
+  border: none;
   border-radius: 5px;
 }
 
@@ -67,7 +66,7 @@
   color: silver;
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid purple;
+  border: none;
 }
 
 .todo-details-title {
@@ -130,9 +129,9 @@
 .todo-form-input, .todo-form-textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid gray;
+  border: none;
   border-radius: 4px;
-  background-color: #5b2d0e;
+  background-color: transparent;
   color: #c6c1ba;
 }
 
@@ -156,4 +155,51 @@
 .todo-form-button.cancel {
   background-color: #181A1b;
   color: #FFAB73;
+}
+
+.todo-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -10px;
+}
+
+.todo-header-container h2 {
+  margin: 0;
+}
+
+.todo-tab-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scheduledQuest, .activeQuest, .completedQuest {
+  padding: 5px 8px;
+  background-color: transparent;
+  border: none;
+  color: gray;
+  cursor: pointer;
+  border-radius: 4px;
+  border-bottom: 2px solid transparent;
+  margin-left: 5px;
+}
+
+.scheduledQuest:hover, .activeQuest:hover, .completedQuest:hover {
+  background-color: transparent;
+}
+
+.scheduledQuest.active, .activeQuest.active, .completedQuest.active {
+  color: #7D70D6;
+  border-bottom: 2px solid #7D70D6;
+  background-color: transparent;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.todo-tab-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }

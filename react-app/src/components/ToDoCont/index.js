@@ -11,7 +11,7 @@ function ToDoCont() {
   const user = useSelector(state => state.session.user);
   const userId = user ? user.id : null;
   const dispatch = useDispatch();
-
+  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
 
   useEffect(() => {
@@ -119,36 +119,40 @@ function ToDoCont() {
     }
   });
 
+
   return (
-    <div className="todo-container">
-      <h2>Quests</h2>
-      <div className="todo-tab-container">
-      <button className={`habit-filter-by ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
-      <button className={`habit-filter-by ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
-      <button className={`habit-filter-by ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
+    <div>
+      <div className="todo-header-container">
+        <h3>Quests</h3>
+        <div className="todo-tab-container">
+          <button className={`scheduledQuest ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
+          <button className={`activeQuest ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
+          <button className={`completedQuest ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
+        </div>
       </div>
-      <div className="todo-input-container">
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add Quest Title..."
-        />
-        <button onClick={openAddQuestModal}>Add Quest</button>
-      </div>
-  
-      <div className="todo-list">
-        {filteredTodos.map(todo => (
-          <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
-            <div className="todo-item">
-              {todo.title}
-              {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
+      <div className="todo-container">
+        <div className="todo-input-container">
+          <input
+            type="text"
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+            placeholder="Add Quest Title..."
+          />
+          <button onClick={openAddQuestModal}>Add Quest</button>
+        </div>
+    
+        <div className="todo-list">
+          {filteredTodos.map(todo => (
+            <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
+              <div className="todo-item">
+                {todo.title}
+                {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );  
 }
-
 export default ToDoCont;
