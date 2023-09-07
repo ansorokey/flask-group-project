@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './todo.css';
 
-function TodoForm({ initialData, onSubmit, onCancel }) {
+function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
     const [formData, setFormData] = useState(initialData || {
-      title: '',
+      title: initialTitle,
       description: '',
       due_date: ''
     });
@@ -22,7 +22,7 @@ function TodoForm({ initialData, onSubmit, onCancel }) {
     };
   
     return (
-      <form onSubmit={handleSubmit} className="todo-form">
+      <form onSubmit={handleSubmit} className="todo-form-ctn">
         <div className="todo-form-group">
           <label className="todo-form-label">Title: </label>
           <input
@@ -30,7 +30,7 @@ function TodoForm({ initialData, onSubmit, onCancel }) {
             name="title"
             value={formData.title}
             onChange={handleChange}
-            placeholder="Title"
+            placeholder="Add Title"
             className="todo-form-input"
             required
           />
@@ -57,16 +57,16 @@ function TodoForm({ initialData, onSubmit, onCancel }) {
             onChange={handleChange}
             placeholder="Due Date"
             className="todo-form-input"
+            min={new Date().toISOString().split('T')[0]}
           />
         </div>
   
         <div className="todo-form-buttons">
-          <button type="submit" className="todo-form-button">Save</button>
-          <button type="button" className="todo-form-button" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="todo-form-button save">Save</button>
+          <button type="button" className="todo-form-button cancel" onClick={onCancel}>Cancel</button>
         </div>
       </form>
     );
-  }
+}
   
-  export default TodoForm;
-  
+export default TodoForm;

@@ -1,8 +1,9 @@
 .todo-container {
   padding: 20px;
-  border: 2px solid #00ff00; /* Greenscreen green border */
+  border: 2px solid purple; /* Updated border color to purple */
   border-radius: 5px;
-  background-color: rgba(0, 255, 0, 0.1); /* Slight green fog as background */
+  background-color: #2b2b2b; /* Updated background color to a dark shade */
+  color: silver; /* Updated text color to silver */
 }
 
 .todo-input-container {
@@ -13,51 +14,113 @@
 .todo-input-container input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid gray; /* Updated border color to gray */
   border-radius: 5px;
+  background-color: #5b2d0e; /* Updated background color */
+  color: #c6c1ba; /* Updated text color */
 }
 
 .todo-input-container button {
   padding: 10px;
   border: none;
-  background-color: #28a745;
-  color: white;
+  background-color: purple; /* Updated background color to purple */
+  color: silver; /* Updated text color to silver */
   cursor: pointer;
   border-radius: 5px;
 }
 
 .todo-input-container button:hover {
-  background-color: #218838;
+  background-color: #9E4000; /* Updated hover background color */
 }
 
 .todo-list {
   max-height: 300px;
   overflow-y: auto;
+  background-color: black; /* Updated background color to black */
+  border: 1px solid gray; /* Added border with gray color */
+  border-radius: 5px; /* Added border-radius */
 }
 
 .todo-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  padding: 10px; /* Added padding */
+  border-bottom: 1px solid gray; /* Updated border color to gray */
+  color: silver; /* Updated text color to silver */
 }
 
 .todo-item button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #007bff;
+  color: #FFAB73; /* Updated text color */
 }
 
 .todo-item button:hover {
   text-decoration: underline;
 }
 
-/* New styles for the form component */
-.todo-form {
-  background-color: #f8f9fa;
+/* The rest of your CSS (for the forms and details) can remain the same as it already matches the desired scheme */
+
+
+/* The rest of your CSS remains unchanged */
+
+/* todo details styling */
+
+.todo-details-container {
+  background-color: black;
+  color: silver;
   padding: 20px;
+  border-radius: 10px;
+  border: 2px solid purple;
+}
+
+.todo-details-title {
+  color: purple;
+  margin-bottom: 10px;
+}
+
+.todo-details-description, .todo-details-due-date {
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.todo-details-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.todo-details-edit-button, .todo-details-delete-button, .todo-details-complete-button {
+  padding: 10px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-details-edit-button {
+  background-color: purple;
+  color: silver;
+}
+
+.todo-details-delete-button {
+  background-color: gray;
+  color: black;
+}
+
+.todo-details-complete-button {
+  background-color: silver;
+  color: black;
+}
+
+
+/* todoform styling  */
+
+.todo-form-ctn {
+  background-color: #2b2b2b;
+  padding: 20px;
+  border-radius: 8px;
+  color: #c6c1ba;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .todo-form-group {
@@ -68,24 +131,37 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: silver;
 }
 
 .todo-form-input, .todo-form-textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ced4da;
+  border: 1px solid gray;
   border-radius: 4px;
+  background-color: #5b2d0e;
+  color: #c6c1ba;
+  box-sizing: border-box;
+}
+
+.todo-form-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .todo-form-button {
   padding: 10px 20px;
-  background-color: #28a745;
   border: none;
-  color: white;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.todo-form-button:hover {
-  background-color: #218838;
+.todo-form-button.save {
+  background-color: #9E4000;
+  color: #FFAB73;
+}
+
+.todo-form-button.cancel {
+  background-color: #181A1b;
+  color: #FFAB73;
 }

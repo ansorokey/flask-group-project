@@ -28,6 +28,7 @@ function ToDoCont() {
   const openAddQuestModal = () => {
     setModalContent(
       <TodoForm 
+        initialTitle={newTodo}
         onSubmit={(data) => {
           handleAddTodo(data);
           setModalContent(null); 
@@ -35,7 +36,8 @@ function ToDoCont() {
         onCancel={() => setModalContent(null)} 
       />
     );
-  };
+};
+
 
   const handleAddTodo = (data) => {
     if(userId) {
@@ -94,7 +96,6 @@ function ToDoCont() {
       />
     );
   };
-
   const sortedTodos = todos.slice().sort((a, b) => {
     if (a.due_date && b.due_date) {
       return new Date(a.due_date) - new Date(b.due_date);
@@ -130,24 +131,23 @@ function ToDoCont() {
           type="text" 
           value={newTodo} 
           onChange={(e) => setNewTodo(e.target.value)} 
-          placeholder="Add a new quest title" 
+          placeholder="Add Quest Title..." 
         />
         <button onClick={openAddQuestModal}>Add Quest</button>
       </div>
-
+  
       <div className="todo-list">
         {filteredTodos.map(todo => (
-          <div key={todo.id} className="todo-item">
-            {todo.title} 
-            {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
-            <button onClick={() => handleShowDetails(todo)}>Details</button>
-            <button onClick={() => handleEditTodo(todo.id, todo)}>Edit</button>
-            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+          <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
+            <div className="todo-item">
+              {todo.title} 
+              {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
+            </div>
           </div>
         ))}
       </div>
     </div>
-  );
+  );  
 }
 
 export default ToDoCont;
