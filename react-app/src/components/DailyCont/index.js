@@ -40,13 +40,17 @@ function DailyCont () {
             <h2 id='titleDaily'>Dailies</h2>
             {/* display a little purple circle with the number of how many dailies are due */}
         </div>
-        <div className="titleRight" onChange={(e)=>setCat(e.target.value)}>
+        <div className="titleRight" >
 
-        <input type="radio" value="due" id="due" name="daily" checked={cat === 'due'} />
-        <label for="due">Due</label>
-        <input type="radio" value="notdue" name="daily" id = "notdue" checked={cat === 'notdue'} /> <label for="notdue">Not Due</label>
-        <input type="radio" value="all" id="all" name="daily" checked={cat === 'all'} />
-        <label for="all">All</label>
+            <input type="radio" value="due" id="due" name="daily" checked={cat === 'due'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="due">Due</label>
+
+            <input type="radio" value="notdue" name="daily" id = "notdue" checked={cat === 'notdue'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="notdue">Not Due</label>
+
+            <input type="radio" value="all" id="all" name="daily" checked={cat === 'all'} onChange={(e)=>{setCat(e.target.value)}} />
+            <label htmlFor="all">All</label>
+
         </div>
     </div>
 

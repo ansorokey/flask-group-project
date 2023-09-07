@@ -44,7 +44,7 @@ def all_dailies():
     """
     Query for all dailies for the current user and returns them in a list of daily dictionaries.
     """
-    dailys = Daily.query.filter_by(user_id = current_user.id).all()
+    dailys = Daily.query.filter(Daily.user_id == current_user.id).all()
 
     updated_dailies = []
 

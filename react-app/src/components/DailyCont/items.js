@@ -31,13 +31,13 @@ function DisplayDailyItems({daily}) {
   // This is the daily menu that will display when the showMenu useState is true
     const dailyMenu = <div className="daily-options-menu" ref={ulRef}>
         <div onClick={() => setModalContent(<EditDailyForm  daily={daily}/>)}>
-            <i className="fa-solid fa-pen"></i>
-            Edit
+            <i className="fa-solid fa-pen"></i>  Edit
+
         </div>
         <hr />
         <div onClick={() => setModalContent(<DeleteDailyModal daily={daily}  />)}>
-            <i className="fa-solid fa-trash-can"></i>
-                Delete
+            <i className="fa-solid fa-trash-can"></i>  Delete
+
         </div>
     </div>
 

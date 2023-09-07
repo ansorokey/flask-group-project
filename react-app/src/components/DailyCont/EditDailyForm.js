@@ -37,12 +37,19 @@ function EditDailyForm({daily}) {
     }
   }
 
+  const getTimeframe = () => {
+    if (repeats_frame === "1") return "Days"
+    else if (repeats_frame === "7") return "Weeks"
+    else if (repeats_frame === "30") return "Months"
+    else if (repeats_frame === "365") return "Years"
+  }
+
 
   return (
-    <div className="daily-edit-ctn">
+    <div className="habit-edit-ctn">
 
 
-      <div className="daily-title-and-btns">
+      <div className="habit-title-and-btns">
         <div>
           Edit Daily
         </div>
@@ -62,89 +69,103 @@ function EditDailyForm({daily}) {
         </div>
       </div>
 
-    <form className="editDailyForm" onSubmit={handleSubmit}>
+    <form className="edit-habit-form" onSubmit={handleSubmit}>
 
-      <div className="daily_addTitle_addDescription">
+      <div className="edit-form-top">
 
-            <label>Title*</label>
+      <div className="habit-edit-input-ctn">
+            <label>Title</label>
             <input
               type='text'
               value={title}
               placeholder="Add a title"
+              className="edit-form-top-input"
               onChange={(e)=> setTitle(e.target.value)}
             />
             <div className="errors">{errors?.title}</div>
+      </div>
 
-
-          <div className="NotesTitleLineEditDaily">
+          <div className="habit-edit-input-ctn">
             <label>Notes</label>
-            <a href="https://habitica.fandom.com/wiki/Markdown_Cheat_Sheet"
-              target="_blank" rel="noopener noreferrer">
-                Markdown formatting help
-            </a>
-          </div>
+
             <textarea
-              className="descriptionInputDaily"
               placeholder="Add notes"
+              className="edit-form-top-input"
               value={description}
               onChange={(e)=> setDescription(e.target.value)}
             />
+          </div>
       </div>
       <div className="errors">{errors?.description}</div>
 
 
-      <div className="otherDailyinputs">
+      <div className="edit-form-bottom">
             {/* This is where checklist input will go in the future */}
 
-          <div className="difficultyTitleLine">
-              <label>Difficulty
-                <span className="difficultyInfo">
-                  <i class="fa-regular fa-circle-info"></i>
-                </span></label>
-                <div className="explainDifficulty">
-                  Difficulty describes how challenging a Habit, Daily, or To Do is for you to complete. A higher difficulty results in greater rewards when a Task is completed, but also greater damage when a Daily is missed or a negative Habit is clicked.
-                </div>
+          <div className="edit-habit-select-ctn">
+              <label>Difficulty </label>
+
+              <select value={strength} onChange={(e) => setStrength(e.target.value)}>
+                <option value="Trivial">Trivial</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
+
+              <div className="errors">{errors?.difficulty}</div>
           </div>
-          <select value={strength} onChange={(e) => setStrength(e.target.value)}>
-            <option value="Trivial">Trivial</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
-          <div className="errors">{errors?.difficulty}</div>
+
+
 
           {/* This is where Start date will go when it is implimented */}
+          <div className="edit-habit-select-ctn">
+            <label>Repeats</label>
+            <select value={repeats_frame} onChange={(e) => setRepeats_frame(e.target.value)}>
+              <option value="1">Daily</option>
+              <option value="7">Weekly</option>
+              <option value="30">Monthly</option>
+              <option value="365">Yearly</option>
+            </select>
+            <div className="errors">{errors?.repeats_frame}</div>
+          </div>
 
-          <label>Repeats</label>
-          <select value={repeats_frame} onChange={(e) => setRepeats_frame(e.target.value)}>
-            <option value="1">Daily</option>
-            <option value="7">Weekly</option>
-            <option value="30">Monthly</option>
-            <option value="365">Yearly</option>
-          </select>
-          <div className="errors">{errors?.repeats_frame}</div>
+          <div className="edit-habit-select-ctn">
+            <label>Repeat Every</label>
+            <div>
+              <input type='number' value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />    &ensp; <span className="timeFrame">{getTimeframe()}</span>
+            </div>
 
-          <label>Repeat Every</label>
-          <input type='number' value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />
+            <div className="errors">{errors?.repeats_frequency}</div>
+          </div>
 
-          <div className="errors">{errors?.repeats_frequency}</div>
 
           {/* This is where the tags input will go when that feature is implimented  */}
 
-      </div>
 
 
-      <div className="advancedDailySettings">
+
+      <div className="advanced-options-ctn">
+
         <div className="advancedTitle" onClick={() => setAdvanced(!advanced)}>
-            <label>Advanced Settings</label>
-            { advanced ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i> }
+          <div className="advanced-options-chevron">
+              <label>Advanced Settings</label>
+
+              { advanced ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i> }
+
+            </div>
         </div>
+
         { advanced &&
-        <div className="advancedContent" >
-          <label>Adjust Streak</label>
-          <div className="streakInput">
-              {/* icon */}
-              <input type="number" value={streak} onChange={(e)=>{setStreak(e.target.value)}}/>
+        <div className="advanced-options-menu" >
+
+          <label id="streakLabel">Adjust Streak</label>
+
+          <div className="advanced-counters">
+            <div className="streakIcon">
+              <i className="fa-solid fa-forward icon-forward"></i>
+
+              <input type="number" value={streak} onChange={(e)=>{setStreak(e.target.value)}}/></div>
+
           </div>
         </div>
 
@@ -152,7 +173,8 @@ function EditDailyForm({daily}) {
         <div className="errors">{errors?.streak}</div>
 
       </div>
-
+      </div>
+  </form>
 
       <div className="edit-habit-del">
         <button className="edit-habit-del-btn"
@@ -167,7 +189,7 @@ function EditDailyForm({daily}) {
             Delete this Daily
         </button>
       </div>
-    </form>
+
     </div>
   );
 }

@@ -107,19 +107,18 @@ input[type="checkbox"] +.checkbox-label::before{
     position: absolute;
     left: 0;
     top: 0;
-    width: 30px; /* Adjust the size as needed */
-    height: 30px; /* Adjust the size as needed */
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.339)/* Change the background color */
-
+    background-color: rgba(255, 255, 255, 0.339)
 
 }
 input[type="checkbox"]:checked +.checkbox-label::after{
-    content: "\2713"; /* Unicode checkmark character */
+    content: "\2713";
     position: absolute;
-    left: 5px; /* Adjust the positioning as needed */
-    top: 1px; /* Adjust the positioning as needed */
-    font-size: 20px; /* Adjust the size of the checkmark */
+    left: 5px;
+    top: 1px;
+    font-size: 20px;
     color: black;
 }
 
@@ -138,10 +137,6 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 
 
-
-
-
-
 /* Options Menu */
 .daily-options-btn {
     visibility: hidden;
@@ -154,13 +149,16 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 }
 .daily-options-menu{
-    background-color: azure;
-    color: black;
+    background-color: #C6C1BA;
+    color: #181A1B;
     height: auto;
     width: 100px;
     z-index: 999;
     position: absolute;
     padding: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px rgb(46, 46, 46);
+    border-radius: 1px;
 }
 
 /* Delete Daily modal */
@@ -175,12 +173,26 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 }
 
 /* Edit Daily modal */
-.daily-edit-ctn{
-    background-color: azure;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 65%;
+.streakIcon{
+    display: flex;
+    background-color: #b5b5b5;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    color: #181A1B;
 
+}
+.fa-solid fa-forward icon-forward{
+    color: #181A1B;
+
+}
+#streakLabel{
+    margin-top: 25px;
+}
+.timeFrame{
+    background-color: #b5b5b5;
+    padding: 3px 10px;
+    color: black;
+    border-radius: 1px;
+    font-size: 14px;
 }
