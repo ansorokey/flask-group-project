@@ -4,7 +4,7 @@ import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, get
 import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import TodoDetails from './tododetails';
-import TodoDetails from './tododetails';
+
 import './todo.css';
 
 function ToDoCont() {
@@ -14,7 +14,7 @@ function ToDoCont() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
-  const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab
+
 
   useEffect(() => {
     if(userId) {
