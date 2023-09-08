@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, getTodosForUser, markTodoAsCompleted } from '../../store/todos';
 import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
-import TodoDetails from './tododetails'; 
+import TodoDetails from './tododetails';
 import './todo.css';
 
 function ToDoCont() {
@@ -13,6 +13,7 @@ function ToDoCont() {
   const dispatch = useDispatch();
 
   const [newTodo, setNewTodo] = useState('');
+  const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab
 
   useEffect(() => {
     if(userId) {
@@ -30,9 +31,9 @@ function ToDoCont() {
         initialTitle={newTodo}
         onSubmit={(data) => {
           handleAddTodo(data);
-          setModalContent(null); 
+          setModalContent(null);
         }}
-        onCancel={() => setModalContent(null)} 
+        onCancel={() => setModalContent(null)}
       />
     );
 };
@@ -41,7 +42,7 @@ function ToDoCont() {
   const handleAddTodo = (data) => {
     if(userId) {
       dispatch(createTodoForUser(userId, data));
-      setNewTodo(''); 
+      setNewTodo('');
     } else {
       console.error("User ID not found");
     }
@@ -55,7 +56,7 @@ function ToDoCont() {
           handleEditTodoSubmit(todoId, data);
           setModalContent(null);
         }}
-        onCancel={() => setModalContent(null)} 
+        onCancel={() => setModalContent(null)}
       />
     );
   };
@@ -88,8 +89,8 @@ function ToDoCont() {
 
   const handleShowDetails = (todo) => {
     setModalContent(
-      <TodoDetails 
-        todo={todo} 
+      <TodoDetails
+        todo={todo}
         onEdit={handleEditTodo}
         onDelete={handleDeleteTodo}
         onComplete={handleMarkComplete}
@@ -136,7 +137,7 @@ function ToDoCont() {
         />
         <button onClick={openAddQuestModal}>Add Quest</button>
       </div>
-  
+
       <div className="todo-list">
         {filteredTodos.map(todo => (
           <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
@@ -148,7 +149,7 @@ function ToDoCont() {
         ))}
       </div>
     </div>
-  );  
+  );
 }
 
 export default ToDoCont;

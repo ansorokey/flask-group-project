@@ -1,7 +1,11 @@
 import './LandingPage.css';
 import SignupFormPage from '../SignupFormPage';
+import SignupFormModal from '../SignupFormModal';
+import { useModal } from "../../context/Modal";
 
 function LandingPage() {
+    const { setModalContent } = useModal();
+
     return (<div className='landing-page'>
         <div className="landing-page-ctn">
             <div className='landing-sec-1'>
@@ -15,9 +19,10 @@ function LandingPage() {
             </div>
 
             <div className='landing-sec-2'>
-                <h2 className="ct">Gamify Your Life</h2>
-                <p className="ct">Habitica is a free habit-building and productivity app that treats your real life like a game. With in-game rewards and punishments to motivate you and a strong social network to inspire you, Habitica can help you achieve your goals to become healthy, hard-working, and happy.</p>
-
+                <div className='sec2MainCont'>
+                    <h2 className="ct">Gamify Your Life</h2>
+                    <p className="ct">Habitica is a free habit-building and productivity app that treats your real life like a game. With in-game rewards and punishments to motivate you and a strong social network to inspire you, Habitica can help you achieve your goals to become healthy, hard-working, and happy.</p>
+                </div>
                 <div className='hilight-ctn'>
                     <div className='landing-hilight'>
                         <img className="landing-img" src="https://habitica.com/static/img/track-habits@3x.7293d5cc.png"/>
@@ -79,19 +84,22 @@ function LandingPage() {
 
             <div className='landing-sec-4'>
                 <div>
-                    <img src='https://habitica.com/static/img/mobile-preview@3x.422fbec7.png' />
+                    <img src='https://habitica.com/static/img/mobile-preview@3x.422fbec7.png' id="l-4-pic"/>
                 </div>
-                <div>
+                <div className='sec4Content'>
                     <h2 className="ct">Level Up Anywhere</h2>
                     <p>Our mobile apps make it simple to keep track of your tasks on-the-go. Accomplish your goals with a single tap, no matter where you are.</p>
-                    <button>Google</button>
-                    <button>Apple</button>
+
                 </div>
             </div>
 
             <div className='landing-sec-5'>
                 <h2 className='ct'>Join over 4 million people having fun while accomplishing their goals!</h2>
-                <button>Join LevelUp Today</button>
+
+                <div onClick={() => setModalContent(<SignupFormModal />)} className="bottomJoin" >
+                    Join LevelUp Today
+                </div>
+
             </div>
 
             <div className='footer'>

@@ -41,3 +41,43 @@
     justify-content: space-between;
     padding: 0 12px;
 }
+
+.sec2MainCont{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+.landing-sec-2{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.landing-sec-3{
+    margin-bottom: 100px;
+}
+
+
+#l-4-pic{
+    max-height: 80%;
+    max-width: 80%;
+}
+
+.sec4Content{
+    margin-top: 100px;
+}
+
+
+.bottomJoin{
+    cursor: pointer;
+    background-color: #392066;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px black;
+    margin-left: auto;
+    margin-right: auto;
+}
