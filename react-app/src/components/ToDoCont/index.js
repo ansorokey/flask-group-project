@@ -4,6 +4,7 @@ import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, get
 import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import TodoDetails from './tododetails';
+import TodoDetails from './tododetails';
 import './todo.css';
 
 function ToDoCont() {
@@ -13,6 +14,7 @@ function ToDoCont() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
+  const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab
 
   useEffect(() => {
     if(userId) {
@@ -130,27 +132,25 @@ function ToDoCont() {
           <button className={`completedQuest ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
         </div>
       </div>
-      <div className="todo-container">
-        <div className="todo-input-container">
-          <input
-            type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            placeholder="Add Quest Title..."
-          />
-          <button onClick={openAddQuestModal}>Add Quest</button>
-        </div>
-    
-        <div className="todo-list">
-          {filteredTodos.map(todo => (
-            <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
-              <div className="todo-item">
-                {todo.title}
-                {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
-              </div>
+      <div className="todo-input-container">
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add Quest Title..."
+        />
+        <button onClick={openAddQuestModal}>Add Quest</button>
+      </div>
+
+      <div className="todo-list">
+        {filteredTodos.map(todo => (
+          <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
+            <div className="todo-item">
+              {todo.title}
+              {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
