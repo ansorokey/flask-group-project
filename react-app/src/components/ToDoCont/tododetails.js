@@ -9,7 +9,7 @@ function TodoDetails({ todo, onEdit, onDelete, onComplete, onClose }) {
             <div className="todo-details-buttons">
                 <button className="todo-details-edit-button" onClick={() => onEdit(todo.id, todo)}>Edit</button>
                 <button className="todo-details-delete-button" onClick={() => { onDelete(todo.id); onClose(); }}>Delete</button>
-                {!todo.completed && <button className="todo-details-complete-button" onClick={() => onComplete(todo.id)}>Mark as Complete</button>}
+                {!todo.completed && <button className="todo-details-complete-button" onClick={() => {onComplete(todo.id); onClose();}}>Mark as Complete</button>}
             </div>
         </div>
     );

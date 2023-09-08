@@ -4,6 +4,7 @@ import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, get
 import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import TodoDetails from './tododetails';
+
 import './todo.css';
 
 function ToDoCont() {
@@ -11,8 +12,9 @@ function ToDoCont() {
   const user = useSelector(state => state.session.user);
   const userId = user ? user.id : null;
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab
+  const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
+
 
   useEffect(() => {
     if(userId) {
@@ -119,13 +121,16 @@ function ToDoCont() {
     }
   });
 
+
   return (
-    <div className="todo-container">
-      <h2>Quests</h2>
-      <div className="todo-tab-container">
-      <button className={`habit-filter-by ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
-      <button className={`habit-filter-by ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
-      <button className={`habit-filter-by ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
+    <div>
+      <div className="todo-header-container">
+        <div className="quests" >Quests</div>
+        <div className="todo-tab-container">
+          <button className={`scheduledQuest ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
+          <button className={`activeQuest ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
+          <button className={`completedQuest ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
+        </div>
       </div>
       <div className="todo-input-container">
         <input
@@ -150,5 +155,4 @@ function ToDoCont() {
     </div>
   );
 }
-
 export default ToDoCont;
