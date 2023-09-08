@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useModal } from '../../context/Modal';
 import { useHabit } from "../../context/Habit";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,19 @@ function HabitItem({habit}){
 
     const { setModalContent } = useModal();
     const { setHabits } = useHabit();
+
+    // 100% credit to Christine on this
+    useEffect(() => {
+        const closeMenuOutsideClick = (e) => {
+          if (showOptions) {
+            setShowOptions(false);
+          }
+        };
+        document.addEventListener("click", closeMenuOutsideClick);
+        return () => {
+          document.removeEventListener("click", closeMenuOutsideClick);
+        };
+      }, [showOptions]);
 
     const optionsMenu = <div className="habits-options-menu" onClick={displayOrHideMenu}>
         <div onClick={() => setModalContent(<EditHabitForm habit={habit} />)}>

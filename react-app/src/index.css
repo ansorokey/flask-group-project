@@ -4,3 +4,22 @@ body {
     background-color: #1B1E1F;
     font-family: Arial, Helvetica, sans-serif
 }
+
+.lost-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://res.cloudinary.com/dzntryr5a/image/upload/v1694128737/undefined_-_Imgur_e92icp.jpg");
+    height: 100vh;
+}
+
+.lost-h1 {
+    font-size: 5em;
+    color:black;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.lost-page > img {
+    height: 50%;
+}

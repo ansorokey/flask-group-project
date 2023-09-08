@@ -1,9 +1,23 @@
 import "./Search.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Search() {
     const [tagsOpen, setTagsOpen] = useState(false);
     const [tasksOpen, setTasksOpen] = useState(false);
+
+    // 100% credit to Christine on this
+    useEffect(() => {
+        const closeMenuOutsideClick = (e) => {
+          if (tagsOpen || tasksOpen) {
+            setTagsOpen(false);
+            setTasksOpen(false);
+          }
+        };
+        document.addEventListener("click", closeMenuOutsideClick);
+        return () => {
+          document.removeEventListener("click", closeMenuOutsideClick);
+        };
+      }, [tagsOpen, tasksOpen]);
 
     const taskOptions = (
         <div
@@ -42,6 +56,12 @@ function Search() {
                 Tags
             </span>
             {tagsOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}
+            {tagsOpen &&
+                <div className="tags-menu">
+                    <p>Feature coming <s>never</s> soon!</p>
+                    <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694130506/Rowlet-Pokemon-Transparent-PNG_xr1qfl.png"/>
+                </div>
+            }
         </div>
 
         <div
