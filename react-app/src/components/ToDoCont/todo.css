@@ -132,7 +132,7 @@
   border: none;
   border-radius: 4px;
   background-color: transparent;
-  color: #c6c1ba;
+  color:#C6C1BA;
 }
 
 .todo-form-buttons {
@@ -172,12 +172,15 @@
   display: flex;
   justify-content: flex-end;
 }
-
+.quests{
+  color:#C6C1BA;
+  font-size: 20px;
+}
 .scheduledQuest, .activeQuest, .completedQuest {
-  padding: 5px 8px;
+  font-size:12px;
   background-color: transparent;
   border: none;
-  color: gray;
+  color:#C6C1BA;
   cursor: pointer;
   border-radius: 4px;
   border-bottom: 2px solid transparent;

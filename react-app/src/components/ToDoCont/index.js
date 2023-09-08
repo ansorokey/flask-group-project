@@ -123,7 +123,7 @@ function ToDoCont() {
   return (
     <div>
       <div className="todo-header-container">
-        <h3>Quests</h3>
+        <div className="quests" >Quests</div>
         <div className="todo-tab-container">
           <button className={`scheduledQuest ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
           <button className={`activeQuest ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
