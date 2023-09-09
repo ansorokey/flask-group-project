@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
 import CreateDailyForm from "../DailyCont/newDailyForm";
-
+import TodoForm from "../ToDoCont/todoform";
 function Search() {
   const [tagsOpen, setTagsOpen] = useState(false);
   const [tasksOpen, setTasksOpen] = useState(false);
@@ -18,9 +18,8 @@ function Search() {
         neg: true,
         posCount: 0,
         negCount: 0
-    }
+    };
 
-    // 100% credit to Christine on this
     useEffect(() => {
         const closeMenuOutsideClick = (e) => {
           if (tagsOpen || tasksOpen) {
@@ -49,7 +48,7 @@ function Search() {
         &nbsp;&nbsp;Daily
       </div>
 
-      <div className="createMenuOption">
+      <div className="createMenuOption" onClick={() => setModalContent(<TodoForm/>)}>
         <span>
           <i class="fa-regular fa-square-check"></i>
         </span>
@@ -72,24 +71,22 @@ function Search() {
         <input className="search-input" type="text" placeholder="Search" />
       </form>
 
-        <div
-            className="search-tags"
-            onClick={() => setTagsOpen(!tagsOpen)}
-        >
-            <i className="fa-solid fa-sliders"></i>
-            <span
-                className="search-tags-text"
+            <div
+                className="search-tags"
+                onClick={() => setTagsOpen(!tagsOpen)}
             >
-                Tags
-            </span>
-            {tagsOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}
-            {tagsOpen &&
-                <div className="tags-menu">
-                    <p>Feature coming <s>never</s> soon!</p>
-                    <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694130506/Rowlet-Pokemon-Transparent-PNG_xr1qfl.png" alt="pokemon"/>
-                </div>
-            }
-        </div>
+                <i className="fa-solid fa-sliders"></i>
+                <span className="search-tags-text">
+                    Tags
+                </span>
+                {tagsOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}
+                {tagsOpen &&
+                    <div className="tags-menu">
+                        <p>Feature coming <s>never</s> soon!</p>
+                        <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694130506/Rowlet-Pokemon-Transparent-PNG_xr1qfl.png" alt="pokemon"/>
+                    </div>
+                }
+            </div>
 
       <div className="search-add-task" onClick={() => setTasksOpen(!tasksOpen)}>
         <i className="fa-solid fa-plus"></i>
