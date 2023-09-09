@@ -73,3 +73,7 @@
     /* display: flex;
     justify-content: space-between; */
 }
+
+.createMenuOption:hover{
+    color:#8F6DCF
+}

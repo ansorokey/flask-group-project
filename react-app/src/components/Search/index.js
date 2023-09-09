@@ -9,16 +9,16 @@ function Search() {
         <div
             className="task-options"
         >
-            <div>
+            <div className="createMenuOption">
                 <i className="fa-solid fa-cubes-stacked"></i>
                 Habit
             </div>
-            <div>
+            <div className="createMenuOption">
                 <span><i class="fa-solid fa-calendar-days"></i></span>
                 Daily
             </div>
-            <div>To Do</div>
-            <div>Reward</div>
+            <div className="createMenuOption">To Do</div>
+            <div className="createMenuOption">Reward</div>
         </div>
     );
 
