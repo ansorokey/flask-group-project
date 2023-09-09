@@ -1,19 +1,12 @@
 import "./Search.css";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { createTodoForUser } from '../../store/todos'; 
 import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
-import TodoForm from "../ToDoCont/todoform"; 
-
+import CreateDailyForm from "../DailyCont/newDailyForm";
+import TodoForm from "../ToDoCont/todoform";
 function Search() {
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
-    const userId = user ? user.id : null;
-
-    const [tagsOpen, setTagsOpen] = useState(false);
-    const [tasksOpen, setTasksOpen] = useState(false);
-    const [newTodo, setNewTodo] = useState('');
+  const [tagsOpen, setTagsOpen] = useState(false);
+  const [tasksOpen, setTasksOpen] = useState(false);
     const { setModalContent } = useModal();
 
     const defaultHabit = {
@@ -40,58 +33,43 @@ function Search() {
         };
       }, [tagsOpen, tasksOpen]);
 
-    const openAddQuestModal = () => {
-        setModalContent(
-            <TodoForm
-                initialTitle={newTodo}
-                onSubmit={(data) => {
-                    handleAddTodo(data);
-                    setModalContent(null);
-                }}
-                onCancel={() => setModalContent(null)}
-            />
-        );
-    };
 
-    const handleAddTodo = async (data) => {
-        if(userId) {
-            try {
-                await dispatch(createTodoForUser(userId, data));
-                setNewTodo('');
-            } catch (error) {
-                console.error("Error adding new todo:", error.message);
-            }
-        } else {
-            console.error("User ID not found");
-        }
-    };
+  const taskOptions = (
+    <div className="task-options">
+      <div className="createMenuOption" onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
+        <i className="fa-solid fa-cubes-stacked"></i>
+        &nbsp;&nbsp;Habit
+      </div>
 
-    const taskOptions = (
-        <div className="task-options">
-            <div className="createMenuOption" onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
-                <i className="fa-solid fa-cubes-stacked"></i>
-                &nbsp;&nbsp;Habit
-            </div>
+      <div className="createMenuOption" onClick={() => setModalContent(<CreateDailyForm />)}>
+        <span>
+          <i class="fa-solid fa-calendar-days"></i>
+        </span>
+        &nbsp;&nbsp;Daily
+      </div>
 
-            <div className="createMenuOption">
-                <span><i className="fa-solid fa-calendar-days"></i></span>
-                &nbsp;&nbsp;Daily
-            </div>
-           
-            <div onClick={openAddQuestModal}>To Do</div>
-            <div>Reward</div>
-        </div>
-    );
+      <div className="createMenuOption" onClick={() => setModalContent(<TodoForm/>)}>
+        <span>
+          <i class="fa-regular fa-square-check"></i>
+        </span>
+        &nbsp;&nbsp;To Do
+      </div>
 
-    return (
-        <div className="search-ctn">
-            <form>
-                <input
-                    className="search-input"
-                    type="text"
-                    placeholder="Search"
-                />
-            </form>
+      <div className="createMenuOption">
+        <span>
+          <i class="fa-solid fa-bag-shopping"></i>
+        </span>
+        &nbsp;&nbsp;Reward
+      </div>
+
+    </div>
+  );
+
+  return (
+    <div className="search-ctn">
+      <form>
+        <input className="search-input" type="text" placeholder="Search" />
+      </form>
 
             <div
                 className="search-tags"
@@ -110,18 +88,13 @@ function Search() {
                 }
             </div>
 
-            <div
-                className="search-add-task"
-                onClick={() => setTasksOpen(!tasksOpen)}
-            >
-                <i className="fa-solid fa-plus"></i>
-                <span className="add-task-text">
-                        Add Task
-                </span>
-                {tasksOpen && taskOptions}
-            </div>
-        </div>
-    );
+      <div className="search-add-task" onClick={() => setTasksOpen(!tasksOpen)}>
+        <i className="fa-solid fa-plus"></i>
+        <span className="add-task-text">Add Task</span>
+        {tasksOpen && taskOptions}
+      </div>
+    </div>
+  );
 }
 
 export default Search;
