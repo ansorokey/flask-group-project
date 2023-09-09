@@ -35,39 +35,41 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   const handleLogout = (e) => {
-    closeMenu()
+    closeMenu();
     e.preventDefault();
     dispatch(logout());
-
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
 
   return (
     <>
       {user ? (
         <div onClick={openMenu} className="userButton">
-
-      <i class="fa-regular fa-user" ></i>
-      </div>
-      ): (
-
-      <div onClick={() => setModalContent(<LoginFormModal />)} className="landingButton" >
-        Login
-      </div>
-
+          <i class="fa-regular fa-user"></i>
+        </div>
+      ) : (
+        <div
+          onClick={() => setModalContent(<LoginFormModal />)}
+          className="landingButton"
+        >
+          Login
+        </div>
       )}
 
-
       <div className={ulClassName} ref={ulRef}>
-
-            <div className="userMenuItem">Edit Avatar</div>
-            <hr />
-            <div className="userMenuItem" onClick={() => setModalContent(<UserProfileModal user={user} />)}
-            >Profile</div>
-            <hr />
-            <div className="userMenuItem" onClick={handleLogout}>Log Out</div>
+        <div className="userMenuItem">Edit Avatar</div>
+        <hr />
+        <div
+          className="userMenuItem"
+          onClick={() => setModalContent(<UserProfileModal user={user} />)}
+        >
+          Profile
+        </div>
+        <hr />
+        <div className="userMenuItem" onClick={handleLogout}>
+          Log Out
+        </div>
       </div>
     </>
   );
