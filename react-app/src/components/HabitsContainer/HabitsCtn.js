@@ -20,7 +20,9 @@ function HabitsCtn() {
 
     const newHabit = {
         title: habitTitle,
-        user_id: sessionUser.id
+        user_id: sessionUser.id,
+        pos: true,
+        neg: true
     }
 
     // post habit

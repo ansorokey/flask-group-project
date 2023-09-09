@@ -3,7 +3,8 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
-
+from datetime import date, datetime, timedelta
+from sqlalchemy.sql import functions
 
 
 auth_routes = Blueprint('auth', __name__)
@@ -43,6 +44,17 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
+
+        print('\n')
+        today = date.today() + timedelta(days=1)
+        print(today == user.last_login)
+        print('\n')
+
+        if today > user.last_login:
+            user.last_login = today
+            user.check_ins += 1
+
+        db.session.commit()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

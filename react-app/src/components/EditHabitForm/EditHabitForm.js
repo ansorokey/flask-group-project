@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
-import { useDispatch } from "react-redux";
-import { deleteHabit, updateHabit } from "../../store/habits";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteHabit, updateHabit, createUserHabit } from "../../store/habits";
 import './EditHabitForm.css';
 
-function EditHabitForm({habit}){
+function EditHabitForm({habit, edit=true}){
     const { closeModal } = useModal();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
 
-    // const [, set] = useState('');
     const [title, setTitle] = useState(habit.title);
     const [notes, setNotes] = useState(habit.notes);
     const [difficulty, setDifficulty] = useState(habit.difficulty);
@@ -17,18 +17,22 @@ function EditHabitForm({habit}){
     const [neg, setNeg] = useState(habit.neg);
     const [posCount, setPosCount] = useState(habit.posCount);
     const [negCount, setNegCount] = useState(habit.negCount);
-
     const [advanced, setAdvanced] = useState(false);
+    const [errs, setErrs] = useState({});
 
     async function handleSubmit(e){
         e.preventDefault();
         const errors = {};
 
-        if(!title.length) errors.title = 'Title cannot be empty';
+        if(!title.length) {
+            errors.title = 'Title cannot be empty';
+            setErrs(errors);
+            return;
+        }
 
-        if(Object.values(errors).length) return;
 
         const data = {
+            user_id: +user.id,
             title,
             notes,
             difficulty,
@@ -39,13 +43,19 @@ function EditHabitForm({habit}){
             neg
         }
 
-        dispatch(updateHabit(habit.id, data));
+        if(edit){
+            dispatch(updateHabit(habit.id, data));
+        } else {
+            console.log(data);
+            dispatch(createUserHabit(data));
+        }
+        closeModal();
     }
 
     // THE COMPONENT ---------------------------------------------------------------------------------------
     return <div className="habit-edit-ctn">
         <div className="habit-title-and-btns">
-            <div>Edit Habit</div>
+            {edit ? <div>Edit Habit</div> : <div>Create Habit</div>}
 
             <div>
                 <button
@@ -58,7 +68,6 @@ function EditHabitForm({habit}){
                 <button
                     onClick={(e) => {
                         handleSubmit(e);
-                        closeModal();
                     }}
                     className="habit-edit save"
                 >Save</button>
@@ -73,10 +82,12 @@ function EditHabitForm({habit}){
                 <div className="habit-edit-input-ctn">
                     <label>Title</label>
                     <input className="edit-form-top-input"
+                        placeholder="Add a title..."
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    {errs.title}
                 </div>
 
                 <div className="habit-edit-input-ctn">
@@ -127,7 +138,8 @@ function EditHabitForm({habit}){
                     </select>
                 </div>
 
-                <div className="edit-habit-select-ctn">
+                {/* Future Implementation */}
+                {/* <div className="edit-habit-select-ctn">
                     <label>Tags</label>
                     <select>
                         <option>Need</option>
@@ -135,7 +147,7 @@ function EditHabitForm({habit}){
                         <option>Query</option>
                         <option>Tags</option>
                     </select>
-                </div>
+                </div> */}
 
                 <div className="edit-habit-select-ctn">
                     <label>Reset Counter</label>
@@ -171,7 +183,7 @@ function EditHabitForm({habit}){
 
         </form>
         <div className="edit-habit-del">
-            <button className="edit-habit-del-btn"
+            {edit && <button className="edit-habit-del-btn"
                     onClick={() => {
                         if(window.confirm('Are you sure you want to delete this habit?')) {
                             dispatch(deleteHabit(habit.id));
@@ -181,7 +193,7 @@ function EditHabitForm({habit}){
             >
                 <i className="fa-solid fa-trash-can"></i>
                 Delete This Habit
-            </button>
+            </button>}
         </div>
     </div>
 }

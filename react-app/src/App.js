@@ -8,8 +8,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
-import OnboardingModal from "./components/OnboardingModal";
 import { HabitProvider } from "./context/Habit";
+import OnboardingModal from "./components/OnboardingModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +27,9 @@ function App() {
           <Route path="/login" >
             <LoginFormPage />
           </Route>
+          <Route path="/test" >
+            <OnboardingModal />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
@@ -39,7 +42,10 @@ function App() {
               : <LandingPage />}
           </Route>
           <Route>
-            <OnboardingModal />
+            <div className="lost-page">
+              <h1 className="lost-h1">Feature coming at a less dizzy time!</h1>
+              <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694128274/pngegg_vvqi5o.png" />
+            </div>
           </Route>
         </Switch>
       )}

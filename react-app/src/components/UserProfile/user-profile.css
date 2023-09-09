@@ -24,8 +24,39 @@
 .user-stats {
     padding: 0 12px 0 24px;
     display: flex;
+    align-items: flex-start;
+    gap: 1em;
 }
 
+.user-dsh-ctn {
+    display: flex;
+    margin-top: 8px;
+}
+.dot-ctn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+}
+
+.fa-circle {
+    font-size: 4px;
+}
+
+.hat-ctn {
+    border-radius: 100%;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fa-hat-wizard {
+    color: red;
+ }
 /* User Profile Modal */
 .profile-modal-ctn {
     max-width: 766px;
@@ -126,19 +157,32 @@
 
 .user-about {
     display: flex;
+    justify-content: space-between;
 }
 
 .user-about > div {
     padding: 0 8px;
 }
 
+.user-about-about {
+    width: 100%;
+}
+
+.user-profile-info > span {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
 /* Editing user profile */
 .edit-user-avatar-ctn {
-    /* display: flex;
-    flex-direction: column; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 1em 2em;
+}
+
+.edit-user-prof > * {
+    margin: 1em 0;
 }
 
 .edit-prof-sec {
