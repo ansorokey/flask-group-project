@@ -5,6 +5,7 @@
     padding: 20px; 
     border-radius: 8px; 
     display: flex; 
+    justify-content: center;
     flex-direction: column; 
     align-items: center; 
     max-width: 400px; 
@@ -22,7 +23,7 @@
   }
   
   .signup-form-modal-input {
-    width: 100%; 
+    width: 90%; 
     padding: 10px; 
     margin-bottom: 10px; 
     background-color: rgba(128, 0, 128, 0.1); /* Purple hue */
@@ -42,6 +43,7 @@
     color: white; 
     cursor: pointer; 
     border-radius: 4px;
+    left: 50%;
   }
   
  
