@@ -2,6 +2,8 @@ import "./Search.css";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
+import { useModal } from "../../context/Modal";
+import CreateDailyForm from "../DailyCont/newDailyForm";
 
 function Search() {
   const [tagsOpen, setTagsOpen] = useState(false);
@@ -33,6 +35,7 @@ function Search() {
         };
       }, [tagsOpen, tasksOpen]);
 
+
   const taskOptions = (
     <div className="task-options">
       <div className="createMenuOption" onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
@@ -40,7 +43,7 @@ function Search() {
         &nbsp;&nbsp;Habit
       </div>
 
-      <div className="createMenuOption">
+      <div className="createMenuOption" onClick={() => setModalContent(<CreateDailyForm />)}>
         <span>
           <i class="fa-solid fa-calendar-days"></i>
         </span>
