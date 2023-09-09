@@ -1,8 +1,31 @@
 .profile-dropdown {
   position: absolute;
-  right: 0;
+
+  right: 10px;
+  top: 30px;
+  margin: 10px;
+  padding: 10px;
   background-color: #181A1B;
   color: #B5AF8A;
+  box-shadow: 3px 3px 10px rgb(41, 39, 39);
+}
+hr{
+  background-color:#B5AF8A;
+  height: 1px;
+  border: none;
+}
+.landingButton{
+  color: white;
+  background-color: #6f3dcb;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 5px rgb(41, 39, 39);
+}
+
+.userMenuItem{
+  cursor: pointer;
 }
 
 .hidden {
@@ -17,6 +40,11 @@
   height: 40px;
   padding: 8px 16px;
 }
+.userButton{
+  background-color: #36205D;
+  color: white;
+}
+
 
 .nav-home {
   font-family: 'Press Start 2P', cursive;

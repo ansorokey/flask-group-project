@@ -1,0 +1,59 @@
+/* Signup Form Modal CSS */
+.signup-form-modal-container {
+    background-color: #2b2b2b; 
+    color: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    max-width: 400px; 
+    margin: 0 auto;
+  }
+  
+  .signup-form-modal-container h1 {
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .signup-form-modal-label {
+    margin-bottom: 10px; 
+    color: white;
+  }
+  
+  .signup-form-modal-input {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    background-color: rgba(128, 0, 128, 0.1); /* Purple hue */
+    border: none; 
+    color: white; 
+    border-radius: 4px;
+  }
+  
+  .signup-form-modal-input::placeholder {
+    color: white; 
+  }
+  
+  .signup-form-modal-button {
+    padding: 10px 20px; 
+    background-color:#7D70D6;
+    border: none; 
+    color: white; 
+    cursor: pointer; 
+    border-radius: 4px;
+  }
+  
+ 
+  
+  .signup-form-modal-error-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin-bottom: 10px; 
+    color: red; 
+  }
+  
+  .signup-form-modal-error-list li {
+    margin-bottom: 5px; 
+  }
+  
