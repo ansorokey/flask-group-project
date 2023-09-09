@@ -69,7 +69,7 @@
 .dailyItem {
     background-color: #181A1B;
     border-radius: 4px;
-    height: 75px;
+    min-height: 75px;
     display: grid;
     grid-template-rows: 50% 50% ;
     grid-template-columns: 20% 60% 20% ;
@@ -153,8 +153,8 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 }
 .daily-options-menu{
-    background-color: #C6C1BA;
-    color: #181A1B;
+    background-color:#181A1B;
+    color: #C6C1BA;
     height: auto;
     width: 100px;
     z-index: 999;
@@ -167,13 +167,35 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 /* Delete Daily modal */
 .deleteDailyModal{
-    background-color: azure;
-    color: black;
+    background-color:#181A1B;
+    color: #C6C1BA;
     height: 200px;
     width: 300px;
     padding: 15px;
     margin: 10px;
-    align-content: center;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px rgb(46, 46, 46);
+    border-radius: 5px;
+    text-align: center;
+}
+.deletedailybuttoncont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.dailyDeleteButton{
+    background-color: #7D70D6;
+    width: 100px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+
+}
+.dailyDeleteButton:hover{
+    background-color: #9183ef;
 }
 
 /* Edit Daily modal */
@@ -203,4 +225,8 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 #gap{
     margin-top: 10px;
     padding-top: 10px;
+}
+
+.habit-quick-add > input{
+    color: #b5b5b5;
 }
