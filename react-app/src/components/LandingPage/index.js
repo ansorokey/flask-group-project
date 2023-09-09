@@ -12,7 +12,7 @@ function LandingPage() {
                 <div className='landing-header'>
                     <img src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" />
                     <h1>Motivate yourself to achieve your goals.</h1>
-                    <p>It's time to have fun when you get things done! Join over 4 million Habiticans and improve your life one task at a time.</p>
+                    <p>It's time to have fun when you get things done! Join over 4 people and improve your life one task at a time.</p>
                 </div>
                 <SignupFormPage/>
 
@@ -21,14 +21,14 @@ function LandingPage() {
             <div className='landing-sec-2'>
                 <div className='sec2MainCont'>
                     <h2 className="ct">Gamify Your Life</h2>
-                    <p className="ct">Habitica is a free habit-building and productivity app that treats your real life like a game. With in-game rewards and punishments to motivate you and a strong social network to inspire you, Habitica can help you achieve your goals to become healthy, hard-working, and happy.</p>
+                    <p className="ct">Levelup is a free habit-building and productivity app that treats your real life like a game. With in-game rewards and punishments to motivate you and a strong social network to inspire you, Levelup can help you achieve your goals to become healthy, hard-working, and happy.</p>
                 </div>
                 <div className='hilight-ctn'>
                     <div className='landing-hilight'>
                         <img className="landing-img" src="https://habitica.com/static/img/track-habits@3x.7293d5cc.png"/>
                         <div>
                             <h3 className="ct">Track Your Habits and Goals</h3>
-                            <p className="ct">Stay accountable by tracking and managing your Habits, Daily goals, and To Do list with Habitica’s easy-to-use mobile apps and web interface.</p>
+                            <p className="ct">Stay accountable by tracking and managing your Habits, Daily goals, and To Do list with Levelup’s easy-to-use mobile apps and web interface.</p>
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@ function LandingPage() {
                         <img src="https://habitica.com/static/img/battle-monsters@3x.7cd8d3e0.png" />
                         <div>
                             <h3 className="ct">Battle Monsters with Friends</h3>
-                            <p className="ct">Fight monsters with other Habiticans! Use the Gold that you earn to buy in-game or custom rewards, like watching an episode of your favorite TV show.</p>
+                            <p className="ct">Fight monsters with other people! Use the Gold that you earn to buy in-game or custom rewards, like watching an episode of your favorite TV show.</p>
                         </div>
                     </div>
                 </div>
@@ -53,14 +53,14 @@ function LandingPage() {
             </div>
 
             <div className='landing-sec-3'>
-                <h2 className="ct">Players Use Habitica to Improve</h2>
+                <h2 className="ct">Players Use Levelup to Improve</h2>
 
                 <div className='hilight-ctn'>
                     <div className='landing-hilight'>
                         <img src="https://habitica.com/static/img/health-fitness@3x.9676cd74.png" />
                         <div>
                             <h3 className="ct">Health and Fitness</h3>
-                            <p className="ct">Never motivated to floss? Can't seem to get to the gym? Habitica finally makes it fun to get healthy.</p>
+                            <p className="ct">Never motivated to floss? Can't seem to get to the gym? Levelup finally makes it fun to get healthy.</p>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@ function LandingPage() {
                         <img src='https://habitica.com/static/img/much-more@3x.e3ed259a.png' />
                         <div>
                             <h3 className="ct">And much, much more!</h3>
-                            <p className="ct">Our fully customizable task list means that you can shape Habitica to fit your personal goals. Work on creative projects, emphasize self-care, or pursue a different dream -- it's all up to you.</p>
+                            <p className="ct">Our fully customizable task list means that you can shape Levelup to fit your personal goals. Work on creative projects, emphasize self-care, or pursue a different dream -- it's all up to you.</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ function LandingPage() {
                 </div>
                 <div className='sec4Content'>
                     <h2 className="ct">Level Up Anywhere</h2>
-                    <p>Our mobile apps make it simple to keep track of your tasks on-the-go. Accomplish your goals with a single tap, no matter where you are.</p>
+                    <p>Our app make it simple to keep track of your tasks on-the-go. Accomplish your goals with a single tap, no matter where you are.</p>
 
                 </div>
             </div>
