@@ -86,3 +86,7 @@
 .tags-menu > img {
     width: 50%;
 }
+
+.createMenuOption:hover{
+    color:#8F6DCF
+}

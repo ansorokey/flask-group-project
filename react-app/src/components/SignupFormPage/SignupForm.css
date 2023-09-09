@@ -19,4 +19,8 @@
     background-color: #46A7D9;
     padding: 11px 12px;
     color: white;
+    cursor: pointer;
+}
+.signup-button:hover{
+    background-color: #53b3e3;
 }

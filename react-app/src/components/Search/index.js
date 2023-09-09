@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
 
+
 function Search() {
     const [tagsOpen, setTagsOpen] = useState(false);
     const [tasksOpen, setTasksOpen] = useState(false);
@@ -37,13 +38,14 @@ function Search() {
         <div
             className="task-options"
         >
-            <div onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
+            <div className="createMenuOption" onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
                 <i className="fa-solid fa-cubes-stacked"></i>
-                Habit
+                &nbsp;&nbsp;Habit
             </div>
-            <div>
-                <span>📆</span>
-                Daily
+
+            <div className="createMenuOption">
+                <span><i class="fa-solid fa-calendar-days"></i></span>
+                &nbsp;&nbsp;Daily
             </div>
             <div>To Do</div>
             <div>Reward</div>
