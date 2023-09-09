@@ -82,6 +82,7 @@ function EditHabitForm({habit, edit=true}){
                 <div className="habit-edit-input-ctn">
                     <label>Title</label>
                     <input className="edit-form-top-input"
+                        placeholder="Add a title..."
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -137,7 +138,8 @@ function EditHabitForm({habit, edit=true}){
                     </select>
                 </div>
 
-                <div className="edit-habit-select-ctn">
+                {/* Future Implementation */}
+                {/* <div className="edit-habit-select-ctn">
                     <label>Tags</label>
                     <select>
                         <option>Need</option>
@@ -145,7 +147,7 @@ function EditHabitForm({habit, edit=true}){
                         <option>Query</option>
                         <option>Tags</option>
                     </select>
-                </div>
+                </div> */}
 
                 <div className="edit-habit-select-ctn">
                     <label>Reset Counter</label>
