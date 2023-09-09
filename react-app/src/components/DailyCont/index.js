@@ -70,7 +70,7 @@ function DailyCont () {
         </div>
         <div className="ExplainBox">
 
-            <div><i class="fa-solid fa-calendar-days"></i></div>
+            <div><i className="fa-solid fa-calendar-days"></i></div>
             <div>These are your Dailies</div>
             <div>Dailies repeat on a regular basis. Choose the schedule that works best for you!</div>
         </div>

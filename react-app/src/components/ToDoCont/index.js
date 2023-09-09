@@ -139,7 +139,7 @@ function ToDoCont() {
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add Quest Title..."
         />
-        <button onClick={openAddQuestModal}>Add Quest</button>
+        <button onClick={openAddQuestModal}>Add To Do</button>
       </div>
 
       <div className="todo-list">
