@@ -1,6 +1,7 @@
 import "./Search.css";
 import { useState } from "react";
 
+
 function Search() {
     const [tagsOpen, setTagsOpen] = useState(false);
     const [tasksOpen, setTasksOpen] = useState(false);
@@ -11,14 +12,15 @@ function Search() {
         >
             <div className="createMenuOption">
                 <i className="fa-solid fa-cubes-stacked"></i>
-                Habit
+                &nbsp;&nbsp;Habit
             </div>
+
             <div className="createMenuOption">
                 <span><i class="fa-solid fa-calendar-days"></i></span>
-                Daily
+                &nbsp;&nbsp;Daily
             </div>
-            <div className="createMenuOption">To Do</div>
-            <div className="createMenuOption">Reward</div>
+            <div>To Do</div>
+            <div>Reward</div>
         </div>
     );
 
