@@ -94,7 +94,7 @@ function LandingPage() {
             </div>
 
             <div className='landing-sec-5'>
-                <h2 className='ct'>Join over 4 million people having fun while accomplishing their goals!</h2>
+                <h2 className='ct'>Join over 4 people having fun while accomplishing their goals!</h2>
 
                 <div onClick={() => setModalContent(<SignupFormModal />)} className="bottomJoin" >
                     Join LevelUp Today

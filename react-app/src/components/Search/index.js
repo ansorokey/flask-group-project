@@ -2,7 +2,6 @@ import "./Search.css";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
-import { useModal } from "../../context/Modal";
 import CreateDailyForm from "../DailyCont/newDailyForm";
 
 function Search() {
