@@ -23,15 +23,12 @@
 .todo-input-container button {
   padding: 10px;
   border: none;
-  background-color: purple;
+  background-color: #7D70D6;
   color: silver;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.todo-input-container button:hover {
-  background-color: #9E4000;
-}
 
 .todo-list {
   max-height: 300px;
