@@ -33,7 +33,7 @@
 .todo-list {
   max-height: 300px;
   overflow-y: auto;
-  background-color: black;
+  background-color: #181A1B;
   border: none;
   border-radius: 5px;
 }
