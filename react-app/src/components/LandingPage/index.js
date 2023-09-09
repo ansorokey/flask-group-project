@@ -10,7 +10,7 @@ function LandingPage() {
         <div className="landing-page-ctn">
             <div className='landing-sec-1'>
                 <div className='landing-header'>
-                    <img src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" />
+                    <img src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" alt="motivating pixel art" />
                     <h1>Motivate yourself to achieve your goals.</h1>
                     <p>It's time to have fun when you get things done! Join over 4 people and improve your life one task at a time.</p>
                 </div>
@@ -25,7 +25,7 @@ function LandingPage() {
                 </div>
                 <div className='hilight-ctn'>
                     <div className='landing-hilight'>
-                        <img className="landing-img" src="https://habitica.com/static/img/track-habits@3x.7293d5cc.png"/>
+                        <img className="landing-img" src="https://habitica.com/static/img/track-habits@3x.7293d5cc.png" alt="images of task checked off"/>
                         <div>
                             <h3 className="ct">Track Your Habits and Goals</h3>
                             <p className="ct">Stay accountable by tracking and managing your Habits, Daily goals, and To Do list with Levelup’s easy-to-use mobile apps and web interface.</p>
@@ -33,7 +33,7 @@ function LandingPage() {
                     </div>
 
                     <div className='landing-hilight'>
-                        <img src='https://habitica.com/static/img/earn-rewards@3x.acaba17e.png' />
+                        <img src='https://habitica.com/static/img/earn-rewards@3x.acaba17e.png' alt="mage surrounded by loot"/>
                         <div>
                             <h3 className="ct">Earn Rewards for Your Goals</h3>
                             <p className="ct">Check off tasks to level up your Avatar and unlock in-game features such as battle armor, mysterious pets, magic skills, and even quests!</p>
@@ -41,7 +41,7 @@ function LandingPage() {
                     </div>
 
                     <div className='landing-hilight'>
-                        <img src="https://habitica.com/static/img/battle-monsters@3x.7cd8d3e0.png" />
+                        <img src="https://habitica.com/static/img/battle-monsters@3x.7cd8d3e0.png" alt="pixel people fight monster" />
                         <div>
                             <h3 className="ct">Battle Monsters with Friends</h3>
                             <p className="ct">Fight monsters with other people! Use the Gold that you earn to buy in-game or custom rewards, like watching an episode of your favorite TV show.</p>
@@ -57,7 +57,7 @@ function LandingPage() {
 
                 <div className='hilight-ctn'>
                     <div className='landing-hilight'>
-                        <img src="https://habitica.com/static/img/health-fitness@3x.9676cd74.png" />
+                        <img src="https://habitica.com/static/img/health-fitness@3x.9676cd74.png" alt="pixel person meditates"/>
                         <div>
                             <h3 className="ct">Health and Fitness</h3>
                             <p className="ct">Never motivated to floss? Can't seem to get to the gym? Levelup finally makes it fun to get healthy.</p>
@@ -65,7 +65,7 @@ function LandingPage() {
                     </div>
 
                     <div className='landing-hilight'>
-                        <img src='https://habitica.com/static/img/school-work@3x.d6eb1650.png' />
+                        <img src='https://habitica.com/static/img/school-work@3x.d6eb1650.png' alt="pixel person at computer" />
                         <div>
                             <h3 className="ct">School and Work</h3>
                             <p className="ct">Whether you're preparing a report for your teacher or your boss, it's easy to keep track of your progress as you tackle your toughest tasks.</p>
@@ -73,7 +73,7 @@ function LandingPage() {
                     </div>
 
                     <div className='landing-hilight'>
-                        <img src='https://habitica.com/static/img/much-more@3x.e3ed259a.png' />
+                        <img src='https://habitica.com/static/img/much-more@3x.e3ed259a.png' alt="pixel person reads book"/>
                         <div>
                             <h3 className="ct">And much, much more!</h3>
                             <p className="ct">Our fully customizable task list means that you can shape Levelup to fit your personal goals. Work on creative projects, emphasize self-care, or pursue a different dream -- it's all up to you.</p>
@@ -84,7 +84,7 @@ function LandingPage() {
 
             <div className='landing-sec-4'>
                 <div>
-                    <img src='https://habitica.com/static/img/mobile-preview@3x.422fbec7.png' id="l-4-pic"/>
+                    <img src='https://habitica.com/static/img/mobile-preview@3x.422fbec7.png' id="l-4-pic" alt = "app on phone"/>
                 </div>
                 <div className='sec4Content'>
                     <h2 className="ct">Level Up Anywhere</h2>
