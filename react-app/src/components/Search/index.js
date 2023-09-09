@@ -1,9 +1,12 @@
 import "./Search.css";
 import { useState } from "react";
+import { useModal } from "../../context/Modal";
+import CreateDailyForm from "../DailyCont/newDailyForm";
 
 function Search() {
   const [tagsOpen, setTagsOpen] = useState(false);
   const [tasksOpen, setTasksOpen] = useState(false);
+  const { setModalContent } = useModal();
 
   const taskOptions = (
     <div className="task-options">
@@ -12,7 +15,7 @@ function Search() {
         &nbsp;&nbsp;Habit
       </div>
 
-      <div className="createMenuOption">
+      <div className="createMenuOption" onClick={() => setModalContent(<CreateDailyForm />)}>
         <span>
           <i class="fa-solid fa-calendar-days"></i>
         </span>
@@ -32,7 +35,7 @@ function Search() {
         </span>
         &nbsp;&nbsp;Reward
       </div>
-      
+
     </div>
   );
 

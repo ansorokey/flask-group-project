@@ -230,3 +230,11 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 .habit-quick-add > input{
     color: #b5b5b5;
 }
+
+#dailyedittop{
+    background-color: green;
+}
+
+#dailyTitleandBtnCreate{
+    background-color: green;
+}

@@ -50,10 +50,10 @@ function CreateDailyForm() {
     <div className="habit-edit-ctn">
 
 
-      <div className="habit-title-and-btns" >
+      <div className="habit-title-and-btns">
 
         <div>
-          Edit Daily
+          Create Daily
         </div>
 
         <div>
@@ -70,7 +70,7 @@ function CreateDailyForm() {
 
     <form className="edit-habit-form" onSubmit={handleSubmit}>
 
-      <div className="edit-form-top">
+      <div className="edit-form-top" >
 
       <div className="habit-edit-input-ctn">
             <label>Title</label>
