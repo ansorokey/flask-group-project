@@ -13,7 +13,7 @@ function addHabitsToReducer(fetchedHabits) {
 function addOneNewHabit(habit) {
     return {
         type: CREATE_HABIT,
-        habit: habit
+        habit
     }
 }
 

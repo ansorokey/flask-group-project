@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import UserProfileModal from "../UserProfile/UserProfileModal";
 import { useModal } from "../../context/Modal";
 
@@ -48,21 +46,26 @@ function ProfileButton({ user }) {
     <>
       {user ? (
         <div onClick={openMenu} className="userButton">
-
-      <i class="fa-regular fa-user" ></i>
-      </div>
-      ): (
-
-      <div onClick={() => setModalContent(<LoginFormModal />)} className="landingButton" >
-        Login
-      </div>
-
+          <i className="fa-regular fa-user"></i>
+        </div>
+      ) : (
+        <div
+          onClick={() => setModalContent(<LoginFormModal />)}
+          className="landingButton"
+        >
+          Login
+        </div>
       )}
 
 
       <div className={ulClassName} ref={ulRef}>
 
-            <div className="userMenuItem">Edit Avatar</div>
+            <div
+              className="userMenuItem"
+              onClick={() => setModalContent(<UserProfileModal editOpen={true} />)}
+            >
+              Edit Profile
+            </div>
             <hr />
             <div className="userMenuItem" onClick={() => setModalContent(<UserProfileModal user={user} />)}
             >Profile</div>
@@ -72,5 +75,7 @@ function ProfileButton({ user }) {
     </>
   );
 }
+
+
 
 export default ProfileButton;

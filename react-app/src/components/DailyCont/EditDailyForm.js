@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { updateDaily, removeDaily, loadAllDailies } from "../../store/daily";
+import { updateDaily, removeDaily } from "../../store/daily";
 
 function EditDailyForm({daily}) {
   const { closeModal } = useModal();
@@ -48,49 +48,49 @@ function EditDailyForm({daily}) {
 
 
   return (
-    <div className="habit-edit-ctn">
+    <div className="daily-edit-ctn">
 
 
-      <div className="habit-title-and-btns" >
+      <div className="daily-title-and-btns" >
 
         <div>
           Edit Daily
         </div>
 
         <div>
-          <button className="habit-edit cancel" onClick={closeModal}>
+          <button className="daily-edit cancel" onClick={closeModal}>
             Cancel
           </button>
           <button
             onClick={(e) => {handleSubmit(e);}}
-            className="habit-edit save">
+            className="daily-edit save">
               Save
           </button>
         </div>
       </div>
 
-    <form className="edit-habit-form" onSubmit={handleSubmit}>
+    <form className="daily-habit-form" onSubmit={handleSubmit}>
 
-      <div className="edit-form-top">
+      <div className="daily-edit-form-top">
 
-      <div className="habit-edit-input-ctn">
+      <div className="daily-edit-input-ctn">
             <label>Title</label>
             <input
               type='text'
               value={title}
               placeholder="Add a title"
-              className="edit-form-top-input"
+              className="daily-edit-form-top-input"
               onChange={(e)=> setTitle(e.target.value)}
             />
             <div className="errors">{errors?.title}</div>
       </div>
 
-          <div className="habit-edit-input-ctn">
+          <div className="daily-edit-input-ctn">
             <label>Notes</label>
 
             <textarea
               placeholder="Add notes"
-              className="edit-form-top-input"
+              className="daily-edit-form-top-input"
               value={description}
               onChange={(e)=> setDescription(e.target.value)}
             />
@@ -99,10 +99,10 @@ function EditDailyForm({daily}) {
       <div className="errors">{errors?.description}</div>
 
 
-      <div className="edit-form-bottom">
+      <div className="daily-edit-form-bottom">
             {/* This is where checklist input will go in the future */}
 
-          <div className="edit-habit-select-ctn">
+          <div className="edit-daily-select-ctn">
               <label id="gap">Difficulty </label>
 
               <select value={strength} onChange={(e) => setStrength(e.target.value)}>
@@ -118,7 +118,7 @@ function EditDailyForm({daily}) {
 
 
           {/* This is where Start date will go when it is implimented */}
-          <div className="edit-habit-select-ctn">
+          <div className="edit-daily-select-ctn">
             <label>Repeats</label>
             <select value={repeats_frame} onChange={(e) => setRepeats_frame(e.target.value)}>
               <option value="1">Daily</option>
@@ -129,7 +129,7 @@ function EditDailyForm({daily}) {
             <div className="errors">{errors?.repeats_frame}</div>
           </div>
 
-          <div className="edit-habit-select-ctn">
+          <div className="edit-daily-select-ctn">
             <label>Repeat Every</label>
             <div>
               <input type='number'  min="1" value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />    &ensp; <span className="timeFrame">{getTimeframe()}</span>
@@ -176,8 +176,8 @@ function EditDailyForm({daily}) {
       </div>
   </form>
 
-      <div className="edit-habit-del">
-        <button className="edit-habit-del-btn"
+      <div className="edit-daily-del">
+        <button className="edit-daily-del-btn"
           onClick={() => {
             if(window.confirm('Are you sure you want to delete this daily?')) {
               dispatch(removeDaily(daily.id));
@@ -186,7 +186,7 @@ function EditDailyForm({daily}) {
           }}
         >
           <i className="fa-solid fa-trash-can"></i>
-            Delete this Daily
+            &ensp;Delete this Daily
         </button>
       </div>
 

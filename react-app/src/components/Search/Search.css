@@ -27,6 +27,7 @@
     color: #B5AFA5;
     margin-left: 8px;
     padding: 3.5px 12px;
+    position: relative;
 }
 
 .search-tags:hover {
@@ -72,4 +73,20 @@
     padding-left: 16px;
     /* display: flex;
     justify-content: space-between; */
+}
+
+.tags-menu {
+    position: absolute;
+    width: 200%;
+    top: 100%;
+    left: 0;
+    background-color: #181A1B;
+}
+
+.tags-menu > img {
+    width: 50%;
+}
+
+.createMenuOption:hover{
+    color:#8F6DCF
 }

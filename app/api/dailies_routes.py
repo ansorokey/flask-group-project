@@ -84,9 +84,8 @@ def new_daily():
     if form.validate_on_submit():
         user_id = current_user.id
         # perform logic to calculate the due date based on the the parameters given by the user
-        frame = int(form.data['repeats_frame'])
-        frequency = form.data['repeats_frequency']
-        due_date = getDueDate(frame, frequency)
+
+        due_date = today
         # maybe impliment a place for the user to specify first due date?
 
 

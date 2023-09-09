@@ -17,9 +17,11 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
-    last_login = db.Column(db.DateTime, default=functions.now())
+    last_login = db.Column(db.Date, default=functions.current_date())
     avatar_url = db.Column(db.String(255), default='https://res.cloudinary.com/dzntryr5a/image/upload/v1693505136/default-profile-pic_sw5ech.jpg')
     about = db.Column(db.String(255))
+    joined = db.Column(db.DateTime, default=functions.now())
+    check_ins = db.Column(db.Integer, default=1)
 
     @property
     def password(self):
@@ -41,5 +43,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'lastLogin': self.last_login,
             'avatarUrl': self.avatar_url,
-            'about': self.about
+            'about': self.about,
+            'joined': self.joined,
+            'checkIns': self.check_ins
         }

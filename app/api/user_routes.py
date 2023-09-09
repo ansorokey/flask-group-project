@@ -16,7 +16,6 @@ def update_user(id):
 
     db.session.commit()
     return updated_user.to_dict()
-    # return {'message': 'success'}
 
 @user_routes.route('/<int:id>')
 @login_required

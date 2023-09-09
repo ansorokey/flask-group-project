@@ -23,20 +23,17 @@
 .todo-input-container button {
   padding: 10px;
   border: none;
-  background-color: purple;
+  background-color: #7D70D6;
   color: silver;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.todo-input-container button:hover {
-  background-color: #9E4000;
-}
 
 .todo-list {
   max-height: 300px;
   overflow-y: auto;
-  background-color: black;
+  background-color: #181A1B;
   border: none;
   border-radius: 5px;
 }
@@ -70,7 +67,7 @@
 }
 
 .todo-details-title {
-  color: purple;
+  color: #7D70D6;
   margin-bottom: 10px;
 }
 
@@ -92,7 +89,7 @@
 }
 
 .todo-details-edit-button {
-  background-color: purple;
+  background-color: #7D70D6;
   color: silver;
 }
 
@@ -148,13 +145,13 @@
 }
 
 .todo-form-button.save {
-  background-color: #9E4000;
-  color: #FFAB73;
+  background-color: #7D70D6;
+  color:white;
 }
 
 .todo-form-button.cancel {
   background-color: #181A1b;
-  color: #FFAB73;
+  color: white;
 }
 
 .todo-header-container {

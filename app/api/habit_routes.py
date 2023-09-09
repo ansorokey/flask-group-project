@@ -81,6 +81,7 @@ def post_habit():
     if form.validate_on_submit():
         new_habit = Habit()
         form.populate_obj(new_habit)
+
         db.session.add(new_habit)
         db.session.commit()
         return new_habit.to_dict()

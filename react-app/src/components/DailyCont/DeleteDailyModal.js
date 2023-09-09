@@ -13,23 +13,29 @@ function DeleteDailyModal({daily}) {
       <h1> Are you sure you want to delete this Daily? </h1>
       <p><em>{daily.title}</em></p>
 
-      <button
-        onClick={async () => {
-          dispatch(removeDaily(daily.id))
-          dispatch(loadAllDailies())
-          closeModal();
-        }}
-      >
-        Yes
-      </button>
+      <div className="deletedailybuttoncont">
+        <div
+          className="dailyDeleteButton"
+          onClick={async () => {
+            dispatch(removeDaily(daily.id))
+            dispatch(loadAllDailies())
+            closeModal();
+          }}
+        >
+          Yes
+        </div>
 
-      <button
-        onClick={() => {
-          closeModal();
-        }}
-      >
-        No
-      </button>
+
+
+        <div
+          className="dailyDeleteButton"
+          onClick={() => {
+            closeModal();
+          }}
+        >
+          No
+        </div>
+      </div>
     </div>
   );
 }

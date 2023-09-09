@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserInfo } from "../../store/session";
 
-function UserProfileModal() {
+function UserProfileModal({editOpen=false}) {
     const user = useSelector(state => state.session.user)
 
-    const lastLogin = new Date(user.lastLogin);
+    // const lastLogin = new Date(user.lastLogin);
+    // const joined = new Date(user.joined);
     const [activeTab, setActiveTab] = useState('Profile');
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(editOpen);
     const [avatarId, setAvatarId] = useState(0);
     const [about, setAbout] = useState(user.about);
     const [changeAvatar, setChangeAvatar] = useState(false);
@@ -25,11 +26,11 @@ function UserProfileModal() {
 
         if(avatarId > 0) data['avatarUrl'] = avatar_state[avatarId].url
 
-        // console.log(data);
         // dispatch the data as a thunk
         const response = await dispatch(updateUserInfo(data));
         if(response.ok) {
             setEdit(false);
+            setChangeAvatar(false);
         }
     }
 
@@ -39,7 +40,7 @@ function UserProfileModal() {
             <div className="user-profile-top">
                 <img className="avatar-img" src={user.avatarUrl} alt='user avatar' />
                 <div className="health-and-level">
-                    <div>@{user.username} | Level LEVEL</div>
+                    <div>@{user.username} | Level 1</div>
                     <div className="stat-bar">
                         <i className="fa-solid fa-heart"></i>
                         <div className="max-stat-bar">
@@ -74,7 +75,7 @@ function UserProfileModal() {
                 </div>
 
                 {!edit && <div className="user-about">
-                    <div>
+                    <div className="user-about-about">
                         <h2>About</h2>
                         <hr />
                         {user.about ? <div>{user.about}</div> : <div>This user hasn't added a description.</div>}
@@ -84,23 +85,22 @@ function UserProfileModal() {
                         <h2>Info</h2>
                         <hr />
                         <div className="user-profile-info">
-                            <div>Joined DATE</div>
-                            <div>Total Check-ins INT</div>
-                            <div>Last Check In {lastLogin.getMonth() + 1}-{lastLogin.getDate()}-{lastLogin.getFullYear()}</div>
+                            <span><div>Joined:</div> <div>{user.joined.slice(5, 16)}</div></span>
+                            <span><div>Total Check-ins:</div> <div>{user?.checkIns}</div></span>
+                            <span><div>Last Check In:</div> <div>{user.lastLogin.slice(5, 16)}</div></span>
                         </div>
                     </div>
                 </div>}
 
                 {edit && <div>
-                    <form onSubmit={handleSubmit}>
+                    <form className="edit-user-prof" onSubmit={handleSubmit}>
                         <div className="edit-prof-sec">
                             <label>About</label>
                             <textarea value={about} onChange={(e) => setAbout(e.target.value) } />
                         </div>
 
                         <div onClick={() => setChangeAvatar(!changeAvatar)}>
-                            Change Avatar
-                            {changeAvatar ? <i className="fa-solid fa-caret-up"></i> :<i className="fa-solid fa-caret-down"></i>}
+                            Change Avatar  {changeAvatar ? <i className="fa-solid fa-caret-up"></i> :<i className="fa-solid fa-caret-down"></i>}
                         </div>
                         {changeAvatar && <div className="edit-user-avatar-ctn">
                             {availableAvatars.map(av => {
@@ -117,12 +117,12 @@ function UserProfileModal() {
 
             </div>}
 
-            {activeTab === 'Profile' && <div>
-
+            {activeTab === 'Stats' && <div>
+                <h1>Feature Coming Soon!</h1>
             </div>}
 
-            {activeTab === 'Profile' && <div>
-
+            {activeTab === 'Achievements' && <div>
+                <h1>Feature Coming Soon!</h1>
             </div>}
 
         </div>
