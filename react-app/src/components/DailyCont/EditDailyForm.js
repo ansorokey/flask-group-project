@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { updateDaily, removeDaily, loadAllDailies } from "../../store/daily";
+import { updateDaily, removeDaily } from "../../store/daily";
 
 function EditDailyForm({daily}) {
   const { closeModal } = useModal();
