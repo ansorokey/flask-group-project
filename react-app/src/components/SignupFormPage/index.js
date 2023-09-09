@@ -25,7 +25,6 @@ function SignupFormPage() {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password, firstName, lastName));
         if (data) {
-          console.log(data);
           const errs = {}
           data.forEach(e => {
             const keyMessage = e.split(':');

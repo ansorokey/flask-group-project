@@ -52,7 +52,6 @@ export function createUserHabit(data) {
 
         if(response.ok) {
             const res = await response.json();
-            console.log('res', res)
             dispatch(addOneNewHabit(res));
         }
     }

@@ -22,9 +22,6 @@ function DailyCont () {
         const newDaily = {title: title}
 
         const res = await dispatch(createDaily(newDaily))
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log(res)
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
         dispatch(loadAllDailies())
         setTitle('')
 
@@ -63,7 +60,7 @@ function DailyCont () {
                 type="text"
                 placeholder="Add a Daily"
                 value={title}
-                
+
                 onChange={e => setTitle(e.currentTarget.value)} />
         </form>
         <div>

@@ -77,7 +77,7 @@ def get_habits():
 def post_habit():
     form = HabitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
+
     if form.validate_on_submit():
         new_habit = Habit()
         form.populate_obj(new_habit)

@@ -24,8 +24,6 @@ export const loadAllDailies = () => async dispatch => {
     const response = await fetch('api/dailies/')
     if (response.ok) {
         const data = await response.json()
-		// console.log('!!!!!!!!! right after the response')
-		// console.log(data)
         dispatch(getAllDaily(data))
     } else if (response.status < 500) {
 		const data = await response.json();

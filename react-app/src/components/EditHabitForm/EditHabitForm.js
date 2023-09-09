@@ -46,7 +46,6 @@ function EditHabitForm({habit, edit=true}){
         if(edit){
             dispatch(updateHabit(habit.id, data));
         } else {
-            console.log(data);
             dispatch(createUserHabit(data));
         }
         closeModal();
