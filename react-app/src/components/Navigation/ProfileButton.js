@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
     <>
       {user ? (
         <div onClick={openMenu} className="userButton">
-          <i class="fa-regular fa-user"></i>
+          <i className="fa-regular fa-user"></i>
         </div>
       ) : (
         <div

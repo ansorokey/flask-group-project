@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { createDaily } from "../../store/daily";
+import "./dailyedit.css"
 
 function CreateDailyForm() {
   const { closeModal } = useModal();
@@ -29,7 +30,7 @@ function CreateDailyForm() {
       setErrors(issues)
     }
 
-    const newDaily = { title, description, strength, repeats_frame, repeats_frequency, streak: +streak };
+    const newDaily = { title, description, strength, repeats_frame, repeats_frequency, streak: 0};
 
 
     if(!Object.values(issues).length){
@@ -43,53 +44,54 @@ function CreateDailyForm() {
     else if (repeats_frame === "7") return "Weeks"
     else if (repeats_frame === "30") return "Months"
     else if (repeats_frame === "365") return "Years"
+    else return "Days"
   }
 
 
   return (
-    <div className="habit-edit-ctn">
+    <div className="daily-edit-ctn">
 
 
-      <div className="habit-title-and-btns">
+      <div className="daily-title-and-btns">
 
         <div>
           Create Daily
         </div>
 
         <div>
-          <button className="habit-edit cancel" onClick={closeModal}>
+          <button className="daily-edit cancel" onClick={closeModal}>
             Cancel
           </button>
           <button
             onClick={(e) => {handleSubmit(e);}}
-            className="habit-edit save">
+            className="daily-edit save">
               Save
           </button>
         </div>
       </div>
 
-    <form className="edit-habit-form" onSubmit={handleSubmit}>
+    <form className="daily-habit-form" onSubmit={handleSubmit}>
 
-      <div className="edit-form-top" >
+      <div className="daily-edit-form-top" >
 
-      <div className="habit-edit-input-ctn">
+      <div className="daily-edit-input-ctn">
             <label>Title</label>
             <input
               type='text'
               value={title}
               placeholder="Add a title"
-              className="edit-form-top-input"
+              className="daily-edit-form-top-input"
               onChange={(e)=> setTitle(e.target.value)}
             />
             <div className="errors">{errors?.title}</div>
       </div>
 
-          <div className="habit-edit-input-ctn">
+          <div className="daily-edit-input-ctn">
             <label>Notes</label>
 
             <textarea
               placeholder="Add notes"
-              className="edit-form-top-input"
+              className="daily-edit-form-top-input"
               value={description}
               onChange={(e)=> setDescription(e.target.value)}
             />
@@ -131,7 +133,8 @@ function CreateDailyForm() {
           <div className="edit-habit-select-ctn">
             <label>Repeat Every</label>
             <div>
-              <input type='number'  min="1" value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />    &ensp; <span className="timeFrame">{getTimeframe()}</span>
+              <input type='number'  min="1" value={repeats_frequency} onChange={(e)=> setRepeats_frequency(e.target.value)} />
+              &ensp; <span className="timeFrame">{getTimeframe()}</span>
             </div>
 
             <div className="errors">{errors?.repeats_frequency}</div>
