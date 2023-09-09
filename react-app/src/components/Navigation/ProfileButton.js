@@ -62,7 +62,12 @@ function ProfileButton({ user }) {
 
       <div className={ulClassName} ref={ulRef}>
 
-            <div className="userMenuItem">Edit Avatar</div>
+            <div
+              className="userMenuItem"
+              onClick={() => setModalContent(<UserProfileModal editOpen={true} />)}
+            >
+              Edit Profile
+            </div>
             <hr />
             <div className="userMenuItem" onClick={() => setModalContent(<UserProfileModal user={user} />)}
             >Profile</div>

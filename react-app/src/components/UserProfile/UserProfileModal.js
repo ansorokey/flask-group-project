@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserInfo } from "../../store/session";
 
-function UserProfileModal() {
+function UserProfileModal({editOpen=false}) {
     const user = useSelector(state => state.session.user)
 
-    const lastLogin = new Date(user.lastLogin);
-    const joined = new Date(user.joined);
+    // const lastLogin = new Date(user.lastLogin);
+    // const joined = new Date(user.joined);
     const [activeTab, setActiveTab] = useState('Profile');
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(editOpen);
     const [avatarId, setAvatarId] = useState(0);
     const [about, setAbout] = useState(user.about);
     const [changeAvatar, setChangeAvatar] = useState(false);
@@ -41,7 +41,7 @@ function UserProfileModal() {
             <div className="user-profile-top">
                 <img className="avatar-img" src={user.avatarUrl} alt='user avatar' />
                 <div className="health-and-level">
-                    <div>@{user.username} | Level LEVEL</div>
+                    <div>@{user.username} | Level 1</div>
                     <div className="stat-bar">
                         <i className="fa-solid fa-heart"></i>
                         <div className="max-stat-bar">
@@ -86,9 +86,9 @@ function UserProfileModal() {
                         <h2>Info</h2>
                         <hr />
                         <div className="user-profile-info">
-                            <span><div>Joined:</div> <div>{joined.getMonth() + 1}-{joined.getDate()}-{joined.getFullYear()}</div></span>
+                            <span><div>Joined:</div> <div>{user.joined.slice(5, 16)}</div></span>
                             <span><div>Total Check-ins:</div> <div>{user?.checkIns}</div></span>
-                            <span><div>Last Check In:</div> <div>{`${lastLogin.getMonth() + 1}-${lastLogin.getDate()}-${lastLogin.getFullYear()}`}</div></span>
+                            <span><div>Last Check In:</div> <div>{user.lastLogin.slice(5, 16)}</div></span>
                         </div>
                     </div>
                 </div>}
