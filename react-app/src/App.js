@@ -8,8 +8,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
-import OnboardingModal from "./components/OnboardingModal";
 import { HabitProvider } from "./context/Habit";
+import OnboardingModal from "./components/OnboardingModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +26,9 @@ function App() {
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
+          </Route>
+          <Route path="/test" >
+            <OnboardingModal />
           </Route>
           <Route path="/signup">
             <SignupFormPage />

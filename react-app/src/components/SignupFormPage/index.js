@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
+import OnboardingModal from "../OnboardingModal";
+import { useModal } from "../../context/Modal";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { setModalContent } = useModal();
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -29,6 +32,8 @@ function SignupFormPage() {
             errs[keyMessage[0].trim()] = keyMessage[1].trim();
           });
           setErrors(errs);
+        } else {
+          setModalContent(<OnboardingModal />)
         }
     } else {
         setErrors({'password': 'Confirm Password field must be the same as the Password field'});

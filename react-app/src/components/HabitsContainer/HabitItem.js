@@ -136,7 +136,7 @@ function HabitItem({habit}){
                 {(habit.pos || habit.neg) && <i className="fa-solid fa-forward icon-forward"></i>}
                 {habit.pos && habit.posCount}
                 {habit.pos && habit.neg && <span>|</span>}
-                {habit.neg && <span>-{habit.negCount}</span>}
+                {habit.neg && <span>{habit.negCount > 0 && <span>-</span>}{habit.negCount}</span>}
             </div>
         </div>
 

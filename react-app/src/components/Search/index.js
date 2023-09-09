@@ -1,9 +1,23 @@
 import "./Search.css";
 import { useState, useEffect } from "react";
+import { useModal } from "../../context/Modal";
+import EditHabitForm from "../EditHabitForm/EditHabitForm";
 
 function Search() {
     const [tagsOpen, setTagsOpen] = useState(false);
     const [tasksOpen, setTasksOpen] = useState(false);
+    const { setModalContent } = useModal();
+
+    const defaultHabit = {
+        title: '',
+        notes: '',
+        difficulty: 2,
+        frequency: 'daily',
+        pos: true,
+        neg: true,
+        posCount: 0,
+        negCount: 0
+    }
 
     // 100% credit to Christine on this
     useEffect(() => {
@@ -23,7 +37,7 @@ function Search() {
         <div
             className="task-options"
         >
-            <div>
+            <div onClick={() => setModalContent(<EditHabitForm habit={defaultHabit} edit={false}/>)}>
                 <i className="fa-solid fa-cubes-stacked"></i>
                 Habit
             </div>

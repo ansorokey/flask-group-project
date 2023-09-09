@@ -13,11 +13,18 @@ function UserBar({user}) {
                 >
                     <img className="user-bar-avatar" src={user.avatarUrl} alt="user avatar"/>
                 </div>
+
                 <div className="user-stats">
-                    <i className="fa-solid fa-hat-wizard"></i>
-                    <div>
+                    <div className='hat-ctn'>
+                        <i className="fa-solid fa-hat-wizard"></i>
+                    </div>
+                    <div className='name-username'>
                         <div>{user.firstName} {user.lastName}</div>
-                        <div>{user.email}</div>
+                        <div className='user-dsh-ctn'>
+                            <span>@{user.username}</span>
+                            <span className='dot-ctn'><i className="fa-solid fa-circle"></i></span>
+                            <span>Level 1 Motivated Mage</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,8 @@ def upgrade():
     sa.Column('last_login', sa.DateTime, default=functions.now()),
     sa.Column('avatar_url', sa.String(length=255), default='https://res.cloudinary.com/dzntryr5a/image/upload/v1693505136/default-profile-pic_sw5ech.jpg'),
     sa.Column('about', sa.String(length=255)),
+    sa.Column('joined', sa.DateTime, default=functions.now()),
+    sa.Column('check_ins', sa.Integer, default=1),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -41,7 +43,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
+    # ### end Alembic commands ###
 
 
 def downgrade():

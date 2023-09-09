@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStarterAvatars } from "../../store/avatar";
 import { useModal } from "../../context/Modal";
 import { updateUserInfo } from "../../store/session";
+import './Onboarding.css';
 
 
 function OnboardingModal() {
@@ -13,7 +14,6 @@ function OnboardingModal() {
     const user = useSelector(state => state.session.user)
     const avatar_state = useSelector(state => state.avatar);
     const avatar_arr = Object.values(avatar_state);
-    const [activePage, setActivePage] = useState('avatar');
 
     useEffect(() => {
         async function initLoad() {
@@ -44,10 +44,10 @@ function OnboardingModal() {
     // ----------------------------------------------------------------------------------------
     // THE COMPONENT
     // ----------------------------------------------------------------------------------------
-    return <div className="choose-avatar-ctn">
+    return <div className="onboard-ctn">
 
         <form onSubmit={handleSubmit}>
-            {activePage === 'avatar' && <div>
+            <div>
                 <h1>Welcome to LevelUp!</h1>
                 <h2>Start by picking out your new Avatar</h2>
                 <p>(Don't worry, you can change this later)</p>
@@ -59,37 +59,21 @@ function OnboardingModal() {
                         </label>);
                     })}
                 </div>
-            </div>}
+            </div>
 
-            {activePage === 'about' && <div>
-                <h1>Now tell us a little about yourself!</h1>
+            <div>
+                <h2>Now tell us a little about yourself!</h2>
                 <textarea
+                    placeholder="About me..."
+                    className="onboard-about"
                     value={about}
                     onChange={e => setAbout(e.target.value)}
                 />
-            </div>}
+            </div>
 
             <button
-                onClick={(e) => {
-                    e.preventDefault();
-                    setActivePage('avatar')}
-                }
-                disabled={activePage === 'avatar'}
-            >
-                Back
-            </button>
-
-            <button>Save</button>
-
-            <button
-                onClick={(e) => {
-                    e.preventDefault();
-                    setActivePage('about')}
-                }
-                disabled={activePage === 'about'}
-            >
-                Next
-            </button>
+                className="onboard-save"
+            >Save</button>
         </form>
     </div>
 }
