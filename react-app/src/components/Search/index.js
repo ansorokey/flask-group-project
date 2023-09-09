@@ -14,7 +14,7 @@ function Search() {
                 Habit
             </div>
             <div>
-                <span>📆</span>
+                <span><i class="fa-solid fa-calendar-days"></i></span>
                 Daily
             </div>
             <div>To Do</div>

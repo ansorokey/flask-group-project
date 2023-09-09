@@ -49,7 +49,7 @@ export const createDaily = (daily) => async dispatch =>{
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(createOrUpdateDaily(data));
-		return null;
+		return data;
 	} else if (response.status < 500) {
 		const data = await response.json();
 		if (data.errors) {

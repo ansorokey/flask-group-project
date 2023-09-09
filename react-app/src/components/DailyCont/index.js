@@ -15,14 +15,16 @@ function DailyCont () {
         dispatch(loadAllDailies());
     }, [dispatch])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!title) return
         const newDaily = {title: title}
 
-        dispatch(createDaily(newDaily))
-
+        const res = await dispatch(createDaily(newDaily))
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log(res)
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
         dispatch(loadAllDailies())
         setTitle('')
 
@@ -61,6 +63,7 @@ function DailyCont () {
                 type="text"
                 placeholder="Add a Daily"
                 value={title}
+                
                 onChange={e => setTitle(e.currentTarget.value)} />
         </form>
         <div>
@@ -70,7 +73,7 @@ function DailyCont () {
         </div>
         <div className="ExplainBox">
 
-            <div>📆</div>
+            <div><i class="fa-solid fa-calendar-days"></i></div>
             <div>These are your Dailies</div>
             <div>Dailies repeat on a regular basis. Choose the schedule that works best for you!</div>
         </div>

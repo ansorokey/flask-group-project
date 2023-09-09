@@ -21,6 +21,20 @@ function LoginFormModal() {
     }
   };
 
+  const loginDemo = async (e) => {
+    setEmail('demo@aa.io');
+    setPassword('password')
+
+    return dispatch(login('demo@aa.io','password'))
+      .then(closeModal) // Close the modal after successful login
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      });
+  }
+
   return (
     <div className="login-form-modal-container">
       <h1>Log In</h1>
@@ -50,6 +64,7 @@ function LoginFormModal() {
             required
           />
         </label>
+        <div className="demoUser" onClick={loginDemo}>Demo User</div>
         <button className="login-form-modal-button" type="submit">Log In</button>
       </form>
     </div>
