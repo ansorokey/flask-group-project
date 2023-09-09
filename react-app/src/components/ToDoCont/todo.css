@@ -67,7 +67,7 @@
 }
 
 .todo-details-title {
-  color: purple;
+  color: #7D70D6;
   margin-bottom: 10px;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .todo-details-edit-button {
-  background-color: purple;
+  background-color: #7D70D6;
   color: silver;
 }
 
@@ -145,13 +145,13 @@
 }
 
 .todo-form-button.save {
-  background-color: #9E4000;
-  color: #FFAB73;
+  background-color: #7D70D6;
+  color:white;
 }
 
 .todo-form-button.cancel {
   background-color: #181A1b;
-  color: #FFAB73;
+  color: white;
 }
 
 .todo-header-container {
