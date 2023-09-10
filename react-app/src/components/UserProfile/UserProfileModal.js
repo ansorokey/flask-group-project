@@ -26,7 +26,6 @@ function UserProfileModal({editOpen=false}) {
 
         if(avatarId > 0) data['avatarUrl'] = avatar_state[avatarId].url
 
-        // console.log(data);
         // dispatch the data as a thunk
         const response = await dispatch(updateUserInfo(data));
         if(response.ok) {

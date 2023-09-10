@@ -22,7 +22,6 @@ function DailyCont () {
         const newDaily = {title: title}
 
         await dispatch(createDaily(newDaily))
-
         dispatch(loadAllDailies())
         setTitle('')
 
