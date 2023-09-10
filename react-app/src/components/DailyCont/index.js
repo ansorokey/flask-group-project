@@ -21,10 +21,7 @@ function DailyCont () {
         if (!title) return
         const newDaily = {title: title}
 
-        const res = await dispatch(createDaily(newDaily))
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log(res)
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        await dispatch(createDaily(newDaily))
         dispatch(loadAllDailies())
         setTitle('')
 

@@ -108,7 +108,7 @@ function Search() {
                 {tagsOpen &&
                     <div className="tags-menu">
                         <p>Feature coming <s>never</s> soon!</p>
-                        <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694130506/Rowlet-Pokemon-Transparent-PNG_xr1qfl.png"/>
+                        <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694130506/Rowlet-Pokemon-Transparent-PNG_xr1qfl.png" alt="pokemon"/>
                     </div>
                 }
             </div>

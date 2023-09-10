@@ -45,10 +45,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
 
-        print('\n')
-        today = date.today() + timedelta(days=1)
-        print(today == user.last_login)
-        print('\n')
+        today = date.today()
 
         if today > user.last_login:
             user.last_login = today

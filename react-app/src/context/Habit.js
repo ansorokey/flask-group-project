@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserHabits, createUserHabit } from "../store/habits";
+import { getUserHabits } from "../store/habits";
 
 const HabitContext = React.createContext();
 
