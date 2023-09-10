@@ -1,23 +1,40 @@
 /* To-Do Container */
+.toDo_cont{
+  padding:8px
+}
 .todo-container {
-  padding: 20px;
+  padding: 30px;
   border-radius: 5px;
   background-color: #2b2b2b;
   color: silver;
 }
-
+.todo_checkBox{
+  background-color: #228E23;
+  width: 75px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.todo-item-container{
+  width:100%;
+}
 .todo-input-container {
   display: flex;
-  margin-bottom: 10px;
+ padding-top: 5%;
 }
 
 .todo-input-container input {
   flex: 1;
-  padding: 10px;
+  margin-bottom: 24px;
+  padding-left: 15px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
   color: #c6c1ba;
+}
+.todo_checkBox{
+  padding-bottom:25px;
+  border-radius: 5px;
 }
 
 .todo-input-container button {
@@ -30,22 +47,44 @@
 }
 
 
-.todo-list {
+/* .todo-list {
   max-height: 300px;
   overflow-y: auto;
   background-color: #181A1B;
   border: none;
   border-radius: 5px;
-}
-
-.todo-item {
+} */
+.outerIndContainer{
+  display: flex;
+  flex-direction: row;
+  background-color:#181A1B;
   display: block;
-  width: 100%;
-  padding: 10px;
-  border-bottom: 1px solid gray;
   color: silver;
+  min-height: 75px;
+  display:flex;
+  box-shadow: 1px 1px 5px black;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
 }
-
+.todo-item {
+  width: stretch;
+  cursor:pointer;
+  padding:0px;
+  margin:0px;
+}
+.toDoItemTitle{
+  width:stretch;
+  padding-left: 15px;
+  padding-top:10px;
+}
+.toDo_dueDate{
+  width:stretch;
+  font-size:12px;
+  padding-top: 20px;
+  color:red;
+  padding-left: 15px;
+}
 .todo-item button {
   background-color: transparent;
   border: none;
@@ -171,12 +210,17 @@
 }
 .quests{
   color:#C6C1BA;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 .scheduledQuest, .activeQuest, .completedQuest {
+  padding-top: 5px;
   font-size:12px;
   background-color: transparent;
   border: none;
+  font-family: Arial, Helvetica, sans-serif;
   color:#C6C1BA;
   cursor: pointer;
   border-radius: 4px;
@@ -190,7 +234,8 @@
 
 .scheduledQuest.active, .activeQuest.active, .completedQuest.active {
   color: #7D70D6;
-  border-bottom: 2px solid #7D70D6;
+  
+  text-decoration: underline 2px;
   background-color: transparent;
 }
 

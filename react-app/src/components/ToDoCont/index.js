@@ -123,34 +123,60 @@ function ToDoCont() {
 
 
   return (
-    <div>
+    <div className='toDo_cont'>
       <div className="todo-header-container">
-        <div className="quests" >Quests</div>
+        <div className="quests" >ToDos</div>
         <div className="todo-tab-container">
-          <button className={`scheduledQuest ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</button>
-          <button className={`activeQuest ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</button>
-          <button className={`completedQuest ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</button>
+          <div className={`scheduledQuest ${activeTab === 'Scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('Scheduled')}>Scheduled</div>
+          <div className={`activeQuest ${activeTab === 'Active' ? 'active' : ''}`} onClick={() => setActiveTab('Active')}>Active</div>
+          <div className={`completedQuest ${activeTab === 'Completed' ? 'active' : ''}`} onClick={() => setActiveTab('Completed')}>Completed</div>
         </div>
       </div>
+      <div className="greyBox">
+
+      
       <div className="todo-input-container">
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add Quest Title..."
-        />
-        <button onClick={openAddQuestModal}>Add To Do</button>
+     <input
+      type="text"
+      value={newTodo}
+      onChange={(e) => setNewTodo(e.target.value)}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();  
+          openAddQuestModal();
+        }
+      }}
+      placeholder="Add a ToDo"
+    />
       </div>
 
       <div className="todo-list">
-        {filteredTodos.map(todo => (
-          <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
-            <div className="todo-item">
-              {todo.title}
-              {todo.due_date && `- Due: ${new Date(todo.due_date).toLocaleDateString()}`}
-            </div>
-          </div>
-        ))}
+  {filteredTodos.map(todo => (  
+    <div className='outerIndContainer'>
+      <div className="todo_checkBox">
+        <input
+          type="checkbox"
+          className="hiddenCheck todoCheckmark"
+          id={`checkbox_toDo${todo.id}`}
+          checked={todo.completed}
+          onChange={(e) => {
+            e.stopPropagation();
+            handleMarkComplete(todo.id);
+          }}
+        />
+        <label htmlFor={`checkbox_toDo${todo.id}`} className="checkbox-label"></label>
+       </div>
+    <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
+       
+      <div className="todo-item">
+       <div className="toDoItemTitle">{todo.title}</div> 
+       <div className='toDo_dueDate'>{todo.due_date && `Due: ${new Date(todo.due_date).toLocaleDateString()}`}</div>
+      </div>
+    </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   );
