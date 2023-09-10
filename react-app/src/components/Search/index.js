@@ -4,6 +4,11 @@ import { useModal } from "../../context/Modal";
 import EditHabitForm from "../EditHabitForm/EditHabitForm";
 import CreateDailyForm from "../DailyCont/newDailyForm";
 import TodoForm from "../ToDoCont/todoform";
+import {createTodoForUser} from '../../store/todos';
+import { useSelector, useDispatch } from "react-redux";
+
+
+
 function Search() {
   const [tagsOpen, setTagsOpen] = useState(false);
   const [tasksOpen, setTasksOpen] = useState(false);
@@ -19,6 +24,18 @@ function Search() {
         posCount: 0,
         negCount: 0
     };
+// Jurry - rigged solution to get us to where we need to go 
+   const user = useSelector(state => state.session.user);
+  const userId = user ? user.id : null;
+  const dispatch = useDispatch();
+  
+  const handleAddTodo = (data) => {
+    if(userId) {
+      dispatch(createTodoForUser(userId, data));
+    } else {
+      console.error("User ID not found");
+    }
+  };
 
     useEffect(() => {
         const closeMenuOutsideClick = (e) => {
@@ -48,7 +65,15 @@ function Search() {
         &nbsp;&nbsp;Daily
       </div>
 
-      <div className="createMenuOption" onClick={() => setModalContent(<TodoForm/>)}>
+      <div className="createMenuOption" onClick={() => setModalContent(
+     <TodoForm
+     onSubmit={(data) => {
+       handleAddTodo(data);
+       setModalContent(null);
+     }}
+     onCancel={() => setModalContent(null)}
+   />
+    )}>
         <span>
           <i class="fa-regular fa-square-check"></i>
         </span>
