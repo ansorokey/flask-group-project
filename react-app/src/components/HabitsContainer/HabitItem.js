@@ -115,6 +115,7 @@ function HabitItem({habit}){
         {/* Incrememnt Button */}
         <div>
             <button
+                disabled={!habit.pos}
                 className={`habit-item-button plus ${habit.pos ? 'inc-active' : 'inc-inactive'} ${check_strength(habit.strength)}`}
                 onClick={ habit.pos ? incHabit : null}
                 >
@@ -143,6 +144,7 @@ function HabitItem({habit}){
         {/* Decrement button */}
         <div>
             <button
+                disabled={!habit.neg}
                 className={`habit-item-button minus ${habit.neg ? 'inc-active' : 'inc-inactive'} ${check_strength(habit.strength)}`}
                 onClick={habit.neg ? decHabit : null}
             >

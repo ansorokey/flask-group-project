@@ -24,11 +24,11 @@ function Search() {
         posCount: 0,
         negCount: 0
     };
-// Jurry - rigged solution to get us to where we need to go 
+// Jurry - rigged solution to get us to where we need to go
    const user = useSelector(state => state.session.user);
   const userId = user ? user.id : null;
   const dispatch = useDispatch();
-  
+
   const handleAddTodo = (data) => {
     if(userId) {
       dispatch(createTodoForUser(userId, data));
@@ -80,12 +80,12 @@ function Search() {
         &nbsp;&nbsp;To Do
       </div>
 
-      <div className="createMenuOption">
+      {/* <div className="createMenuOption">
         <span>
           <i class="fa-solid fa-bag-shopping"></i>
         </span>
         &nbsp;&nbsp;Reward
-      </div>
+      </div> */}
 
     </div>
   );

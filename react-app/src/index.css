@@ -23,3 +23,12 @@ body {
 .lost-page > img {
     height: 50%;
 }
+
+.lost-home {
+    font-size: 2em;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid black;
+    color: white;
+    background-color: grey;
+}

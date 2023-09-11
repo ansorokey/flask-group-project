@@ -26,7 +26,7 @@ function Dashboard() {
             <HabitsCtn />
             <DailyCont />
             <ToDoCont />
-            <div>Rewards</div>
+            {/* <div>Rewards</div> */}
         </div>
       </>
     );

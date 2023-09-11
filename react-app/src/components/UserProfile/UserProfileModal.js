@@ -41,7 +41,7 @@ function UserProfileModal({editOpen=false}) {
                 <img className="avatar-img" src={user.avatarUrl} alt='user avatar' />
                 <div className="health-and-level">
                     <div>@{user.username} | Level 1</div>
-                    <div className="stat-bar">
+                    {/* <div className="stat-bar">
                         <i className="fa-solid fa-heart"></i>
                         <div className="max-stat-bar">
                             <div className="health-bar"></div>
@@ -54,7 +54,7 @@ function UserProfileModal({editOpen=false}) {
                             <div className="exp-bar"></div>
                         </div>
                         <span>30/100</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
