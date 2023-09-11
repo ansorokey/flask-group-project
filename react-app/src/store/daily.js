@@ -127,18 +127,18 @@ export default function reducer(state = initialState, action) {
     const today = new Date().toJSON().slice(0, 10)
 	switch (action.type) {
 		case GET_ALL_DAILY:
-
+			const emptyState = {due:{}, notdue:{}, all:{}, order:[]}
             action.dailies.forEach((daily)=>{
-                newState.all[daily.id] = daily
-                newState.order.push(daily.id)
+                emptyState.all[daily.id] = daily
+                emptyState.order.push(daily.id)
 
                 if(daily.due_date === today){
-                    newState.due[daily.id] = daily
+                    emptyState.due[daily.id] = daily
                 } else {
-                    newState.notdue[daily.id] = daily
+                    emptyState.notdue[daily.id] = daily
                 }
             })
-            return newState
+            return emptyState
         case CREATE_UPDATE_DAILY:
             newState.all[action.daily.id] = action.daily
             newState.order.push(action.daily.id)
@@ -154,6 +154,6 @@ export default function reducer(state = initialState, action) {
             delete newState.notdue[action.id]
             return newState
 		default:
-			return state;
+			return newState;
 	}
 }
