@@ -142,6 +142,8 @@ def mark_todo_completed(user_id, todo_id):
     return {'errors': todo_form_validation_errors(form.errors)}, 401
 
 
+from flask import request
+
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>', methods=['PUT'])
 @login_required
 def update_todo_for_user(user_id, todo_id):
@@ -154,8 +156,16 @@ def update_todo_for_user(user_id, todo_id):
     if not todo or todo.user_id != user_id:
         return jsonify({"error": "ToDo item not found or unauthorized update attempt"}), 404
 
-    # Initialize the form with the current ToDo data
-    form = ToDoForm()
+    # Get the raw data from the request
+    raw_data = request.get_json()
+
+    # Check the due_date value and format it correctly if it's null
+    if 'due_date' in raw_data and raw_data['due_date'] is None:
+        raw_data['due_date'] = ''  # Set it to an empty string or some other default value
+
+    # Initialize the form with the corrected data
+    form = ToDoForm(data=raw_data)
+
     # Set the csrf_token for security
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -165,9 +175,16 @@ def update_todo_for_user(user_id, todo_id):
             # Update the ToDo details
             todo.title = form.data['title']
             todo.description = form.data['description']
-            todo.due_date = form.data.get('due_date')
+            
+            # Only update due_date if it is present in the request data
+            if 'due_date' in form.data and form.data['due_date'] is not None:
+                todo.due_date = form.data['due_date']
+
             todo.updated_at = db.func.current_timestamp()
 
+            # Add the todo object to the session to ensure changes are tracked
+            db.session.add(todo)
+            
             # Save the updated details in the database
             db.session.commit()
             # Return the updated details
@@ -179,8 +196,7 @@ def update_todo_for_user(user_id, todo_id):
             db.session.rollback()
             return {"errors": "Database error: Unable to update the todo item."}, 500
 
-    # If the form isn't valid, return the form errors
-    return {'errors': todo_form_validation_errors(form.errors)}, 401
+
 
 # Form just to validate CSRF, used when deleting a ToDo
 class CSRFOnlyForm(FlaskForm):
