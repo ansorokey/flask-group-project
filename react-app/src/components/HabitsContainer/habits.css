@@ -94,7 +94,12 @@
     align-items: center;
     width: 39px;
     height: 100%;
+    cursor: pointer;
     /* background-color: #945900; */
+}
+
+.habit-item-button:disabled {
+    cursor: default;
 }
 
 .habit-item-button.plus {
@@ -154,11 +159,14 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    height: 20px;
 }
 
 .habit-options-btn {
     background-color: transparent;
     border: none;
+    cursor: pointer;
+    height: fit-content;
 }
 
 .fa-ellipsis-vertical {
@@ -186,6 +194,10 @@
     display: flex;
     gap: 12px;
     cursor: pointer;
+}
+
+.habits-options-menu > div:hover {
+    color: #935DF3;
 }
 
 .habit-notes {

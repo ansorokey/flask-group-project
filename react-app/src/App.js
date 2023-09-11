@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
 import { HabitProvider } from "./context/Habit";
+import {Link} from "react-router-dom"
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +39,8 @@ function App() {
           </Route>
           <Route>
             <div className="lost-page">
-              <h1 className="lost-h1">Feature coming at a less dizzy time!</h1>
+              <h1 className="lost-h1">You seem a lttle lost!</h1>
+              <Link className="lost-home" to="/"> ⬅️ Return Home</Link>
               <img src="https://res.cloudinary.com/dzntryr5a/image/upload/v1694128274/pngegg_vvqi5o.png" alt="Confused Spinda" />
             </div>
           </Route>
