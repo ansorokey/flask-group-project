@@ -80,13 +80,13 @@ function ToDoCont() {
     }
   };
 
-  const handleMarkComplete = (todoId) => {
+  const handleMarkComplete = (todoId, currentStatus) => {
     if(userId) {
-      dispatch(markTodoAsCompleted(userId, todoId, true));
+      dispatch(markTodoAsCompleted(userId, todoId, !currentStatus));
     } else {
       console.error("User ID not found");
     }
-  };
+};
 
   const handleShowDetails = (todo) => {
     setModalContent(
