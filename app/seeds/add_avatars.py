@@ -23,7 +23,7 @@ def seed_base_avatars():
 
 def undo_base_avatars():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.habits RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.avatars RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM avatars"))
 
