@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './todo.css';
 
 function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
-    const [formData, setFormData] = useState(initialData || {
-      title: initialTitle,
-      description: '',
-      due_date: ''
-    });
+  console.log(initialData);
+  const [formData, setFormData] = useState({
+    title: initialData ? initialData.title : initialTitle,
+    description: initialData ? initialData.description : '',
+    due_date: initialData && initialData.due_date ? new Date(initialData.due_date).toISOString().split('T')[0] : ''
+  });
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -21,6 +22,9 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
       onSubmit(formData);
     };
   
+    // Get current date without converting to UTC
+    const currentDate = new Date().toISOString().slice(0, 10);
+
     return (
       <form onSubmit={handleSubmit} className="todo-form-ctn">
         <div className="todo-form-group">
@@ -57,7 +61,7 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
             onChange={handleChange}
             placeholder="Due Date"
             className="todo-form-input"
-            min={new Date().toISOString().split('T')[0]}
+            min={currentDate}
           />
         </div>
   

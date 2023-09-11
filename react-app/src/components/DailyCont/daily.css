@@ -76,7 +76,13 @@
     color: #C6C1BA;
     margin: 5px;
     box-shadow: 1px 1px 5px black;
+
 }
+.dailyItem:hover {
+    border: 1px solid #2B1A4A;
+    box-shadow: 2px 2px 10px black;
+}
+
 .dailyCheckbox{
     grid-area: span 2/ span 1;
     border-top-left-radius: 4px;
@@ -150,6 +156,7 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 .dailyItem:hover .daily-options-btn {
     visibility: visible;
     background-color: rgb(24, 26, 27);
+    cursor: pointer;
 
 }
 .daily-options-menu{
@@ -163,6 +170,11 @@ input[type="checkbox"]:checked +.checkbox-label::after{
     border: 1px solid black;
     box-shadow: 1px 1px 5px rgb(46, 46, 46);
     border-radius: 1px;
+}
+
+.dailyOption:hover {
+    color:#7D70D6;
+    cursor: pointer;
 }
 
 /* Delete Daily modal */
