@@ -26,7 +26,7 @@ function LoginFormModal() {
     setPassword('password')
 
     return dispatch(login('demo@aa.io','password'))
-      .then(closeModal) // Close the modal after successful login
+      .then(closeModal) 
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
