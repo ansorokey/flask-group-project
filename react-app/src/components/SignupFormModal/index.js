@@ -18,17 +18,29 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password, firstName, lastName));
-			if (data) {
-				setErrors(data);
-			} else {
-				setModalContent(<OnboardingModal />)
-			}
+
+		const tempErrs = {};
+
+		if (password.length < 8 || confirmPassword.length < 8) {
+			tempErrs.password = 'Password must be 8 characters or more';
+			tempErrs.confirmPassword = 'Password must be 8 characters or more';
+		}
+
+		if (password !== confirmPassword) {
+			tempErrs.password = 'Passwords do not match';
+			tempErrs.confirmPassword = 'Passwords do not match';
+		}
+
+		if (Object.values(tempErrs).length) {
+			setErrors(tempErrs);
+			return;
+		}
+
+		const response = await dispatch(signUp(username, email, password, firstName, lastName));
+		if (response) {
+			setErrors(response);
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+			setModalContent(<OnboardingModal />)
 		}
 	};
 
@@ -36,16 +48,16 @@ function SignupFormModal() {
 		<div className="signup-form-modal-container">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
-				<ul className="signup-form-modal-error-list">
+				{/* <ul className="signup-form-modal-error-list">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul>
+				</ul> */}
 				<label className="signup-form-modal-label">
 					Email
 					<input
 						className="signup-form-modal-input"
-						type="text"
+						type="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
@@ -91,6 +103,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{errors.password && <div>{errors.password}</div>}
 				<label className="signup-form-modal-label">
 					Confirm Password
 					<input
@@ -101,6 +114,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{errors.confirmPassword && <div>{errors.confirmPassword}</div>}
 				<button className="signup-form-modal-button" type="submit">Sign Up</button>
 			</form>
 		</div>
