@@ -37,7 +37,7 @@ function App() {
 
               : <LandingPage />}
           </Route>
-          <Route>
+          <Route path="*">
             <div className="lost-page">
               <h1 className="lost-h1">You seem a lttle lost!</h1>
               <Link className="lost-home" to="/"> ⬅️ Return Home</Link>
