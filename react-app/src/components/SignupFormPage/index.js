@@ -22,20 +22,32 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password, firstName, lastName));
-        if (data) {
-          const errs = {}
-          data.forEach(e => {
-            const keyMessage = e.split(':');
-            errs[keyMessage[0].trim()] = keyMessage[1].trim();
-          });
-          setErrors(errs);
-        } else {
-          setModalContent(<OnboardingModal />)
-        }
+
+    const tempErrs = {};
+
+		if (password.length < 8 || confirmPassword.length < 8) {
+			tempErrs.password = 'Password must be 8 characters or more';
+		}
+
+		if (password !== confirmPassword) {
+			tempErrs.password = 'Passwords do not match';
+		}
+
+		if (Object.values(tempErrs).length) {
+			setErrors(tempErrs);
+			return;
+		}
+
+    const response = await dispatch(signUp(username, email, password, firstName, lastName));
+    if (response) {
+      const errs = {}
+      response.forEach(e => {
+        const keyMessage = e.split(':');
+        errs[keyMessage[0].trim()] = keyMessage[1].trim();
+      });
+      setErrors(errs);
     } else {
-        setErrors({'password': 'Confirm Password field must be the same as the Password field'});
+      setModalContent(<OnboardingModal />)
     }
   };
 
@@ -45,63 +57,75 @@ function SignupFormPage() {
       <p>Username must be 1 to 20 characters, containing only letters a to z, numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
       <form onSubmit={handleSubmit} className="signup-page-form">
 
-        <input
-          placeholder="Email"
-          className="signup-input"
-          type="text"
-          value={email}
-          onChange={(e) => {setEmail(e.target.value); setErrors(prev => {delete prev.email; return {...prev}});}}
-          required
-        />
-        {errors.email}
+        <div className="form-input-ctn">
+          <input
+            placeholder="Email"
+            className="signup-input"span
+            type="email"
+            value={email}
+            onChange={(e) => {setEmail(e.target.value); setErrors(prev => {delete prev.email; return {...prev}});}}
+            required
+          />
+          {errors.email && <span className="val-err-div" >{errors.email}</span>}
+        </div>
 
-        <input
-          placeholder="First Name"
-          className="signup-input"
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
+        <div className="form-input-ctn" >
+          <input
+            placeholder="First Name"
+            className="signup-input"
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          placeholder="Last Name"
-          className="signup-input"
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
+        <div className="form-input-ctn" >
+          <input
+            placeholder="Last Name"
+            className="signup-input"
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          placeholder="Username"
-          className="signup-input"
-          type="text"
-          value={username}
-          onChange={(e) => {setUsername(e.target.value); setErrors(prev => {delete prev.username; return {...prev}});}}
-          required
-        />
-        {errors.username}
+        <div className="form-input-ctn" >
+          <input
+            placeholder="Username"
+            className="signup-input"
+            type="text"
+            value={username}
+            onChange={(e) => {setUsername(e.target.value); setErrors(prev => {delete prev.username; return {...prev}});}}
+            required
+          />
+          {errors.username && <span className="val-err-div" >{errors.username}</span>}
+        </div>
 
-        <input
-          placeholder="Password"
-          className="signup-input"
-          type="password"
-          value={password}
-          onChange={(e) => {setPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
-          required
-        />
-        {errors.password}
+        <div className="form-input-ctn" >
+          <input
+            placeholder="Password"
+            className="signup-input"
+            type="password"
+            value={password}
+            onChange={(e) => {setPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
+            required
+          />
+          {errors.password && <span className="val-err-div" >{errors.password}</span>}
+        </div>
 
-        <input
-          placeholder="Confirm Password"
-          className="signup-input"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => {setConfirmPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
-          required
-        />
-        {errors.password}
+        <div className="form-input-ctn" >
+          <input
+            placeholder="Confirm Password"
+            className="signup-input"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => {setConfirmPassword(e.target.value); setErrors(prev => {delete prev.password; return {...prev}});}}
+            required
+          />
+          {errors.password && <span className="val-err-div" >{errors.password}</span>}
+        </div>
 
         <button className="signup-button" type="submit">Sign Up</button>
       </form>

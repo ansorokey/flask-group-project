@@ -12,7 +12,7 @@
     color: #925cf3;
     padding: 10px 12px;
     border: 2px solid transparent;
-    margin-bottom: 14px;
+    /* margin-bottom: 14px; */
 }
 
 .signup-button {
@@ -23,4 +23,10 @@
 }
 .signup-button:hover{
     background-color: #53b3e3;
+}
+
+.form-input-ctn {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 14px;
 }
