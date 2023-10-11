@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard"
 import LandingPage from "./components/LandingPage";
 import { HabitProvider } from "./context/Habit";
 import {Link} from "react-router-dom"
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
