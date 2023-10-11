@@ -1,0 +1,47 @@
+.footer-ctn {
+    background-color: #392066;
+    background-image: url('https://res.cloudinary.com/dzntryr5a/image/upload/v1694043036/mountains_drypau.png');
+}
+
+.footer-inner-ctn {
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.footer-inner-ctn > p {
+    color: white;
+    font-family: monospace;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.socials > h3 {
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.links {
+    display: flex;
+    gap: 8px;
+    color: white;
+    font-family: monospace;
+    align-items: center;
+    width: 200px;
+    justify-content: space-between;
+}
+
+.links > a > i {
+    font-size: 30px;
+}
+
+.links > a > i:hover {
+    color: white;
+    cursor: pointer;
+}
