@@ -13,9 +13,7 @@
     padding: 70px 12px;
 }
 
-.landing-page-ctn {
-    width: 1140px;
-}
+
 
 .landing-sec-1, .landing-sec-4 {
     display: grid;
@@ -80,4 +78,22 @@
     box-shadow: 2px 2px 5px black;
     margin-left: auto;
     margin-right: auto;
+}
+
+@media (max-width: 450px) {
+    .landing-sec-1{
+        display: flex;
+        flex-direction: column;
+    }
+    .hilight-ctn{
+        display: flex;
+        flex-direction: column;
+    }
+    .landing-sec-4 {
+        display: flex;
+        flex-direction: column;
+    }
+    .bottomJoin{
+        width: 80%
+    }
 }
