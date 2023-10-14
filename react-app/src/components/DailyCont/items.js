@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { completeDaily } from "../../store/daily";
 import { useModal } from "../../context/Modal";
 import EditDailyForm from "./EditDailyForm";
-import DeleteDailyModal from "./DeleteDailyModal";
 import { removeDaily } from "../../store/daily";
 import "./daily.css"
 
