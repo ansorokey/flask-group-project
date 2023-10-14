@@ -9,6 +9,7 @@ function DailyCont () {
     const dispatch = useDispatch();
     const[cat, setCat] = useState('due')
     const[title, setTitle] = useState('')
+    const [error, setError] = useState({})
 
 
     useEffect(()=>{
@@ -17,8 +18,20 @@ function DailyCont () {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        let err = {}
         if (!title) return
+        if (title && (title.length > 50 || title.length < 3)) {
+            err.title = "Title must be be between 3 and 50 characters"
+        }
+        if (Object.values(err).length){
+            setError(err)
+            return
+        }else{
+            setError({})
+        }
+
+
+
         const newDaily = {title: title}
 
         await dispatch(createDaily(newDaily))
@@ -61,7 +74,9 @@ function DailyCont () {
                 placeholder="Add a Daily"
                 value={title}
 
-                onChange={e => setTitle(e.currentTarget.value)} />
+                onChange={e => setTitle(e.currentTarget.value)}
+            />
+            {error.title}
         </form>
         <div>
             {Object.values(dailies[cat]).map((daily) => (

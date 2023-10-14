@@ -26,7 +26,16 @@ function EditDailyForm({daily}) {
 
     if(!title.length) {
       issues.title = "Title is required"
+
+    }
+    if(title && (title.length < 3 || title.length > 50)){
+      issues.title = "Title must be between 3 and 50 characters"
+    }
+    if(Object.values(issues).length){
       setErrors(issues)
+      return
+    }else{
+      setErrors({})
     }
 
     const newDaily = { title, description, strength, repeats_frame, repeats_frequency, streak: +streak };
@@ -179,7 +188,8 @@ function EditDailyForm({daily}) {
       <div className="edit-daily-del">
         <button className="edit-daily-del-btn"
           onClick={() => {
-            if(window.confirm('Are you sure you want to delete this daily?')) {
+            const res = window.confirm("Are you sure you want to delete this daily?")
+            if(res) {
               dispatch(removeDaily(daily.id));
               closeModal();
             }
