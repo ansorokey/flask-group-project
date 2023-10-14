@@ -11,12 +11,17 @@ function HabitsCtn() {
 
     const [habitTitle, setHabitTitle] = useState('');
     const dispatch = useDispatch();
+    const [errs, setErrs] = useState({});
 
   function handleSubmit(e){
     e.preventDefault();
 
     // Validate fields
-    if(!habitTitle.length) return;
+    if(habitTitle.length > 50 || habitTitle.length < 3) {
+      setErrs({habitTitle: 'Title must be be between 3 and 50 characters'})
+      return;
+    }
+
 
     const newHabit = {
         title: habitTitle,
@@ -54,7 +59,13 @@ function HabitsCtn() {
           type="text"
           value={habitTitle}
           placeholder="Add a Habit"
-          onChange={e => setHabitTitle(e.target.value)}/>
+          onChange={e => {
+            setHabitTitle(e.target.value);
+            setErrs({});
+          }}
+        />
+        {errs.habitTitle && <p>{errs.habitTitle}</p>}
+
       </form>
 
       <HabitList habits={habits} />
