@@ -145,7 +145,6 @@
 /* Todo Form Styling */
 .todo-form-ctn {
   background-color: #2b2b2b;
-  padding: 20px;
   border-radius: 8px;
   color: #c6c1ba;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
@@ -184,7 +183,7 @@
 }
 
 .todo-form-button.save {
-  background-color: #7D70D6;
+  background-color: #181A1B;
   color:white;
 }
 
@@ -247,4 +246,15 @@ h2 {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
+}
+.visually-hidden { 
+  position: absolute !important;
+  height: 1px; 
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.dat-boi{
+  margin:20px;
 }

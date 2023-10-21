@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { completeDaily } from "../../store/daily";
 import { useModal } from "../../context/Modal";
 import EditDailyForm from "./EditDailyForm";
-import DeleteDailyModal from "./DeleteDailyModal";
+import { removeDaily } from "../../store/daily";
 import "./daily.css"
 
 function DisplayDailyItems({daily}) {
@@ -35,7 +35,8 @@ function DisplayDailyItems({daily}) {
 
         </div>
         <hr />
-        <div className="dailyOption" onClick={() => setModalContent(<DeleteDailyModal daily={daily}  />)}>
+        <div className="dailyOption" onClick={() => {const res = window.confirm("Are you sure you want to delete this daily?");
+        if (res) dispatch(removeDaily(daily.id))}}>
             <i className="fa-solid fa-trash-can"></i>  Delete
 
         </div>
