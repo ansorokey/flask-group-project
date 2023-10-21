@@ -18,7 +18,7 @@ class Daily(db.Model):
     strength = db.Column(db.Enum("Trivial", "Easy", "Medium", "Hard", name='difficulty'), default="Medium")
     repeats_frame = db.Column(db.Enum("1", "7", "30", "365"),  default="1")
     repeats_frequency = db.Column(db.Integer,  default=1)
-    repeats_on = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+    # repeats_on = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
     streak = db.Column(db.Integer, default=0)
     completed = db.Column(db.Boolean, default=False)
     due_date = db.Column(db.Date)
