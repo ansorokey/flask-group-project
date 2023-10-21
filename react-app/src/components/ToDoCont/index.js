@@ -4,9 +4,8 @@ import { selectTodos, createTodoForUser, editTodoForUser, removeTodoForUser, get
 import { useModal } from '../../context/Modal';
 import TodoForm from './todoform';
 import TodoDetails from './tododetails';
-
+import DisplayTodoItems from './items'
 import './todo.css';
-
 function ToDoCont() {
   const todos = useSelector(selectTodos);
   const user = useSelector(state => state.session.user);
@@ -14,6 +13,7 @@ function ToDoCont() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
+  
 
 
   useEffect(() => {
@@ -151,32 +151,14 @@ function ToDoCont() {
       </div>
 
       <div className="todo-list">
-  {filteredTodos.map(todo => (  
-    <div className='outerIndContainer'>
-      <div className="todo_checkBox">
-        <input
-          type="checkbox"
-          className="hiddenCheck todoCheckmark"
-          id={`checkbox_toDo${todo.id}`}
-          checked={todo.completed}
-          onChange={(e) => {
-            e.stopPropagation();
-            handleMarkComplete(todo.id);
-          }}
-        />
-        <label htmlFor={`checkbox_toDo${todo.id}`} className="checkbox-label"></label>
-       </div>
-    <div key={todo.id} className="todo-item-container" onClick={() => handleShowDetails(todo)}>
-       
-      <div className="todo-item">
-       <div className="toDoItemTitle">{todo.title}</div> 
-       <div className='toDo_dueDate'>{todo.due_date && `Due: ${new Date(todo.due_date).toLocaleDateString()}`}</div>
-      </div>
-    </div>
-    </div>
-  ))}
-</div>
-
+          {filteredTodos.map(todo => (
+            <DisplayTodoItems key={todo.id} todo={todo}
+            onEdit={handleEditTodo}
+            onDelete={handleDeleteTodo}
+            onComplete={handleMarkComplete}
+            onClose={() => setModalContent(null)} />
+          ))}
+        </div>
       </div>
     </div>
   );
