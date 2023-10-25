@@ -35,7 +35,7 @@ class Daily(db.Model):
             'strength': self.strength ,
             'repeats_frame': self.repeats_frame,
             'repeats_frequency': self.repeats_frequency,
-            'repeats_on': self.repeats_on,
+            # 'repeats_on': self.repeats_on,
             'streak': self.streak,
             'completed': self.completed,
             'due_date': self.due_date.strftime('%Y-%m-%d') if self.due_date else None
