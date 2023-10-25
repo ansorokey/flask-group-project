@@ -13,7 +13,7 @@ function Footer() {
                 </div>
 
                 <div className="links">
-                    <a href="www.linkedin.com/in/alexandru-florea-151472ab/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/alexandru-florea-151472ab/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                     <p>Alex</p>
                     <a href="https://github.com/SameDaySasha" ><i class="fa-brands fa-square-github"></i></a>
                 </div>
