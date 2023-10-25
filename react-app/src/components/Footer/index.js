@@ -9,19 +9,19 @@ function Footer() {
                 <div className="links">
                     <a href="https://www.linkedin.com/in/christine-parsons-498b046a/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                     <p>Christine</p>
-                    <a href="https://github.com/cparsons9712" ><i class="fa-brands fa-square-github"></i></a>
+                    <a href="https://github.com/cparsons9712" target="_blank"><i class="fa-brands fa-square-github"></i></a>
                 </div>
 
                 <div className="links">
                     <a href="https://www.linkedin.com/in/alexandru-florea-151472ab/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                     <p>Alex</p>
-                    <a href="https://github.com/SameDaySasha" ><i class="fa-brands fa-square-github"></i></a>
+                    <a href="https://github.com/SameDaySasha" target="_blank"><i class="fa-brands fa-square-github"></i></a>
                 </div>
 
                 <div className="links">
                     <a href="https://www.linkedin.com/in/antonsorokey/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                     <p>Anton</p>
-                    <a href="https://github.com/ansorokey" ><i class="fa-brands fa-square-github"></i></a>
+                    <a href="https://github.com/ansorokey" target="_blank"><i class="fa-brands fa-square-github"></i></a>
                 </div>
             </div>
 
