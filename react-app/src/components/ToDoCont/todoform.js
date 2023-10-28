@@ -9,7 +9,6 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onDelete, onClose,
     description: initialData ? initialData.description : '',
     due_date: initialData && initialData.due_date ? new Date(initialData.due_date).toISOString().split('T')[0] : ''
   });
-  console.log('initialData:', initialData);
   const [titleError, setTitleError] = useState('');
 
   const handleChange = (e) => {
