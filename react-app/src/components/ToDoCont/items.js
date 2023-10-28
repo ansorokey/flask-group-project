@@ -49,7 +49,7 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
               markComplete(todo.id);
             }}
           />
-          <label htmlFor={`checkbox_${todo.id}`} className="checkbox-label"></label>
+          <label htmlFor={`todoCheckbox_${todo.id}`} className="checkbox-label"></label>
         </div>
       </div>
       <div className="dailyTitle">
