@@ -43,13 +43,13 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
           <input
             type="checkbox"
             className="hiddenCheck"
-            id={`checkbox_${todo.id}`}
+            id={`todoCheckbox_${todo.id}`}
             checked={todo.completed}
             onChange={(e) => {
               markComplete(todo.id);
             }}
           />
-          <label htmlFor={`checkbox_${todo.id}`} className="checkbox-label"></label>
+          <label htmlFor={`todoCheckbox_${todo.id}`} className="checkbox-label"></label>
         </div>
       </div>
       <div className="dailyTitle">
