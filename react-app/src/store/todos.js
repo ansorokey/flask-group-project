@@ -74,6 +74,8 @@ export const createTodoForUser = (userId, todoData) => async dispatch => {
 
 
 export const markTodoAsCompleted = (userId, todoId, completed) => async dispatch => {
+
+
     try {
         const response = await fetch(`/api/todos/users/${userId}/todos/${todoId}/completed`, {
             method: 'PUT',
@@ -156,7 +158,7 @@ const todosReducer = (state = initialState, action) => {
         case DELETE_USER_TODO:
             return state.filter(todo => todo.id !== action.todoId);
         case MARK_TODO_COMPLETED:
-                return state.map(todo => 
+                return state.map(todo =>
                     todo.id === action.todo.id ? action.todo : todo
                 );
         default:

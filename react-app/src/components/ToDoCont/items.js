@@ -28,12 +28,17 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
     <div className="daily-options-menu" ref={ulRef}>
       <button className="todo-details-edit-button" onClick={() => onEdit(todo.id, todo)}> <i className="fa-solid fa-pen"></i>Edit</button>
       <hr />
-      <button className="todo-details-delete-button" onClick={() => { onDelete(todo.id); onClose(); }}><i className="fa-solid fa-trash-can"></i>  Delete</button>
+      <button className="todo-details-delete-button" onClick={() => { const confirmDelete = window.confirm("Are you sure you want to delete this todo?");
+                    if (confirmDelete) {
+                        onDelete(todo.id);
+                        onClose();
+                    } }}><i className="fa-solid fa-trash-can"></i>  Delete</button>
     </div>
   );
 
-  const markComplete = (id) => {
-    onComplete(todo.id); // Consider renaming this action if it's specifically for todos
+  const markComplete = (id, completed) => {
+
+    onComplete(id, completed); // Consider renaming this action if it's specifically for todos
   };
 
   return (
@@ -46,7 +51,7 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
             id={`todoCheckbox_${todo.id}`}
             checked={todo.completed}
             onChange={(e) => {
-              markComplete(todo.id);
+              markComplete(todo.id, todo.completed);
             }}
           />
           <label htmlFor={`todoCheckbox_${todo.id}`} className="checkbox-label"></label>

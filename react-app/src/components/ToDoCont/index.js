@@ -13,7 +13,7 @@ function ToDoCont() {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('Scheduled'); // Initialized with 'Scheduled' as the default active tab  const [activeTab, setActiveTab] = useState('Scheduled');
   const [newTodo, setNewTodo] = useState('');
-  
+
 
 
   useEffect(() => {
@@ -52,6 +52,10 @@ function ToDoCont() {
   const handleEditTodo = (todoId, todoData) => {
     setModalContent(
       <TodoForm
+        onEdit={handleEditTodo}
+        onDelete={handleDeleteTodo}
+        onComplete={handleMarkComplete}
+        onClose={() => setModalContent(null)}
         initialData={todoData}
         onSubmit={(data) => {
           handleEditTodoSubmit(todoId, data);
@@ -81,6 +85,7 @@ function ToDoCont() {
   };
 
   const handleMarkComplete = (todoId, currentStatus) => {
+
     if(userId) {
       dispatch(markTodoAsCompleted(userId, todoId, !currentStatus));
     } else {
@@ -134,7 +139,7 @@ function ToDoCont() {
       </div>
       <div className="greyBox">
 
-      
+
       <div className="todo-input-container">
      <input
       type="text"
@@ -142,7 +147,7 @@ function ToDoCont() {
       onChange={(e) => setNewTodo(e.target.value)}
       onKeyPress={(e) => {
         if (e.key === 'Enter') {
-          e.preventDefault();  
+          e.preventDefault();
           openAddQuestModal();
         }
       }}

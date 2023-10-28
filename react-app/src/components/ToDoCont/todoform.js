@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './todo.css';
 
-function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
+
+function TodoForm({ initialData, initialTitle = '', onSubmit, onDelete, onClose, onCancel }) {
   // console.log(initialData);
   const [formData, setFormData] = useState({
     title: initialData ? initialData.title : initialTitle,
     description: initialData ? initialData.description : '',
     due_date: initialData && initialData.due_date ? new Date(initialData.due_date).toISOString().split('T')[0] : ''
   });
-
+  console.log('initialData:', initialData);
   const [titleError, setTitleError] = useState('');
 
   const handleChange = (e) => {
@@ -106,24 +107,27 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
       </div>
 </div>
 <div className="edit-daily-del">
-    <button className="edit-daily-del-btn"
-      onClick={() => {
+    {initialData && <button className="edit-daily-del-btn"
+      onClick={(e) => {
+        e.preventDefault()
 
         // This pops up an alert when the button is clicked
         const res = window.confirm("Are you sure you want to delete this todo?")
 
         // If the user choses yes then res will be true so we dispatch the action and close the edit modal
-        if(res) {
-          // dispatch(removeDaily(daily.id));
-          // closeModal();
-    } }}>
+        if (res && initialData && initialData.id) {
+          onDelete(initialData.id);
+          onClose();
+        } else {
+          console.error('Todo ID is undefined');
+        } }}>
 
       {/* This is the trashcan Icon */}
       <i className="fa-solid fa-trash-can"></i>
       {/* This is the text with &ensp; to add some spacing between the icon and the text */}
       &ensp;Delete this ToDo
 
-    </button>
+    </button>}
   </div>
       </div>
     </form>
