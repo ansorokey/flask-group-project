@@ -12,25 +12,26 @@
   background-color: #228E23;
   width: 75px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
 .todo-item-container{
   width:100%;
 }
 .todo-input-container {
   display: flex;
- padding-top: 5%;
+ 
 }
 
 .todo-input-container input {
   flex: 1;
-  margin-bottom: 24px;
+
   padding-left: 15px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
   color: #c6c1ba;
+  height: 50px;
 }
 .todo_checkBox{
   padding-bottom:25px;
@@ -233,7 +234,7 @@
 
 .scheduledQuest.active, .activeQuest.active, .completedQuest.active {
   color: #7D70D6;
-  
+
   text-decoration: underline 2px;
   background-color: transparent;
 }
@@ -247,9 +248,9 @@ h2 {
   justify-content: flex-end;
   margin-bottom: 10px;
 }
-.visually-hidden { 
+.visually-hidden {
   position: absolute !important;
-  height: 1px; 
+  height: 1px;
   width: 1px;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
