@@ -52,6 +52,10 @@ function ToDoCont() {
   const handleEditTodo = (todoId, todoData) => {
     setModalContent(
       <TodoForm
+        onEdit={handleEditTodo}
+        onDelete={handleDeleteTodo}
+        onComplete={handleMarkComplete}
+        onClose={() => setModalContent(null)}
         initialData={todoData}
         onSubmit={(data) => {
           handleEditTodoSubmit(todoId, data);
