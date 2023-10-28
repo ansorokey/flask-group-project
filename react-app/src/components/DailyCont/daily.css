@@ -148,6 +148,10 @@ input[type="checkbox"]:checked +.checkbox-label::after{
 
 
 /* Options Menu */
+.options {
+    position: relative;
+}
+
 .daily-options-btn {
     visibility: hidden;
     background-color: rgb(24, 26, 27);
@@ -170,6 +174,7 @@ input[type="checkbox"]:checked +.checkbox-label::after{
     border: 1px solid black;
     box-shadow: 1px 1px 5px rgb(46, 46, 46);
     border-radius: 1px;
+    right: 0;
 }
 
 .dailyOption:hover {
