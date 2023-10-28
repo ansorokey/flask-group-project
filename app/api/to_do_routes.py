@@ -100,7 +100,7 @@ def create_todo_for_user(user_id):
 
 # Form setup to mark a ToDo as completed
 class MarkTodoCompletedForm(FlaskForm):
-    completed = BooleanField('completed', validators=[DataRequired()])
+    completed = BooleanField('completed' )
 
 @todo_routes.route('/users/<int:user_id>/todos/<int:todo_id>/completed', methods=['PUT'])
 @login_required
@@ -119,10 +119,14 @@ def mark_todo_completed(user_id, todo_id):
     # Set the csrf_token for security
     form['csrf_token'].data = request.cookies['csrf_token']
 
+
     # If the form is valid
     if form.validate_on_submit():
         try:
             # Mark the ToDo as completed and set the completion date
+
+            print('in the form validated Try Catch')
+
             todo.completed = form.data['completed']
             todo.completed_at = datetime.utcnow() if form.data['completed'] else None
             todo.updated_at = datetime.utcnow()
@@ -175,7 +179,7 @@ def update_todo_for_user(user_id, todo_id):
             # Update the ToDo details
             todo.title = form.data['title']
             todo.description = form.data['description']
-            
+
             # Only update due_date if it is present in the request data
             if 'due_date' in form.data and form.data['due_date'] is not None:
                 todo.due_date = form.data['due_date']
@@ -184,7 +188,7 @@ def update_todo_for_user(user_id, todo_id):
 
             # Add the todo object to the session to ensure changes are tracked
             db.session.add(todo)
-            
+
             # Save the updated details in the database
             db.session.commit()
             # Return the updated details
@@ -225,14 +229,14 @@ def delete_todo_for_user(user_id, todo_id):
         db.session.commit()
         # Return a success message
         return jsonify({"message": "Todo item deleted successfully"}), 200
-    
+
     except Exception as e:
             # If there's a database error during deletion, log it and rollback the transaction
         print(f"Database error: {e}")
         db.session.rollback()
         return jsonify({"error": "Database error: Unable to delete the todo item."}), 500
 
-# CSRF fetch route for the front end: 
+# CSRF fetch route for the front end:
 # @todo_routes.route.route('/csrf', methods=['GET'])
 # def get_csrf_token():
 #     response = make_response(jsonify(success=True))

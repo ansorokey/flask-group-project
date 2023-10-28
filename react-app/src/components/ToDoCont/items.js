@@ -32,8 +32,9 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
     </div>
   );
 
-  const markComplete = (id) => {
-    onComplete(todo.id); // Consider renaming this action if it's specifically for todos
+  const markComplete = (id, completed) => {
+
+    onComplete(id, completed); // Consider renaming this action if it's specifically for todos
   };
 
   return (
@@ -46,7 +47,7 @@ function DisplayTodoItems({ todo, onEdit, onDelete, onComplete, onClose  }) {
             id={`todoCheckbox_${todo.id}`}
             checked={todo.completed}
             onChange={(e) => {
-              markComplete(todo.id);
+              markComplete(todo.id, todo.completed);
             }}
           />
           <label htmlFor={`todoCheckbox_${todo.id}`} className="checkbox-label"></label>
