@@ -122,7 +122,7 @@
 }
 
 .todo-details-edit-button, .todo-details-delete-button, .todo-details-complete-button {
- 
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -171,9 +171,10 @@
 
 .todo-form-label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: silver;
+  margin: 10px;
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #c6c1ba;
 }
 
 .todo-form-input, .todo-form-textarea {
@@ -272,4 +273,20 @@ h2 {
 
 .dat-boi{
   margin:20px;
+  padding: 20px !important;
+}
+
+.todoInput{
+  margin-right: auto;
+  margin-left: auto;
+
+  width: 90%;
+  padding-left: 5px;
+}
+.todoDesc{
+  height: 100px !important;
+}
+
+.todoDate{
+  margin-bottom: 20px;
 }
