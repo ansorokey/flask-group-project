@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './todo.css';
 
 function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
-  console.log(initialData);
+  // console.log(initialData);
   const [formData, setFormData] = useState({
     title: initialData ? initialData.title : initialTitle,
     description: initialData ? initialData.description : '',
