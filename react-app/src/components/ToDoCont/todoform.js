@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './todo.css';
 
 function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
-  console.log(initialData);
+  // console.log(initialData);
   const [formData, setFormData] = useState({
     title: initialData ? initialData.title : initialTitle,
     description: initialData ? initialData.description : '',
@@ -110,7 +110,7 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
       onClick={() => {
 
         // This pops up an alert when the button is clicked
-        const res = window.confirm("Are you sure you want to delete this daily?")
+        const res = window.confirm("Are you sure you want to delete this todo?")
 
         // If the user choses yes then res will be true so we dispatch the action and close the edit modal
         if(res) {
