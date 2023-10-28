@@ -38,7 +38,7 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
   const currentDate = new Date().toISOString().slice(0, 10);
 
   return (
-    
+
     <form onSubmit={handleSubmit} className="todo-form-ctn">
 
 
@@ -60,10 +60,12 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
         </button>
        <button type="submit" className="todo-form-button save">Save</button>
       </div>
-    
+
+
     </div>
-       <div classname='dat-boi'> 
-   <div classname="daily-edit-form-top">
+
+       <div classname='dat-boi'>
+        <div classname="daily-edit-form-top">
         <div className="daily-edit-input-ctn">
           {titleError && <div style={{ color: 'red' }}>{titleError}</div>}
           <label className="todo-form-label">Title: </label>
@@ -73,7 +75,7 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
             value={formData.title}
             onChange={handleChange}
             placeholder="Add Title"
-            className="daily-edit-form-top-input"
+            className="todoInput"
             required
           />
         </div>
@@ -85,7 +87,7 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
           value={formData.description}
           onChange={handleChange}
           placeholder="Description"
-          className="daily-edit-form-top-input"
+          className="todoInput todoDesc"
           required
         />
       </div>
@@ -98,15 +100,31 @@ function TodoForm({ initialData, initialTitle = '', onSubmit, onCancel }) {
           value={formData.due_date}
           onChange={handleChange}
           placeholder="Due Date"
-          className="daily-edit-form-top-input"
+          className="todoInput todoDate"
           min={currentDate}
         />
       </div>
-</div> 
-      <div className="todo-form-buttons">
-        {/* <button type="submit" className="todo-form-button save">Save</button> */}
-        {/* <button type="button" className="todo-form-button cancel" onClick={onCancel}>Cancel</button> */}
-      </div>
+</div>
+<div className="edit-daily-del">
+    <button className="edit-daily-del-btn"
+      onClick={() => {
+
+        // This pops up an alert when the button is clicked
+        const res = window.confirm("Are you sure you want to delete this daily?")
+
+        // If the user choses yes then res will be true so we dispatch the action and close the edit modal
+        if(res) {
+          // dispatch(removeDaily(daily.id));
+          // closeModal();
+    } }}>
+
+      {/* This is the trashcan Icon */}
+      <i className="fa-solid fa-trash-can"></i>
+      {/* This is the text with &ensp; to add some spacing between the icon and the text */}
+      &ensp;Delete this ToDo
+
+    </button>
+  </div>
       </div>
     </form>
   );

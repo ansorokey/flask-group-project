@@ -12,25 +12,26 @@
   background-color: #228E23;
   width: 75px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
 .todo-item-container{
   width:100%;
 }
 .todo-input-container {
   display: flex;
- padding-top: 5%;
+
 }
 
 .todo-input-container input {
   flex: 1;
-  margin-bottom: 24px;
+
   padding-left: 15px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
   color: #c6c1ba;
+  height: 50px;
 }
 .todo_checkBox{
   padding-bottom:25px;
@@ -121,20 +122,34 @@
 }
 
 .todo-details-edit-button, .todo-details-delete-button, .todo-details-complete-button {
-  padding: 10px;
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
 }
 
 .todo-details-edit-button {
-  background-color: #7D70D6;
-  color: silver;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
 }
 
 .todo-details-delete-button {
-  background-color: gray;
-  color: black;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
+}
+.todo-details-edit-button:hover{
+  color:#7D70D6
+}
+.todo-details-delete-button:hover{
+  color:#7D70D6
 }
 
 .todo-details-complete-button {
@@ -156,9 +171,10 @@
 
 .todo-form-label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: silver;
+  margin: 10px;
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #c6c1ba;
 }
 
 .todo-form-input, .todo-form-textarea {
@@ -233,7 +249,7 @@
 
 .scheduledQuest.active, .activeQuest.active, .completedQuest.active {
   color: #7D70D6;
-  
+
   text-decoration: underline 2px;
   background-color: transparent;
 }
@@ -247,9 +263,9 @@ h2 {
   justify-content: flex-end;
   margin-bottom: 10px;
 }
-.visually-hidden { 
+.visually-hidden {
   position: absolute !important;
-  height: 1px; 
+  height: 1px;
   width: 1px;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
@@ -257,4 +273,20 @@ h2 {
 
 .dat-boi{
   margin:20px;
+  padding: 20px !important;
+}
+
+.todoInput{
+  margin-right: auto;
+  margin-left: auto;
+
+  width: 90%;
+  padding-left: 5px;
+}
+.todoDesc{
+  height: 100px !important;
+}
+
+.todoDate{
+  margin-bottom: 20px;
 }
