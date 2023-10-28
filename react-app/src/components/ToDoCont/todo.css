@@ -20,7 +20,7 @@
 }
 .todo-input-container {
   display: flex;
- 
+
 }
 
 .todo-input-container input {
@@ -122,20 +122,34 @@
 }
 
 .todo-details-edit-button, .todo-details-delete-button, .todo-details-complete-button {
-  padding: 10px;
+ 
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
 }
 
 .todo-details-edit-button {
-  background-color: #7D70D6;
-  color: silver;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
 }
 
 .todo-details-delete-button {
-  background-color: gray;
-  color: black;
+  background-color: #181a1b00;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C1BA;
+  font-size: 16px;
+}
+.todo-details-edit-button:hover{
+  color:#7D70D6
+}
+.todo-details-delete-button:hover{
+  color:#7D70D6
 }
 
 .todo-details-complete-button {
