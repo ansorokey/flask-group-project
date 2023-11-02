@@ -89,6 +89,7 @@ LvlUp can be deployed using Render.com. For detailed instructions on deployment,
    gunicorn app:app
 
 6. For websockets, use:
+   ```shell
    gunicorn --worker-class eventlet -w 1 app:app
 
 
