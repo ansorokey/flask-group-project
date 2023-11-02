@@ -1,148 +1,127 @@
-# Flask React Project
+# LvlUp - Productivity Tracking Website
 
-This is the starter for the Flask React project.
+Welcome to LvlUp, a single-page productivity tracking website inspired by Habitica. LvlUp is designed to help you manage and track your daily tasks, habits, and to-dos in a fun and engaging way. Our platform is an ode to Habitica, featuring similar colors, styling, and functionalities.
 
-## Getting started
-1. Clone this repository (only this branch)
+## Features
 
-2. Install dependencies
+- **Track Habits:** Keep tabs on your daily habits, ensuring you stay on track with your personal goals.
+<img src="https://i.ibb.co/bB13D2J/pop-Up-Modal.png" alt="pop-Up-Modal" border="0" />
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+- **Daily Tasks:** Organize and manage your daily tasks efficiently.
+<img src="https://i.ibb.co/RYVwX7y/daily-Modal.png" alt="daily-Modal" border="0" />
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+- **To-Do List:** Keep a list of tasks you need to accomplish, helping you stay organized and focused.
+<img src="https://i.ibb.co/8cmr11v/To-Do-Modal.png" alt="To-Do-Modal" border="0" />
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+## Live Site
+[Link to the live site](https://level-up-sy4q.onrender.com/)
+<img src="https://i.ibb.co/G7wc2Jd/Front-Page.png" alt="Front-Page" border="0" />
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+## Quick Overview
+LvlUp is more than just a task manager; it's a tool that gamifies your productivity. By bringing together essential features like habit tracking, daily tasks, and to-do lists, LvlUp aims to make productivity fun and rewarding. The interface is user-friendly, and the design pays homage to the classic RPG elements found in Habitica.
 
+## Technologies Used
+
+- **Backend:** Flask, SQLAlchemy, SQLite3
+- **Frontend:** React
+- **Database Design:** DbDiagram
+- **Additional Tools:** SQL3, pipenv
+
+## Screenshots
+<img src="https://i.ibb.co/wN1cJd5/Screenshot-2023-11-02-at-7-16-39-PM.png" alt="Screenshot-2023-11-02-at-7-16-39-PM" border="0" />
+<img src="https://i.ibb.co/w6Tx8c6/dashboard.png" alt="dashboard" border="0" />
+## Getting Started
+
+To get LvlUp up and running on your local machine, follow these steps:
+
+1. **Clone the Repository:**
    ```bash
-   pipenv shell
-   ```
+   git clone https://github.com/ansorokey/flask-group-project
 
-   ```bash
-   flask db upgrade
-   ```
 
-   ```bash
-   flask seed all
-   ```
+## Install Dependencies
 
-   ```bash
+**Navigate to the project directory and install the required dependencies:**
+
+2. ```bash
+   pipenv install -r requirements.txt
+
+## Environment Setup
+
+Create a `.env` file based on the provided example. Ensure it has the correct settings for your development environment.
+
+## Database Configuration
+
+Ensure the SQLite3 database connection URL is in the `.env` file. Replace the `SCHEMA` value in the `.env` file with a unique name, adhering to the snake_case convention.
+
+## Initialize the Application
+
+**Activate the virtual environment, migrate the database, seed it, and start the Flask app:** 
+1. ```bash pipenv shell 
+   flask db upgrade 
+   flask seed all 
    flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
-## Deployment through Render.com
+## Running the React App
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+For instructions on running the React app in development, see the [README](./react-app/README.md) in the `react-app` directory.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+## Deployment
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+LvlUp can be deployed using Render.com. For detailed instructions on deployment, refer to the [Render.com Deployment Guide](https://render.com/docs/deploy-flask).
 
 ### Part A: Configure the Start and Build Commands
 
-Start by giving your application a name.
+1. Give your application a name in Render.
+2. Leave the root directory field blank.
+3. Set the Environment to "Python 3", choose the closest Region, and set the Branch to "main".
+4. Enter the following Build command:
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+   ```shell
+   npm install --prefix react-app &&
+   npm run build --prefix react-app &&
+   pip install -r requirements.txt &&
+   pip install psycopg2 &&
+   flask db upgrade &&
+   flask seed all
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+5. Add your Start command:
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+   ```shell
+   gunicorn app:app
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+6. For websockets, use:
+   ```shell
+   gunicorn --worker-class eventlet -w 1 app:app
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
 
 ### Part B: Add the Environment Variables
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+1. Click on "Advanced" to configure the environment variables.
+2. Add the following keys and values:
+   - `SECRET_KEY`: Generate a secure secret for production.
+   - `FLASK_ENV`: Set to `production`.
+   - `FLASK_APP`: Set to `app`.
+   - `SCHEMA`: Use your unique schema name, in snake_case.
+   - `REACT_APP_BASE_URL`: Use your Render.com URL.
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+3. In a new tab, navigate to your dashboard and click on your Postgres database instance. Add the following key and value:
+   - `DATABASE_URL`: Copy the value from the Internal Database URL field.
 
-Add the following keys and values in the Render GUI form:
+_Note: Add any other keys and values that may be present in your local `.env` file. As you work to further develop your project, you may need to add more environment variables to your local `.env` file. Make sure you add these environment variables to the Render GUI as well for the next deployment._
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+4. Choose "Yes" for the Auto-Deploy field. This will re-deploy your application every time you push to main.
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+5. Finally, click "Create Web Service" to deploy your project. The deployment process will take about 10-15 minutes. Monitor the logs to see your build and start commands being executed, and to identify any errors in the build process.
 
-Add the following keys and values:
+## Contributing
 
-- DATABASE_URL (copy value from Internal Database URL field)
+We welcome contributions to LvlUp! If you have suggestions or improvements, feel free to fork this repository and submit a pull request.
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+## License
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+This project is licensed under the [MIT License](LICENSE.md) - see the LICENSE file for details.
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
