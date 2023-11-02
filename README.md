@@ -31,12 +31,10 @@ To get LvlUp up and running on your local machine, follow these steps:
 
 ## Install Dependencies
 
-**Navigate to the project directory and install the required dependencies:*
-*
-```bash
-pipenv install -r requirements.txt
+**Navigate to the project directory and install the required dependencies:**
 
-
+2. ```bash
+   pipenv install -r requirements.txt
 
 ## Environment Setup
 
@@ -50,7 +48,7 @@ Ensure the SQLite3 database connection URL is in the `.env` file. Replace the `S
 
 Activate the virtual environment, migrate the database, seed it, and start the Flask app:
 
-```bash
+3. ```bash
 pipenv shell
 flask db upgrade
 flask seed all
