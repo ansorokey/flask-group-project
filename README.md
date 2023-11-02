@@ -5,21 +5,32 @@ Welcome to LvlUp, a single-page productivity tracking website inspired by Habiti
 ## Features
 
 - **Track Habits:** Keep tabs on your daily habits, ensuring you stay on track with your personal goals.
+<img src="https://i.ibb.co/bB13D2J/pop-Up-Modal.png" alt="pop-Up-Modal" border="0" />
+
 - **Daily Tasks:** Organize and manage your daily tasks efficiently.
+<img src="https://i.ibb.co/RYVwX7y/daily-Modal.png" alt="daily-Modal" border="0" />
+
 - **To-Do List:** Keep a list of tasks you need to accomplish, helping you stay organized and focused.
+<img src="https://i.ibb.co/8cmr11v/To-Do-Modal.png" alt="To-Do-Modal" border="0" />
 
 ## Live Site
-
 [Link to the live site](https://level-up-sy4q.onrender.com/)
+<img src="https://i.ibb.co/G7wc2Jd/Front-Page.png" alt="Front-Page" border="0" />
+
 
 ## Quick Overview
-
 LvlUp is more than just a task manager; it's a tool that gamifies your productivity. By bringing together essential features like habit tracking, daily tasks, and to-do lists, LvlUp aims to make productivity fun and rewarding. The interface is user-friendly, and the design pays homage to the classic RPG elements found in Habitica.
 
+## Technologies Used
+
+- **Backend:** Flask, SQLAlchemy, SQLite3
+- **Frontend:** React
+- **Database Design:** DbDiagram
+- **Additional Tools:** SQL3, pipenv
+
 ## Screenshots
-
-*Here, we will add screenshots of our app showcasing its features and user interface.*
-
+<img src="https://i.ibb.co/wN1cJd5/Screenshot-2023-11-02-at-7-16-39-PM.png" alt="Screenshot-2023-11-02-at-7-16-39-PM" border="0" />
+<img src="https://i.ibb.co/w6Tx8c6/dashboard.png" alt="dashboard" border="0" />
 ## Getting Started
 
 To get LvlUp up and running on your local machine, follow these steps:
@@ -57,12 +68,6 @@ Ensure the SQLite3 database connection URL is in the `.env` file. Replace the `S
 
 For instructions on running the React app in development, see the [README](./react-app/README.md) in the `react-app` directory.
 
-## Technologies Used
-
-- **Backend:** Flask, SQLAlchemy, SQLite3
-- **Frontend:** React
-- **Database Design:** DbDiagram
-- **Additional Tools:** SQL3, pipenv
 
 ## Deployment
 
