@@ -26,7 +26,7 @@ To get LvlUp up and running on your local machine, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone [repository-link]
+   git clone https://github.com/ansorokey/flask-group-project
 
 
 ## Install Dependencies
@@ -46,9 +46,12 @@ Ensure the SQLite3 database connection URL is in the `.env` file. Replace the `S
 
 ## Initialize the Application
 
-Activate the virtual environment, migrate the database, seed it, and start the Flask app:
+**Activate the virtual environment, migrate the database, seed it, and start the Flask app:** 
 1. ```bash
-pipenv shell flask db upgrade flask seed all flask run
+pipenv shell 
+flask db upgrade 
+flask seed all 
+flask run
 
 
 ## Running the React App
