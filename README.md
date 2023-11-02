@@ -18,7 +18,7 @@ LvlUp is more than just a task manager; it's a tool that gamifies your productiv
 
 ## Screenshots
 
-*Here, you can add screenshots of your app showcasing its features and user interface.*
+*Here, we will add screenshots of our app showcasing its features and user interface.*
 
 ## Getting Started
 
