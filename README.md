@@ -31,6 +31,7 @@ LvlUp is more than just a task manager; it's a tool that gamifies your productiv
 ## Screenshots
 <img src="https://i.ibb.co/wN1cJd5/Screenshot-2023-11-02-at-7-16-39-PM.png" alt="Screenshot-2023-11-02-at-7-16-39-PM" border="0" />
 <img src="https://i.ibb.co/w6Tx8c6/dashboard.png" alt="dashboard" border="0" />
+
 ## Getting Started
 
 To get LvlUp up and running on your local machine, follow these steps:
